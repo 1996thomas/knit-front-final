@@ -1,6 +1,6 @@
 .carousel__wrapper {
   position: relative;
-  min-height: 100dvh;
+  min-height: 100svh;
   overflow: hidden;
   background: rgb(20, 20, 20);
   .images__wrapper {
@@ -9,7 +9,7 @@
   }
   image {
     width: 100vw;
-    height: 100dvh;
+    height: 100svh;
   }
   .dots__wrapper {
     display: flex;

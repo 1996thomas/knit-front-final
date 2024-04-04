@@ -58,7 +58,7 @@ const Images = ({ imageIndex }) => {
               backgroundImage: `url(${imgSrc})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
-              height: "100vh",
+              height: "100svh",
               width: "100%",
               flexShrink: 0,
             }}

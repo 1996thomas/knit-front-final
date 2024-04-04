@@ -4,7 +4,7 @@ import { motion, useMotionValue } from "framer-motion";
 import { useState } from "react";
 
 const imgs = ["/image-1.png", "/image-2.jpg", "/image-3.jpg"];
-const DRAG_BUFFER = 50;
+const DRAG_BUFFER = 20;
 export const SwipeCarousel = () => {
   const [dragging, setDragging] = useState(false);
   const [imageIndex, setImageIndex] = useState(0);

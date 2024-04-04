@@ -1,0 +1,8 @@
+@import "./sass/abstract/variable";
+@import "./sass/base/global";
+@import "./sass/base/reset";
+@import "./sass/base/typography";
+
+.home, .article{
+    height: 100vh;
+}

@@ -1,0 +1,34 @@
+.carousel__wrapper {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  background: rgb(20, 20, 20);
+  .images__wrapper {
+    display: flex;
+    align-items: center;
+  }
+  image {
+    width: 100vw;
+    height: 100vh;
+  }
+  .dots__wrapper {
+    display: flex;
+    position: absolute;
+    gap: 1vw;
+    bottom: 5vw;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    button {
+      width: 20px;
+      height: 20px;
+      border: none;
+      border-radius: 50%;
+    }
+    .selected {
+      background-color: red;
+    }
+    .default {
+      background-color: blue;
+    }
+  }
+}

@@ -1,83 +1,106 @@
-.navbar__wrapper{
-    position: fixed;
-    right: 0;
-    top: 0;
-    z-index: 1000;
+.navbar__wrapper {
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 1000;
 }
 
-.navbar-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-    position: relative;
-    z-index: 1000;
-  }
-
-  .fullscreen-navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
+.logo__wrapper {
+  position: absolute;
+  width: 10vw;
+  z-index: 10000;
+  left: 3vw;
+  top: 3vw;
+  img {
     width: 100%;
-    height: 100%;
-    background-color: rgb(0, 0, 0);
-    color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    z-index: 0;
-    overflow: hidden;
-    transform-origin: right;
   }
-  
-  .fullscreen-navbar nav a {
-    color: white;
-    text-decoration: none;
-    font-size: 24px;
-    padding: 15px;
-  }
-  
-  .fullscreen-navbar nav a:hover {
-    color: #ccc;
-  }
-  
+}
 
-  .center {
-    background-color: transparent;
-    border: none;
-    position: absolute;
-    width: 90px;
-    position: absolute;
-    z-index: 1000;
-    right: 100px;
-    top: 100px;
-    
-  }
-  
-  .center:before,
-  .center:after,
-  .center div {
-    background:black;
-    content: "";
-    display: block;
-    height: 15px;
-    border-radius: 100px;
-    margin: 10px 0;
-    transition: 0.8s;
-  }
-  .center.active:before {
-    transform: translateY(12px) rotate(135deg);
-    background-color: white;
-  }
-  .center.active:after {
-    transform: translateY(-12px) rotate(-135deg);
-    background: white;
-  }
-  .center.active div {
-    transform: scale(0);
-  }
+.black-gradient {
+  width: 100%;
+  position: absolute;
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.9710084717480743) 0%,
+    rgba(0, 0, 0, 0.5536415249693627) 48%,
+    rgba(0, 0, 0, 0) 100%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  height: 10vw;
+  z-index: 1000;
+  pointer-events: none;
+  opacity: 0.7;
+}
+.navbar-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  position: relative;
+  z-index: 1000;
+}
+
+.fullscreen-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0, 0, 0);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 0;
+  overflow: hidden;
+  transform-origin: right;
+}
+
+.fullscreen-navbar nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 24px;
+  padding: 15px;
+}
+
+.center {
+  background-color: transparent;
+  border: none;
+  position: absolute;
+  max-width: 5vw;
+  min-width: 70px;
+  position: absolute;
+  z-index: 1000;
+  right: 5vw;
+  top: 3vw;
+  z-index: 10000;
+}
+
+.center:before,
+.center:after,
+.center div {
+  background: rgb(255, 255, 255);
+  content: "";
+  display: block;
+  height: 15px;
+  border-radius: 100px;
+  margin: 10px 0;
+  transition: 0.8s;
+}
+.center.active:before {
+  transform: translateY(12px) rotate(135deg);
+  background-color: white;
+}
+.center.active:after {
+  transform: translateY(-12px) rotate(-135deg);
+  background: white;
+}
+.center.active div {
+  transform: scale(0);
+}

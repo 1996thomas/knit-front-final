@@ -27,31 +27,37 @@ export default function Navbar() {
   };
 
   return (
-    <div className="navbar__wrapper">
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className={`center ${isOpen ? "active" : ""}`}
-      ></button>
-      <motion.div
-        initial="closed"
-        animate={isOpen ? "open" : "closed"}
-        variants={sidebarVariants}
-        className="fullscreen-navbar"
-        style={{ originX: isOpen ? 1 : 0 }}
-      >
-        <motion.nav
-          variants={linksVariants}
+    <>
+      <div className="logo__wrapper">
+        <img src="/KNIT_WHITE.png" alt="" />
+      </div>
+      <span className="black-gradient" />
+      <div className="navbar__wrapper">
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className={`center ${isOpen ? "active" : ""}`}
+        ></button>
+        <motion.div
           initial="closed"
           animate={isOpen ? "open" : "closed"}
+          variants={sidebarVariants}
+          className="fullscreen-navbar"
+          style={{ originX: isOpen ? 1 : 0 }}
         >
-          <Link onClick={() => setIsOpen(false)} to={"/"}>
-            Home
-          </Link>
-          <Link onClick={() => setIsOpen(false)} to={"/article"}>
-            Articles
-          </Link>
-        </motion.nav>
-      </motion.div>
-    </div>
+          <motion.nav
+            variants={linksVariants}
+            initial="closed"
+            animate={isOpen ? "open" : "closed"}
+          >
+            <Link onClick={() => setIsOpen(false)} to={"/"}>
+              Home
+            </Link>
+            <Link onClick={() => setIsOpen(false)} to={"/article"}>
+              Articles
+            </Link>
+          </motion.nav>
+        </motion.div>
+      </div>
+    </>
   );
 }

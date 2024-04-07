@@ -31,7 +31,7 @@ export default function Navbar() {
       <div className="logo__wrapper">
         <img src="/KNIT_WHITE.png" alt="" />
       </div>
-      <span className="black-gradient" />
+      {/* <span className="black-gradient" /> */}
       <div className="navbar__wrapper">
         <button
           onClick={() => setIsOpen(!isOpen)}

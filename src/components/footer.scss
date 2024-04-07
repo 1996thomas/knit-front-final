@@ -1,0 +1,62 @@
+@use "../sass/abstract/variable";
+.footer__wrapper {
+  background-color: black;
+  min-height: 300px;
+  display: flex;
+  margin-top: 5vw;
+  font-weight: 800;
+  color: white;
+  align-items: center;
+  padding-block: 2.5vw;
+  p {
+    font-size: clamp(1.5rem, 5vw, 3rem);
+  }
+  .rs__wrapper,
+  .contact__wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex: 1;
+    flex-direction: column;
+    gap: 2.5vw;
+    padding-inline: 2.5vw;
+    .icons__wrapper {
+      display: flex;
+      gap: 2.5vw;
+    }
+    input,
+    textarea {
+      width: 100%;
+      border: none;
+      padding: 1vw;
+    }
+  }
+
+  .footer--separator {
+    width: 3px;
+    background-color: white;
+    height: 250px;
+  }
+}
+
+@media screen and (max-width: variable.$layout-breakpoint-small) {
+  .footer__wrapper {
+    flex-direction: column-reverse;
+    .footer--separator {
+      height: 3px;
+      width: 80%;
+      margin-block: 2.5vw;
+    }
+    .rs__wrapper,
+    .contact__wrapper {
+      width: 80%;
+      .icons__wrapper {
+        width: 100px;
+      }
+      input,
+      textarea {
+        padding: 2.5vw;
+      }
+    }
+  }
+}

@@ -4,7 +4,7 @@
   display: grid;
   gap: var(--gap);
   grid-auto-flow: column;
-  grid-auto-columns: calc(50% - (var(--gap) / 2));
+  grid-auto-columns: calc(25% - (var(--gap) / 2));
   overflow-y: scroll;
   scroll-snap-type: x mandatory;
   -ms-scroll-snap-type: x;
@@ -17,7 +17,7 @@
 
 @media screen and (max-width: variable.$layout-breakpoint-medium) {
   .reel {
-    grid-auto-columns: calc(40% - (var(--gap) / 2));
+    grid-auto-columns: calc(30% - (var(--gap) / 2));
   }
 }
 @media screen and (max-width: variable.$layout-breakpoint-small) {

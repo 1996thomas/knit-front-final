@@ -18,8 +18,8 @@ const Articles = () => {
       <div className="tagged-article__section">
         <h2>Latest articles</h2>
         <div className="reel">
-          {imgs.map((img) => (
-            <div className="tagged-article__wrapper">
+          {imgs.map((img, key) => (
+            <div key={key} className="tagged-article__wrapper">
               <div className="tagged-article__header">
                 <img src={img} alt="" />
               </div>

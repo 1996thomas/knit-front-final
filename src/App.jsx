@@ -6,6 +6,7 @@ import Articles from "./pages/Articles";
 import { AnimatePresence } from "framer-motion";
 import Navbar from "./components/Navbar";
 import transition from "./utils/transition/transition";
+import Footer from "./components/Footer";
 
 export default function App() {
   const location = useLocation();
@@ -13,14 +14,17 @@ export default function App() {
   const ArticlesWithTransition = transition(Articles);
 
   return (
-    <>
+    <div className="app">
       <Navbar />
-      <AnimatePresence mode="wait">
-        <Routes location={location} key={location.pathname}>
-          <Route index element={<HomeWithTransition />} />
-          <Route path="/articles" element={<ArticlesWithTransition />} />
-        </Routes>
-      </AnimatePresence>
-    </>
+      <div className="content">
+        <AnimatePresence mode="wait">
+          <Routes location={location} key={location.pathname}>
+            <Route index element={<HomeWithTransition />} />
+            <Route path="/articles" element={<ArticlesWithTransition />} />
+          </Routes>
+        </AnimatePresence>
+      </div>
+      <Footer />
+    </div>
   );
 }

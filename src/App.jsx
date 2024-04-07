@@ -2,7 +2,7 @@ import React from "react";
 import "./App.scss";
 import { Routes, Route, useLocation } from "react-router-dom";
 import Home from "./pages/Home";
-import Article from "./pages/Article";
+import Articles from "./pages/Articles";
 import { AnimatePresence } from "framer-motion";
 import Navbar from "./components/Navbar";
 import transition from "./utils/transition/transition";
@@ -10,7 +10,7 @@ import transition from "./utils/transition/transition";
 export default function App() {
   const location = useLocation();
   const HomeWithTransition = transition(Home);
-  const ArticleWithTransition = transition(Article);
+  const ArticlesWithTransition = transition(Articles);
 
   return (
     <>
@@ -18,7 +18,7 @@ export default function App() {
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
           <Route index element={<HomeWithTransition />} />
-          <Route path="/article" element={<ArticleWithTransition />} />
+          <Route path="/articles" element={<ArticlesWithTransition />} />
         </Routes>
       </AnimatePresence>
     </>

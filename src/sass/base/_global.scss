@@ -1,3 +1,6 @@
+@use '../abstract/variable';
 body{
-    background-color: $background;
+    background-color: variable.$background;
 }
+
+

@@ -52,7 +52,7 @@ export default function Navbar() {
             <Link onClick={() => setIsOpen(false)} to={"/"}>
               Home
             </Link>
-            <Link onClick={() => setIsOpen(false)} to={"/article"}>
+            <Link onClick={() => setIsOpen(false)} to={"/articles"}>
               Articles
             </Link>
           </motion.nav>

@@ -2,7 +2,8 @@
 @import "./sass/base/global";
 @import "./sass/base/reset";
 @import "./sass/base/typography";
+@import "./sass/base/layouts";
 
-.home, .article{
+.home, .articles{
     height: 100svh;
 }

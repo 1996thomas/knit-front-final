@@ -43,17 +43,21 @@ const Article = () => {
                 </Link>
               ))}
             </div>
-            <Link
-              className="author"
-              target="_blank"
-              to={article.attributes.author.data.attributes.portfolioLink}
-            >
-              écrit par {article.attributes.author.data.attributes.name}
-            </Link>
+            {article.attributes.author.data && (
+              <Link
+                className="author"
+                target="_blank"
+                to={article.attributes.author.data.attributes.portfolioLink}
+              >
+                écrit par {article.attributes.author.data.attributes.name}
+              </Link>
+            )}
           </div>
           <div className="article-banner">
             <img
-              src={`http://localhost:1337${article.attributes.thumbnail.data.attributes.url}`}
+              src={`${import.meta.env.VITE_API_URL}${
+                article.attributes.thumbnail.data.attributes.url
+              }`}
               alt=""
             />
           </div>

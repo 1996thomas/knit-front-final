@@ -25,7 +25,9 @@ const ArticleCover = ({ article, index }) => {
       className="article"
       key={index}
       style={{
-        backgroundImage: `url(http://localhost:1337${article.attributes.cover.data.attributes.url})`,
+        backgroundImage: `url(${import.meta.env.VITE_API_URL}${
+          article.attributes.cover.data.attributes.url
+        })`,
       }}
     >
       <span className="dark-gradient" />

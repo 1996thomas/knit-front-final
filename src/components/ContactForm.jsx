@@ -51,7 +51,7 @@ function ContactForm() {
 
     try {
       const response = await fetch(
-        "http://localhost:1337/api/contact-messages",
+        `${import.meta.env.VITE_API_URL}/contact-messages`,
         {
           method: "POST",
           headers: {

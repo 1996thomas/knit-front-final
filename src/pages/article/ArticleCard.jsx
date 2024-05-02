@@ -51,6 +51,7 @@ export default function ArticleCard({ id, article }) {
       >
         <p className="title">{article.attributes.title}</p>
         <p className="summary">{article.attributes.summary}</p>
+        <p className="article--link">Voir l'article</p>
       </Link>
     </div>
   );

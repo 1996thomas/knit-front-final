@@ -67,7 +67,7 @@
   border: none;
   position: absolute;
   max-width: 5vw;
-  min-width: 70px;
+  min-width: 55px;
   position: absolute;
   z-index: 1000;
   right: 3vw;
@@ -82,14 +82,13 @@
   outline: 2px solid black;
   content: "";
   display: block;
-  height: 15px;
+  height: 11px;
   border-radius: 5px;
   margin: 10px 0;
   transition: 0.8s;
-  mix-blend-mode: difference;
 }
 .center.active:before {
-  transform: translateY(12px) rotate(135deg);
+  transform: translateY(9px) rotate(135deg);
   background-color: white;
 }
 .center.active:after {

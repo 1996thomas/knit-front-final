@@ -25,9 +25,7 @@ const ArticleCover = ({ article, index }) => {
       className="article"
       key={index}
       style={{
-        backgroundImage: `url(${
-          article.attributes.cover.data.attributes.url
-        })`,
+        backgroundImage: `url(${article.attributes.cover.data.attributes.url})`,
       }}
     >
       <span className="dark-gradient" />
@@ -38,6 +36,11 @@ const ArticleCover = ({ article, index }) => {
         <motion.p className="article-summary" style={{ y, opacity }}>
           {article.attributes.summary}
         </motion.p>
+        <motion.span style={{y, opacity}}>
+          <Link className="article--link" to={`/articles/${article.id}`}>
+            Voir l'article
+          </Link>
+        </motion.span>
       </div>
       <motion.div className="tags" style={{ y, opacity }}>
         {article.attributes.tags.data.map((tag, i) => (

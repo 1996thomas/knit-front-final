@@ -19,6 +19,11 @@
   width: 100svw;
   flex-shrink: 0;
   position: relative;
+  .article--link{
+    font-size: variable.$font-size-s;
+    text-decoration: underline;
+    color: white;
+  }
 
   .title__wrapper {
     display: flex;
@@ -127,7 +132,17 @@
       display: flex;
       flex-direction: column;
       flex: 85%;
+      img:first-of-type{
+        height: 30%;
+        width: 100%;
+      }
+      img{
+        height: 10%;
+        width: 100%;
+        align-self: flex-start;
+      }
     }
+
 
     .ads__wrapper {
       background-color: rgb(232, 232, 232);
@@ -159,7 +174,7 @@
     rgba(38, 38, 38, 0.5536415249693627) 30%,
     rgba(38, 38, 38, 0) 100%
   );
-  opacity: .8;
+  opacity: 0.8;
 }
 @media screen and (max-width: variable.$layout-breakpoint-small) {
   .title__wrapper {

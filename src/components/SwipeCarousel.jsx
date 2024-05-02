@@ -16,11 +16,13 @@ export const SwipeCarousel = ({ articles }) => {
   console.log(articles);
   const [dragging, setDragging] = useState(false);
   const [imageIndex, setImageIndex] = useState(0);
+  const intervalRef = useRef();
 
   const dragX = useMotionValue(0);
 
   const onDragStart = () => {
     setDragging(true);
+    clearInterval(intervalRef.current);
   };
   const onDragEnd = () => {
     setDragging(false);
@@ -32,12 +34,31 @@ export const SwipeCarousel = ({ articles }) => {
         setImageIndex((previousValue) => previousValue - 1);
       }
     }
+    setTimeout(() => {
+      startAutoScroll();
+    }, 5000);
   };
   const homeArray = "INSTAGRAM".split("");
   const articleArray = "TIKTOK".split("");
   const homeLetterRefs = useRef([]);
   const articleLetterRefs = useRef([]);
 
+  const startAutoScroll = () => {
+    intervalRef.current = setInterval(() => {
+      if (!dragging) {
+        // Only auto-scroll if not currently dragging
+        setImageIndex((current) => {
+          if (current >= articles.length - 1) return 0;
+          else return current + 1;
+        });
+      }
+    }, 5000);
+  };
+
+  useEffect(() => {
+    startAutoScroll();
+    return () => clearInterval(intervalRef.current);
+  }, [articles.length]);
   useEffect(() => {
     gsap.fromTo(
       homeLetterRefs.current.concat(articleLetterRefs.current),

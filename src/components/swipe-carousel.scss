@@ -46,9 +46,8 @@
   font-weight: 800;
   display: flex;
   gap: 5vw;
-  right: 3vw;
+  left: calc(100px + 5vw);
   top: 3vw;
-
   a {
     color: white;
   }

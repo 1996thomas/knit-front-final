@@ -17,7 +17,6 @@ export default function Navbar() {
   const [tags, setTags] = useState();
   const location = useLocation();
   const burgerbutton = useRef(null);
-  console.log(location);
 
   useEffect(() => {
     const trigger = ScrollTrigger.create({
@@ -39,14 +38,6 @@ export default function Navbar() {
     });
 
     return () => trigger.kill(); // Clean up the ScrollTrigger instance when the component unmounts or path changes
-  }, [location.pathname]);
-
-  useEffect(() => {
-    if (location.pathname === "/articles") {
-      gsap.set(burgerbutton.current, { scale: 0 });
-    } else {
-      gsap.set(burgerbutton.current, { scale: 1 });
-    }
   }, [location.pathname]);
 
   useEffect(() => {

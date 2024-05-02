@@ -1,0 +1,46 @@
+.contactForm {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  width: 90%;
+  margin-bottom: 2rem;
+  div {
+    display: flex;
+    gap: 1rem;
+  }
+  input,
+  textarea,
+  button {
+    border-radius: 0;
+    outline: 1px solid white;
+    border: none;
+    background-color: transparent;
+    padding: 0.5rem;
+    color: white;
+    width: 100%;
+    resize: none;
+  }
+  button {
+    cursor: alias;
+  }
+  .name,
+  .email,
+  .textarea,
+  .button {
+    position: relative;
+    .error,
+    .success {
+      font-size: 1.2rem;
+      position: absolute;
+      top: -15px;
+      font-weight: 100;
+      font-style: italic;
+    }
+    .error {
+      color: rgb(255, 101, 101);
+    }
+    .success {
+      color: rgb(96, 255, 96);
+    }
+  }
+}

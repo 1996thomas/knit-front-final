@@ -1,22 +1,21 @@
+@use '../sass/abstract/variable';
 .carousel__wrapper {
   position: relative;
   min-height: 100svh;
   overflow: hidden;
-  background: rgb(20, 20, 20);
+  background: rgb(31, 31, 31);
   .images__wrapper {
     display: flex;
     align-items: center;
   }
-  image {
-    width: 100vw;
-    height: 100svh;
-  }
+
   .dots__wrapper {
     display: flex;
+    flex-direction: column;
     position: absolute;
     gap: 2vw;
-    bottom: 5vw;
-    left: 50%;
+    bottom: 50%;
+    right: 2.5vw;
     transform: translate(-50%, 50%);
     button {
       width: 20px;
@@ -37,5 +36,20 @@
       scale: 1;
       transition: scale ease 0.3s;
     }
+  }
+}
+
+.nav-ul {
+  position: absolute;
+  z-index: 100000;
+  font-size: variable.$font-size-xs;
+  font-weight: 800;
+  display: flex;
+  gap: 5vw;
+  right: 3vw;
+  top: 3vw;
+
+  a {
+    color: white;
   }
 }

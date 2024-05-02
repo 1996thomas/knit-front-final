@@ -5,8 +5,15 @@ $layout-breakpoint-small: 960px;
 $layout-breakpoint-xsmall: 480px;
 
 //COLORS
-$background: #F0EFE9;
+$background: #f0efe9;
 $white: #fff;
 $black: #fff;
 $primary: #fff;
 $secondary: #fff;
+$placeholder: #c7c7c7;
+
+$font-size-xs: clamp(0.8rem, 2vw, 2rem);
+$font-size-s: clamp(0.8rem, 4vw, 2rem);
+$font-size-m: clamp(2rem, 6vw, 6rem);
+$font-size-l: clamp(3rem, 6vw, 8rem);
+$font-size-xl: clamp(5rem, 10vw, 10rem);

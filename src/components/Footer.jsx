@@ -1,6 +1,7 @@
 import React from "react";
 import "./footer.scss";
 import { FaInstagram, FaTiktok } from "react-icons/fa";
+import ContactForm from "./ContactForm";
 
 export default function Footer() {
   return (
@@ -14,9 +15,8 @@ export default function Footer() {
       </div>
       <span className="footer--separator" />
       <div className="contact__wrapper">
-        <p>CONTACT NOUS</p>
-        <input type="email" placeholder="e-mail" />
-        <textarea name="content" id="" cols="30" rows="5"></textarea>
+        <p>CONTACTE NOUS </p>
+        <ContactForm />
       </div>
     </div>
   );

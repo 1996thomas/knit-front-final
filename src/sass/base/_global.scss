@@ -1,15 +1,14 @@
-@use '../abstract/variable';
-body{
-    background-color: variable.$background;
+@use "../abstract/variable";
+body {
+  background-color: variable.$background;
 }
 
 .app {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-  }
-  
-  .content {
-    flex-grow: 1;
-  }
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 
+.content {
+  flex-grow: 1;
+}

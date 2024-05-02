@@ -1,11 +1,11 @@
 @use "../abstract/variable";
 .reel {
-  --gap: 2rem;
+  --gap: 5rem;
   display: grid;
   gap: var(--gap);
   grid-auto-flow: column;
   grid-auto-columns: calc(25% - (var(--gap) / 2));
-  overflow-y: scroll;
+  overflow-x: scroll;
   scroll-snap-type: x mandatory;
   -ms-scroll-snap-type: x;
   scroll-padding: var(--gap);
@@ -14,6 +14,8 @@
 
 .reel > * {
   scroll-snap-align: start;
+  margin-block: 50px;
+  overflow: hidden;
 }
 
 @media screen and (max-width: variable.$layout-breakpoint-medium) {
@@ -28,6 +30,8 @@
 }
 @media screen and (max-width: variable.$layout-breakpoint-xsmall) {
   .reel {
+    --gap: 5rem;
+
     grid-auto-columns: calc(90% - (var(--gap) / 2));
   }
 }

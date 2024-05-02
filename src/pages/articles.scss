@@ -1,29 +1,92 @@
 @use "../sass/abstract/variable";
-.tagged-article__section {
+.tagged-articles__section {
   margin-top: 5vw;
-  h2 {
-    font-size: clamp(2rem, 5vw, 5rem);
-    font-weight: 800;
-    margin-block: 2.5vw;
+  display: flex;
+  flex-direction: column;
+  .tagged-articles--header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-inline: 2.5vw;
+
+    a {
+      font-size: variable.$font-size-s;
+      margin-bottom: 0.5vw;
+      text-decoration: underline;
+    }
+    h2 {
+      color: variable.$background;
+      font-size: variable.$font-size-xl;
+      font-weight: 800;
+      margin-top: 2vw;
+      -webkit-text-stroke-width: 1px;
+      -webkit-text-stroke-color: black;
+    }
+  }
+  .findByTag {
+    display: flex;
+    gap: 3vw;
+    flex-shrink: 0;
+    overflow: scroll;
   }
 }
+
 .tagged-article__wrapper {
+  flex-shrink: 0;
   aspect-ratio: 1/1;
   display: flex;
   flex-direction: column;
-  margin-block: 2.5vw;
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
-    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
-    .tagged-article__header {
+  aspect-ratio: 1/1;
+  position: relative;
+  min-width: 200px;
+  max-width: 600px;
+  position: relative;
+  overflow: hidden;
+
+  .tagged-article__header {
     overflow: hidden;
     flex: 2;
     img {
       object-fit: cover;
       width: 100%;
+      height: 100%;
+    }
+    .tags {
+      display: flex;
+      gap: 1em;
+      position: absolute;
+      top: 3%;
+      mix-blend-mode: difference;
+      right: 3%;
+      a {
+        font-size: clamp(0.8em, 3vw, 2.5em);
+        padding: 0.3rem 2rem;
+        border: 1px solid white;
+        color: white;
+        border-radius: 1000px;
+        font-weight: 100;
+      }
     }
   }
 
   .tagged-article__body {
     flex: 1;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 40%;
+    background-color: rgba(70, 70, 70, 0.228);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    padding: 1rem;
+    color: white;
+    .title {
+      font-size: clamp(0.8rem, 5vw, 3rem);
+      font-weight: 500;
+      margin-bottom: 1.5vw;
+    }
+    .summary {
+      font-size: clamp(1rem, 2vw, 1.5rem);
+    }
   }
 }

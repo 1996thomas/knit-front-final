@@ -25,7 +25,7 @@ const ArticleCover = ({ article, index }) => {
       className="article"
       key={index}
       style={{
-        backgroundImage: `url(${import.meta.env.VITE_API_URL}${
+        backgroundImage: `url(${
           article.attributes.cover.data.attributes.url
         })`,
       }}

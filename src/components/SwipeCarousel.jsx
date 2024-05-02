@@ -11,7 +11,6 @@ import { useRef } from "react";
 import { useEffect } from "react";
 import { FaInstagram, FaTiktok } from "react-icons/fa";
 
-const imgs = ["/image-1.png", "/image-2.jpg", "/image-3.jpg"];
 const DRAG_BUFFER = 20;
 export const SwipeCarousel = ({ articles }) => {
   console.log(articles);

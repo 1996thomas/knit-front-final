@@ -55,9 +55,7 @@ const Article = () => {
           </div>
           <div className="article-banner">
             <img
-              src={`${import.meta.env.VITE_API_URL}${
-                article.attributes.thumbnail.data.attributes.url
-              }`}
+              src={`${article.attributes.thumbnail.data.attributes.url}`}
               alt=""
             />
           </div>

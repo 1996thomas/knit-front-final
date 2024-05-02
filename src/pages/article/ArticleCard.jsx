@@ -40,9 +40,7 @@ export default function ArticleCard({ id, article }) {
           ))}
         </div>
         <img
-          src={`${import.meta.env.VITE_API_URL}${
-            article.attributes.thumbnail.data.attributes.url
-          }`}
+          src={`${article.attributes.thumbnail.data.attributes.url}`}
           alt={article.attributes.title || "Article Thumbnail"}
         />
       </div>

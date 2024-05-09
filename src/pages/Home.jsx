@@ -4,7 +4,7 @@ const Home = () => {
   return (
     <div className="home">
       <div className="home__video">
-        <video autoPlay loop muted src="/lol.mov"></video>
+        <video autoPlay loop muted src="/lol.mp4"></video>
       </div>
       <div className="about__wrapper">
         <div className="first">

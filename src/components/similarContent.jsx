@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import { getArticles } from "../utils/apiCalls";
 import { findArticleByTags } from "../utils/function";
 
-const similarContent = ({article}) => {
+const SimilarContent = () => {
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -17,7 +17,6 @@ const similarContent = ({article}) => {
       setIsLoading(false);
     });
   }, []);
-  console.log(article)
 
   if (isLoading) {
     return <p>Chargement en cours...</p>;
@@ -30,4 +29,4 @@ const similarContent = ({article}) => {
   );
 };
 
-export default transition(similarContent);
+export default transition(SimilarContent);

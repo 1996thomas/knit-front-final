@@ -10,6 +10,7 @@ import { useLocation } from "react-router-dom";
 import { useGSAP } from "@gsap/react";
 import { useEffect } from "react";
 import { getAllTags } from "../utils/apiCalls";
+import RSComp from "./RSComp";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Navbar() {
@@ -19,30 +20,16 @@ export default function Navbar() {
   const burgerbutton = useRef(null);
 
   useEffect(() => {
-    const trigger = ScrollTrigger.create({
-      trigger: document.documentElement,
-      start: 0,
-      end: window.innerHeight,
-      onLeave: () =>
-        gsap.to(burgerbutton.current, {
-          scale: 1,
-          duration: 0.35,
-          ease: "power3",
-        }),
-      onEnterBack: () =>
-        gsap.to(burgerbutton.current, {
-          scale: 0,
-          duration: 0.25,
-          ease: "power1.out",
-        }),
-    });
-
-    return () => trigger.kill(); // Clean up the ScrollTrigger instance when the component unmounts or path changes
-  }, [location.pathname]);
-
-  useEffect(() => {
     getAllTags().then((response) => setTags(response.data));
   }, []);
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.classList.add("no-scroll");
+    } else {
+      document.body.classList.remove("no-scroll");
+    }
+  }, [isOpen]);
 
   const sidebarVariants = {
     open: {
@@ -70,19 +57,11 @@ export default function Navbar() {
         <span className="dark-gradient--nav" />
       )}
       <div
-        className={
-          location.pathname === "/articles"
-            ? "fxed navbar__wrapper "
-            : " absolute navbar__wrapper "
-        }
+        className={`navbar__wrapper ${
+          location.pathname === "/articles" ? "navbar--transparent" : ""
+        }`}
       >
-        <div
-          className={
-            location.pathname === "/articles"
-              ? "fixed logo__wrapper "
-              : "absolute logo__wrapper "
-          }
-        >
+        <div className={" logo__wrapper "}>
           <Link to={"/"}>
             <img src="/KNIT_WHITE_1.png" alt="" />
           </Link>
@@ -113,8 +92,9 @@ export default function Navbar() {
             </Link>
             <div className="tags-nav">
               {tags &&
-                tags.map((tag) => (
+                tags.map((tag, key) => (
                   <Link
+                    key={key}
                     onClick={() => setIsOpen(false)}
                     to={`/articles/categories/${tag.attributes.name}`}
                   >
@@ -123,6 +103,7 @@ export default function Navbar() {
                 ))}
             </div>
           </motion.nav>
+          <RSComp />
         </motion.div>
       </div>
     </>

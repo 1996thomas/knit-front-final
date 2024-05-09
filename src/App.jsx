@@ -9,12 +9,14 @@ import transition from "./utils/transition/transition";
 import Footer from "./components/Footer";
 import Article from "./pages/article/Article";
 import Category from "./pages/categories/Category";
+import { useRef } from "react";
 export default function App() {
   const location = useLocation();
   const HomeWithTransition = transition(Home);
   const ArticlesWithTransition = transition(Articles);
   const ArticleWithTransition = transition(Article);
   const CategoryWithTransition = transition(Category);
+
 
   return (
     <div className="app">

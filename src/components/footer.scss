@@ -1,8 +1,6 @@
 @use "../sass/abstract/variable";
 .footer__wrapper {
   background-color: black;
-  min-height: 500px;
-  height: 100%;
   display: flex;
   font-weight: 800;
   color: white;
@@ -12,19 +10,25 @@
     font-size: clamp(1.5rem, 5vw, 3rem);
     margin-bottom: 1rem;
   }
-  .rs__wrapper,
+  
   .contact__wrapper {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    flex: 1;
+    justify-content: space-evenly;
     flex-direction: column;
+    flex: 30;
     gap: 2.5vw;
     padding-inline: 2.5vw;
     .icons__wrapper {
       display: flex;
       gap: 2.5vw;
     }
+  }
+
+  .rs__wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .footer--separator {

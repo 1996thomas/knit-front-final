@@ -75,9 +75,9 @@
   }
 }
 .article__wrapper {
-  max-width: 94vw;
+  max-width: 90vw;
   margin: 0 auto;
-  margin-top: 200px;
+  margin-top: calc(100px + 3vw);
   gap: 100px;
   .article__header {
     display: flex;
@@ -128,19 +128,17 @@
     display: flex;
     gap: 2vw;
 
+    .summary{
+      font-size: variable.$font-size-m;
+      font-style: italic;
+      line-height: 1.2;
+      font-weight: 100;
+    }
+
     .article-content {
       display: flex;
       flex-direction: column;
       flex: 85%;
-      img:first-of-type{
-        height: 30%;
-        width: 100%;
-      }
-      img{
-        height: 10%;
-        width: 100%;
-        align-self: flex-start;
-      }
     }
 
 
@@ -151,6 +149,8 @@
       max-height: 90vh;
       align-items: center;
       justify-content: center;
+      position: sticky;
+      top: 140px;
       flex: 15%;
       img {
         width: 100%;

@@ -5,10 +5,12 @@ const ScrollToTop = () => {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       window.scrollTo(0, 0);
-    }, [pathname]);
-  }, 500);
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, [pathname]);
 
   return null;
 };

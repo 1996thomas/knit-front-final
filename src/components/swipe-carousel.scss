@@ -39,16 +39,3 @@
   }
 }
 
-.nav-ul {
-  position: absolute;
-  z-index: 100000;
-  font-size: variable.$font-size-xs;
-  font-weight: 800;
-  display: flex;
-  gap: 5vw;
-  left: calc(100px + 5vw);
-  top: 3vw;
-  a {
-    color: white;
-  }
-}

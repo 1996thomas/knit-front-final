@@ -1,17 +1,12 @@
-import React from "react";
-import "./footer.scss";
-import { FaInstagram, FaTiktok } from "react-icons/fa";
 import ContactForm from "./ContactForm";
+import RSComp from "./RSComp";
+import './footer.scss';
 
 export default function Footer() {
   return (
     <div className="footer__wrapper">
       <div className="rs__wrapper">
-        <p>ABONNE TOI POUR PLUS DE NEWS</p>
-        <div className="icons__wrapper">
-          <FaInstagram size={80} color="white" />
-          <FaTiktok size={80} color="white" />
-        </div>
+          <RSComp/>
       </div>
       <span className="footer--separator" />
       <div className="contact__wrapper">

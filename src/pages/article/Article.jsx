@@ -1,16 +1,13 @@
-import React from "react";
-import { useParams } from "react-router-dom";
+import React, { useState, useEffect, useRef } from "react";
+import { useParams, Link } from "react-router-dom";
 import transition from "../../utils/transition/transition";
-import { useState } from "react";
-import { useEffect } from "react";
 import { getArticle } from "../../utils/apiCalls";
 import "./article.scss";
-import ArticleCover from "../../components/ArticleCover";
 import { renderRichText } from "../../utils/renderRichText";
 import SimilarContent from "../../components/similarContent";
-import { Link } from "react-router-dom";
+import { forwardRef } from "react";
 
-const Article = () => {
+const Article = forwardRef((props, ref) => {
   const { id } = useParams();
   const [article, setArticle] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -18,15 +15,16 @@ const Article = () => {
   useEffect(() => {
     getArticle(id).then((responseData) => {
       setArticle(responseData.data);
-      responseData !== undefined && setIsLoading(false);
+      setIsLoading(false);
     });
-    console.log("Article in SimilarContent:", article);
-  }, []);
+  }, [id]);
 
   if (isLoading) {
     return <p>Chargement en cours...</p>;
   }
-  console.log(article);
+
+  console.log(ref)
+
   return (
     <>
       <div className="article__wrapper">
@@ -62,9 +60,10 @@ const Article = () => {
         </div>
         <div className="article__body">
           <div className="ads__wrapper">
-            <img src="/ad-nike.jpg" alt="" />
+            <img src="/ad-nike.jpg" alt="Nike Ad" />
           </div>
           <div className="article-content">
+            <p className="summary">{article.attributes.summary}</p>
             {article.attributes.content.map((content, index) => (
               <React.Fragment key={index}>
                 {renderRichText(content)}
@@ -73,9 +72,13 @@ const Article = () => {
           </div>
         </div>
       </div>
-      {article && article.attributes && <SimilarContent article={article} />}
+      {article && article.attributes && (
+        <div className="similarContent__wrapper" ref={ref}>
+          <SimilarContent article={article} />
+        </div>
+      )}
     </>
   );
-};
+});
 
 export default transition(Article);

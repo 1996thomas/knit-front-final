@@ -1,0 +1,25 @@
+@use "../sass/abstract/variable";
+.rs-ul {
+  justify-content: center;
+  padding-block: 2vw;
+  font-size: variable.$font-size-m;
+  display: flex;
+  gap: 2vw;
+  font-weight: 800;
+  flex: 10;
+  padding: 1vw;
+
+
+
+}
+
+@media screen and (max-width: variable.$layout-breakpoint-small) {
+  .rs-ul {
+    font-size: variable.$font-size-m;
+    justify-content: space-between;
+    width: 100%;
+    a {
+      color: white;
+    }
+  }
+}

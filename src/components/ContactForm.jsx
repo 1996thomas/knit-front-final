@@ -14,7 +14,6 @@ function ContactForm() {
 
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
-    // Clear errors when user modifies the input
     if (errors[event.target.name]) {
       setErrors({ ...errors, [event.target.name]: "" });
     }

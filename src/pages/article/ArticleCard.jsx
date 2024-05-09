@@ -16,7 +16,7 @@ export default function ArticleCard({ id, article }) {
   useEffect(() => {
     if (articleBodyRef.current) {
       const animation = gsap.to(articleBodyRef.current, {
-        yPercent: isHover ? 0 : 70,
+        yPercent: isHover ? 0 : 55,
         duration: isHover ? 0.2 : 0.4,
         ease: "power3.in",
       });

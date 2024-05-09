@@ -58,7 +58,9 @@ export default function Navbar() {
       )}
       <div
         className={`navbar__wrapper ${
-          location.pathname === "/articles" ? "navbar--transparent" : ""
+          location.pathname === "/articles" || location.pathname === "/"
+            ? "navbar--transparent"
+            : ""
         }`}
       >
         <div className={" logo__wrapper "}>

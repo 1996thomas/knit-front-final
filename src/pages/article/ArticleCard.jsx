@@ -44,16 +44,13 @@ export default function ArticleCard({ id, article }) {
           alt={article.attributes.title || "Article Thumbnail"}
         />
       </div>
-
-      <p className="title">{article.attributes.title}</p>
-      <p className="summary">{article.attributes.summary}</p>
-      <Link
-        to={`/articles/${article.id}`}
-        className="tagged-article__body"
-        ref={articleBodyRef}
-      >
-        <p className="article--link">Voir l'article</p>
-      </Link>
+      <div className="tagged-article__body" ref={articleBodyRef}>
+        <p className="title">{article.attributes.title}</p>
+        <p className="summary">{article.attributes.summary}</p>
+        <Link to={`/articles/${article.id}`} className="article--link">
+          Voir l'article
+        </Link>
+      </div>
     </div>
   );
 }

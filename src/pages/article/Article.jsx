@@ -6,11 +6,14 @@ import "./article.scss";
 import { renderRichText } from "../../utils/renderRichText";
 import SimilarContent from "../../components/similarContent";
 import { forwardRef } from "react";
+import formatFrenchDate from "../../utils/formatFrenchDate";
+import gsap from "gsap";
 
-const Article = forwardRef((props, ref) => {
+const Article = () => {
   const { id } = useParams();
   const [article, setArticle] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const parallaxRef = useRef(null);
 
   useEffect(() => {
     getArticle(id).then((responseData) => {
@@ -19,16 +22,33 @@ const Article = forwardRef((props, ref) => {
     });
   }, [id]);
 
+  useEffect(() => {
+    if (parallaxRef.current) {
+      gsap.to(parallaxRef.current, {
+        yPercent: 40,
+        ease: "power1",
+        scrollTrigger: {
+          trigger: parallaxRef.current,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true,
+        },
+      });
+    }
+  }, [article]);
+
   if (isLoading) {
     return <p>Chargement en cours...</p>;
   }
-
-  console.log(ref)
 
   return (
     <>
       <div className="article__wrapper">
         <div className="article__header">
+          <p className="publishedAt">
+            {formatFrenchDate(article.attributes.publishedAt)}
+          </p>
+
           <h2>{article.attributes.title}</h2>
           <div className="tags">
             <div>
@@ -53,8 +73,9 @@ const Article = forwardRef((props, ref) => {
           </div>
           <div className="article-banner">
             <img
+              ref={parallaxRef}
               src={`${article.attributes.thumbnail.data.attributes.url}`}
-              alt=""
+              alt={`cover de l'article : ${article.attributes.title}`}
             />
           </div>
         </div>
@@ -73,12 +94,12 @@ const Article = forwardRef((props, ref) => {
         </div>
       </div>
       {article && article.attributes && (
-        <div className="similarContent__wrapper" ref={ref}>
+        <div className="similarContent__wrapper">
           <SimilarContent article={article} />
         </div>
       )}
     </>
   );
-});
+};
 
 export default transition(Article);

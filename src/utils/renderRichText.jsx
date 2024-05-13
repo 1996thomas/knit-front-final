@@ -1,4 +1,5 @@
 import React from "react";
+import ParallaxImage from "../components/ParallaxImage"; // Assurez-vous que le chemin est correct
 import "./renderRichText.scss";
 
 export function renderRichText(richText) {
@@ -33,14 +34,14 @@ export function renderRichText(richText) {
       );
 
     case "image":
-      return React.createElement(
-        "div",
-        { key: richText.key, className: "article-image--wrapper" }, // Ajoutez ici les classes souhaitées
-        React.createElement("img", {
-          src: richText.image?.url,
-          alt: "Image",
-          className: getClassName(),
-        })
+      return (
+        <div key={richText.key} className="article-image--wrapper">
+          <ParallaxImage
+            src={richText.image?.url}
+            alt="Image"
+            className={getClassName()}
+          />
+        </div>
       );
 
     case "paragraph":

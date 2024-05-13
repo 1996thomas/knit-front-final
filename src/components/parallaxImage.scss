@@ -1,0 +1,12 @@
+.article-image--wrapper {
+  position: relative;
+  overflow: hidden;
+  img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    will-change: transform;
+    object-position: top;
+    
+  }
+}

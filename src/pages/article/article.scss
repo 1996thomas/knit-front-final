@@ -19,7 +19,7 @@
   width: 100svw;
   flex-shrink: 0;
   position: relative;
-  .article--link{
+  .article--link {
     font-size: variable.$font-size-s;
     text-decoration: underline;
     color: white;
@@ -78,14 +78,17 @@
   max-width: 90vw;
   margin: 0 auto;
   margin-top: calc(100px + 3vw);
-  gap: 100px;
-  .article__header {
+    .article__header {
     display: flex;
     flex-direction: column;
     gap: 1vw;
     h2 {
       font-size: clamp(3rem, 5vw, 10rem);
       font-weight: 900;
+    }
+    .publishedAt {
+      font-size: variable.$font-size-xs;
+      font-weight: 100;
     }
     .tags {
       display: flex;
@@ -126,9 +129,9 @@
   .article__body {
     margin-block: 2.5vw;
     display: flex;
-    gap: 2vw;
+    gap: 10vw;
 
-    .summary{
+    .summary {
       font-size: variable.$font-size-m;
       font-style: italic;
       line-height: 1.2;
@@ -138,9 +141,9 @@
     .article-content {
       display: flex;
       flex-direction: column;
-      flex: 85%;
+      flex: 80%;
+      justify-content: center;
     }
-
 
     .ads__wrapper {
       background-color: rgb(232, 232, 232);
@@ -151,7 +154,7 @@
       justify-content: center;
       position: sticky;
       top: 140px;
-      flex: 15%;
+      flex: 20%;
       img {
         width: 100%;
         height: 100%;

@@ -50,7 +50,7 @@ function ContactForm() {
 
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/contact-messages`,
+        `${import.meta.env.VITE_API_URL}/api/contact-messages`,
         {
           method: "POST",
           headers: {

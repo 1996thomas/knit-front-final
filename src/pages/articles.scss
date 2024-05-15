@@ -20,7 +20,7 @@
       font-weight: 800;
       margin-top: 2vw;
       -webkit-text-stroke-width: 1px;
-      -webkit-text-stroke-color: black;
+      -webkit-text-stroke-color: variable.$black;
     }
   }
   .findByTag {
@@ -62,7 +62,7 @@
         font-size: clamp(0.8em, 3vw, 2.5em);
         padding: 0.3rem 2rem;
         border: 1px solid white;
-        color: white;
+        color: variable.$white;
         border-radius: 1000px;
         font-weight: 100;
       }
@@ -79,7 +79,7 @@
     backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.18);
     padding: 1rem;
-    color: white;
+    color: variable.$white;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -102,6 +102,16 @@
       font-size: variable.$font-size-s;
       text-decoration: underline;
       font-weight: 600;
+      position: relative;
+    }
+    .article--link::before{
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 200%;
+      height: 300px;
+      transform: translateX(-100%);
+      opacity: 0;
     }
   }
 }

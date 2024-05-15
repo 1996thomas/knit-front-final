@@ -22,7 +22,7 @@
   .article--link {
     font-size: variable.$font-size-s;
     text-decoration: underline;
-    color: white;
+    color: variable.$white;
   }
 
   .title__wrapper {
@@ -36,14 +36,14 @@
 
     .article-title {
       font-size: variable.$font-size-l;
-      color: white;
+      color: variable.$white;
       font-weight: 800;
       flex: 1;
       width: 95%;
     }
     .article-summary {
       font-size: variable.$font-size-s;
-      color: white;
+      color: variable.$white;
       font-weight: 400;
       flex: 1;
       display: -webkit-box;
@@ -66,8 +66,8 @@
     a {
       font-size: clamp(0.8rem, 5vw, 3rem);
       font-style: italic;
-      color: white;
-      border: 1px solid white;
+      color: variable.$white;
+      border: 1px solid variable.$white;
       border-radius: 100px;
       padding: 0.2em 1em;
       font-weight: 100;
@@ -101,7 +101,7 @@
       a {
         font-size: clamp(0.8em, 3vw, 2.5em);
         padding: 0.3rem 2rem;
-        border: 1px solid black;
+        border: 1px solid variable.$black;
         border-radius: 1000px;
         font-weight: 100;
       }
@@ -119,26 +119,25 @@
       justify-content: center;
       width: calc(100% + 10vw);
       transform: translate(-5vw, -10px);
-      max-height: 400px;
-      height: 100%;
+      height: 450px;
       overflow: hidden;
       img {
         width: 100%;
         height: 100%;
         object-fit: cover;
+        background-color: lightgray;
       }
     }
-  }
-  .article__body {
-    margin-block: 2.5vw;
-    display: flex;
-
     .summary {
       font-size: variable.$font-size-m;
       font-style: italic;
       line-height: 1.2;
       font-weight: 100;
     }
+  }
+  .article__body {
+    margin-block: 2.5vw;
+    display: flex;
 
     .article-content {
       display: flex;
@@ -199,7 +198,7 @@
   }
   .article {
     .tags {
-      bottom: 55vw;
+      bottom: 60vw;
       left: 2.5vw;
       right: auto;
       height: fit-content;
@@ -218,9 +217,8 @@
 @media screen and (max-width: variable.$layout-breakpoint-xsmall) {
   .article__wrapper {
     .article__header {
-      .tags{
+      .tags {
         transform: translateY(7vw);
-
       }
       .article-banner {
         transform: translate(-5vw, -20vw);

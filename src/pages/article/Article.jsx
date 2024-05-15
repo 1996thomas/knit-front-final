@@ -71,6 +71,7 @@ const Article = () => {
               </Link>
             )}
           </div>
+
           <div className="article-banner">
             <img
               ref={parallaxRef}
@@ -78,13 +79,13 @@ const Article = () => {
               alt={`cover de l'article : ${article.attributes.title}`}
             />
           </div>
+          <p className="summary">{article.attributes.summary}</p>
         </div>
         <div className="article__body">
           <div className="ads__wrapper">
             <img src="/ad-nike.jpg" alt="Nike Ad" />
           </div>
           <div className="article-content">
-            <p className="summary">{article.attributes.summary}</p>
             {article.attributes.content.map((content, index) => (
               <React.Fragment key={index}>
                 {renderRichText(content)}

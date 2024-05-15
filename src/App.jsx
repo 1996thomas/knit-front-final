@@ -10,13 +10,14 @@ import Footer from "./components/Footer";
 import Article from "./pages/article/Article";
 import Category from "./pages/categories/Category";
 import { useRef } from "react";
+import NotFound from "./pages/404/NotFound";
 export default function App() {
   const location = useLocation();
   const HomeWithTransition = transition(Home);
   const ArticlesWithTransition = transition(Articles);
   const ArticleWithTransition = transition(Article);
   const CategoryWithTransition = transition(Category);
-
+  const NotFoundWithTransition = transition(NotFound);
 
   return (
     <div className="app">
@@ -31,6 +32,7 @@ export default function App() {
               path="/articles/categories/:name"
               element={<CategoryWithTransition />}
             />
+            <Route path="*" element={<NotFoundWithTransition />} />
           </Routes>
         </AnimatePresence>
       </div>

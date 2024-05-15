@@ -1,0 +1,18 @@
+@use '../../sass/abstract/variable';
+
+.notfound__wrapper{
+    max-width: 90vw;
+    margin: 0 auto;
+    margin-top: calc(100px + 3vw);
+    display: flex;
+    flex-direction: column;
+    gap: 3vw;
+    p{
+        font-size: variable.$font-size-xl;
+        font-weight: 700;
+    }
+    a{
+        font-size: variable.$font-size-m;
+        text-decoration: underline;
+    }
+}

@@ -24,7 +24,7 @@
       border-radius: 50%;
     }
     .selected {
-      background-color: white;
+      background-color:variable.$white;
       scale: 1.2;
       transition: scale ease 0.2s;
       box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,

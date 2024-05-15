@@ -41,7 +41,7 @@ export default function RSComp() {
             alignItems: "flex-end",
           }}
         >
-          <FaInstagram size={30} color="white" style={{ marginRight: "5px" }} />
+          <FaInstagram size={30} color="f4f3ee" style={{ marginRight: "5px" }} />
           {homeArray.map((letter, index) => (
             <div key={index} ref={(el) => (homeLetterRefs.current[index] = el)}>
               {letter}
@@ -61,7 +61,7 @@ export default function RSComp() {
             alignItems: "flex-end",
           }}
         >
-          <FaTiktok size={30} color="white" style={{ marginRight: "5px" }} />
+          <FaTiktok size={30} color="#f4f3ee" style={{ marginRight: "5px" }} />
           {articleArray.map((letter, index) => (
             <div
               key={index}

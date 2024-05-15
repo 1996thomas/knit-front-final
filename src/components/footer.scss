@@ -1,9 +1,9 @@
 @use "../sass/abstract/variable";
 .footer__wrapper {
-  background-color: black;
+  background-color: variable.$black;
   display: flex;
   font-weight: 800;
-  color: white;
+  color:  variable.$white;
   align-items: center;
   padding-block: 2.5vw;
   p {
@@ -33,7 +33,7 @@
 
   .footer--separator {
     width: 3px;
-    background-color: white;
+    background-color:  variable.$white;
     height: 250px;
   }
 }

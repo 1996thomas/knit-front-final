@@ -5,9 +5,9 @@ $layout-breakpoint-small: 960px;
 $layout-breakpoint-xsmall: 480px;
 
 //COLORS
-$background: #f0efe9;
-$white: #fff;
-$black: #fff;
+$background: #f4f3ee;
+$white: #f4f3ee;
+$black: #141414;
 $primary: #fff;
 $secondary: #fff;
 $placeholder: #c7c7c7;
@@ -15,5 +15,5 @@ $placeholder: #c7c7c7;
 $font-size-xs: clamp(0.8rem, 2vw, 2rem);
 $font-size-s: clamp(0.8rem, 4vw, 2rem);
 $font-size-m: clamp(1.8rem, 4vw, 2.5rem);
-$font-size-l: clamp(3rem, 6vw, 8rem);
+$font-size-l: clamp(2.8rem, 6vw, 8rem);
 $font-size-xl: clamp(5rem, 10vw, 10rem);

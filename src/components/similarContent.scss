@@ -1,13 +1,11 @@
-@use '../sass/abstract/variable';
+@use "../sass/abstract/variable";
 .similarContent__wrapper {
-  background-color: black;
+  background-color: variable.$black;
   padding-top: 2.5vw;
-  color: white;
+  color: variable.$white;
   .similarContent--title {
     font-size: clamp(1.5rem, 5vw, 3rem);
     padding-left: 3vw;
     font-weight: 900;
   }
-
 }
-

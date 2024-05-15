@@ -46,7 +46,9 @@ export default function ArticleCard({ id, article }) {
       </div>
       <div className="tagged-article__body" ref={articleBodyRef}>
         <p className="title">{article.attributes.title}</p>
-        <p className="summary">{article.attributes.summary}</p>
+        <Link to={`/articles/${article.id}`} className="summary">
+          {article.attributes.summary}
+        </Link>
         <Link to={`/articles/${article.id}`} className="article--link">
           Voir l'article
         </Link>

@@ -86,9 +86,7 @@ export default function Navbar() {
             initial="closed"
             animate={isOpen ? "open" : "closed"}
           >
-            <Link onClick={() => setIsOpen(false)} to={"/"}>
-              Home
-            </Link>
+            <Link className="shop">Shop</Link>
             <Link onClick={() => setIsOpen(false)} to={"/articles"}>
               Articles
             </Link>

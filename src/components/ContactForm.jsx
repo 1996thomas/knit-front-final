@@ -61,16 +61,24 @@ function ContactForm() {
           }),
         }
       );
-      const data = await response.json();
-      if (response.ok) {
-        setMessage("Votre message a été envoyé avec succès.");
-        setFormData({ name: "", email: "", message: "" });
-      } else {
-        throw new Error(
-          data.error
-            ? data.error
-            : "Une erreur est survenue lors de l’envoi de votre message."
-        );
+
+      // Get raw response text
+      const responseText = await response.text();
+      try {
+        const data = JSON.parse(responseText);
+
+        if (response.ok) {
+          setMessage("Votre message a été envoyé avec succès.");
+          setFormData({ name: "", email: "", message: "" });
+        } else {
+          throw new Error(
+            data.error
+              ? data.error
+              : "Une erreur est survenue lors de l’envoi de votre message."
+          );
+        }
+      } catch (parseError) {
+        throw new Error("La réponse du serveur n'est pas un JSON valide: " + responseText);
       }
     } catch (error) {
       setMessage(error.message);

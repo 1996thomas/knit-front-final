@@ -34,9 +34,11 @@ const ArticleCover = ({ article, index }) => {
           {article.attributes.title}
         </motion.p>
         <motion.p className="article-summary" style={{ y, opacity }}>
-          {article.attributes.summary}
+          <Link to={`/articles/${article.id}`}>
+            {article.attributes.summary}
+          </Link>
         </motion.p>
-        <motion.span style={{y, opacity}}>
+        <motion.span style={{ y, opacity }}>
           <Link className="article--link" to={`/articles/${article.id}`}>
             Voir l'article
           </Link>

@@ -88,6 +88,8 @@
       font-size: variable.$font-size-m;
       font-weight: 600;
       margin-bottom: 0em;
+      user-select: none;
+
     }
     .summary {
       font-size: variable.$font-size-s;
@@ -96,6 +98,8 @@
       -webkit-box-orient: vertical;
       overflow: hidden;
       text-overflow: ellipsis;
+      user-select: none;
+
     }
     .article--link {
       align-self: flex-end;

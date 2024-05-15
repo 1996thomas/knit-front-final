@@ -113,7 +113,7 @@ function ContactForm() {
           name="message"
           value={formData.message}
           onChange={handleChange}
-          placeholder="Décrivez brièvement votre demande"
+          placeholder="Besoin d'info ? envie de faire une collaboration ? écris nous ta demande, on te répondras au plus vite"
           disabled={isSubmitting}
           rows={5}
           maxLength={500}

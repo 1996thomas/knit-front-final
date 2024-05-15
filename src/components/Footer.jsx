@@ -10,7 +10,6 @@ export default function Footer() {
       </div>
       <span className="footer--separator" />
       <div className="contact__wrapper">
-        <p>CONTACTE NOUS </p>
         <ContactForm />
       </div>
     </div>

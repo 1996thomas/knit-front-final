@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { useEffect } from "react";
 import { FaInstagram, FaTiktok } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import './RSComp.scss'
+import "./RSComp.scss";
 
 export default function RSComp() {
   const homeArray = "INSTAGRAM".split("");
@@ -29,7 +29,11 @@ export default function RSComp() {
 
   return (
     <div className="rs-ul">
-      <Link onClick={() => setIsOpen(false)} to={"/"}>
+      <Link
+        onClick={() => setIsOpen(false)}
+        target="_blank"
+        to={"https://www.instagram.com/knit_paris/"}
+      >
         <div
           style={{
             display: "flex",
@@ -45,7 +49,11 @@ export default function RSComp() {
           ))}
         </div>
       </Link>
-      <Link onClick={() => setIsOpen(false)} to={"/articles"}>
+      <Link
+        onClick={() => setIsOpen(false)}
+        target="_blank"
+        to={"https://www.tiktok.com/@knit.paris"}
+      >
         <div
           style={{
             display: "flex",

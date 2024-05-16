@@ -23,14 +23,30 @@
   }
 }
 .home__video {
-  height: 100svh;
-  width: 100%;
+  height: 100vh;
+  width: 100vw;
+  background-color: black;
   overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   video {
     object-fit: cover;
-    height: 100%;
+    height: auto;
     width: 100%;
     object-position: center;
-    scale: 1.3;
+    width: 100vw;
+  }
+}
+
+.home-articles {
+  margin-top: 10vw;
+  h2 {
+    color: variable.$background;
+    font-size: variable.$font-size-xl;
+    font-weight: 800;
+    margin-top: 2vw;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: variable.$black;
   }
 }

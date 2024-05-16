@@ -52,7 +52,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  z-index: 0;
+  z-index: 10000;
   overflow: hidden;
   transform-origin: right;
   .rs-ul {
@@ -108,7 +108,6 @@
   z-index: 1000;
   right: 3vw;
   top: 3vw;
-  z-index: 10000;
 }
 
 .center:before,

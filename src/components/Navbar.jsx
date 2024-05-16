@@ -64,7 +64,7 @@ export default function Navbar() {
         }`}
       >
         <div className={" logo__wrapper "}>
-          <Link to={"mailto:tristanreynaud411@gmail.com"}>
+          <Link to={"/"}>
             <img src="/KNIT_WHITE_1.png" alt="" />
           </Link>
         </div>

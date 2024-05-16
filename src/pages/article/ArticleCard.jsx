@@ -22,7 +22,7 @@ export default function ArticleCard({ id, article }) {
       });
       return () => animation.kill();
     }
-  }, [isHover]);
+  }, [isHover]); 
 
   return (
     <div

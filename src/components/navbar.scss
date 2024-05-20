@@ -71,16 +71,6 @@
   padding: 15px;
   position: relative;
 }
-.fullscreen-navbar .shop::after {
-  content: "";
-  height: 10px;
-  position: absolute;
-  width: 100%;
-  top: 50%;
-  left: 0;
-  transform: rotate(-15deg);
-  background-color: rgb(255, 221, 0);
-}
 .fullscreen-navbar .shop::before {
   content: "SOON";
   font-size: variable.$font-size-xs;

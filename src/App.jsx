@@ -11,6 +11,7 @@ import Article from "./pages/article/Article";
 import Category from "./pages/categories/Category";
 import { useRef } from "react";
 import NotFound from "./pages/404/NotFound";
+import Shop from "./pages/Shop/Shop";
 export default function App() {
   const location = useLocation();
   const HomeWithTransition = transition(Home);
@@ -18,6 +19,7 @@ export default function App() {
   const ArticleWithTransition = transition(Article);
   const CategoryWithTransition = transition(Category);
   const NotFoundWithTransition = transition(NotFound);
+  const ShopWithTransition = transition(Shop);
 
   return (
     <div className="app">
@@ -28,6 +30,7 @@ export default function App() {
             <Route index element={<HomeWithTransition />} />
             <Route path="/articles" element={<ArticlesWithTransition />} />
             <Route path="/articles/:id" element={<ArticleWithTransition />} />
+            <Route path="/shop" element={<ShopWithTransition />} />
             <Route
               path="/articles/categories/:name"
               element={<CategoryWithTransition />}

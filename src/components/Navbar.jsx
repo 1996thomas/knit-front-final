@@ -64,7 +64,7 @@ export default function Navbar() {
         }`}
       >
         <div className={" logo__wrapper "}>
-          <Link to={"/"}>
+          <Link to={"/"} onClick={() => setIsOpen(false)}>
             <img src="/KNIT_WHITE_1.png" alt="" />
           </Link>
         </div>
@@ -86,7 +86,13 @@ export default function Navbar() {
             initial="closed"
             animate={isOpen ? "open" : "closed"}
           >
-            <Link className="shop">Shop</Link>
+            <Link
+              onClick={() => setIsOpen(false)}
+              className="shop"
+              to={"/shop"}
+            >
+              Shop
+            </Link>
             <Link onClick={() => setIsOpen(false)} to={"/articles"}>
               Articles
             </Link>

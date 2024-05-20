@@ -1,0 +1,93 @@
+@use "../../sass/abstract/variable";
+.shop__wrapper {
+  background-color: variable.$black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100svh;
+  width: 100vw;
+  .emailList__wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    .logo {
+      display: flex;
+      max-width: 340px;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      p {
+        font-weight: 100;
+        font-style: italic;
+        font-size: variable.$font-size-xs;
+        letter-spacing: 1px;
+        color: variable.$white;
+      }
+      img {
+        width: 100%;
+      }
+    }
+    .email-form__wrapper {
+      form {
+        min-width: 300px;
+        min-height: 50px;
+        display: flex;
+        border: 1px solid variable.$white;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: 1000px;
+        padding: 10px;
+
+        input[type="email"] {
+          background-color: transparent;
+          border: none;
+          color: variable.$white;
+          flex: 1;
+          margin: 0.2vw;
+        }
+        input[type="email"]:focus {
+          outline: none;
+        }
+        button[type="submit"] {
+          width: 30px;
+          height: 30px;
+          border: none;
+          border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background-color: transparent;
+          color: variable.$white;
+          cursor: alias;
+        }
+      }
+      .response-message {
+        margin-top: 10px;
+        font-size: 14px;
+        color: green;
+      }
+
+      .response-message.error {
+        color: red;
+      }
+    }
+    .shop-status {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5vw;
+      color: variable.$yellow;
+      :nth-child(1) {
+        font-size: variable.$font-size-s;
+      }
+      :nth-child(2) {
+        font-weight: 100;
+        font-style: italic;
+        font-size: variable.$font-size-xs;
+      }
+    }
+  }
+}

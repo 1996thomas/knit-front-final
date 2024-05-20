@@ -11,7 +11,7 @@ export default function ArticleCard({ id, article }) {
 
   const articleBodyRef = useRef(null);
   return (
-    <div to={`/articles/${article.id}`} className="tagged-article__wrapper">
+    <Link to={`/articles/${article.id}`} className="tagged-article__wrapper">
       <div className="tagged-article__header">
         <div className="tags">
           {article.attributes.tags.data.map((tag, key) => (
@@ -27,13 +27,11 @@ export default function ArticleCard({ id, article }) {
       </div>
       <div className="tagged-article__body" ref={articleBodyRef}>
         <p className="title">{article.attributes.title}</p>
-        <Link to={`/articles/${article.id}`} className="summary">
-          {article.attributes.summary}
-        </Link>
-        <Link to={`/articles/${article.id}`} className="article--link">
+        <p className="summary">{article.attributes.summary}</p>
+        <p to={`/articles/${article.id}`} className="article--link">
           Voir l'article
-        </Link>
+        </p>
       </div>
-    </div>
+    </Link>
   );
 }

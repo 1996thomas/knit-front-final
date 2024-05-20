@@ -5,8 +5,16 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  height: 100svh;
+  height: 70svh;
   width: 100vw;
+  h2 {
+    justify-self: flex-start ;
+    color: transparent;
+    font-size: variable.$font-size-xl;
+    font-weight: 800;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: variable.$white;
+  }
   .emailList__wrapper {
     display: flex;
     flex-direction: column;

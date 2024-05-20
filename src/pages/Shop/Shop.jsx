@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import "./Shop.scss";
 import transition from "../../utils/transition/transition";
 import { FaArrowRight } from "react-icons/fa";
+import { useLocation } from "react-router-dom";
 
 const Shop = () => {
   const [email, setEmail] = useState("");
   const [responseMessage, setResponseMessage] = useState("");
+  const location = useLocation;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -37,7 +39,8 @@ const Shop = () => {
   };
 
   return (
-    <div className="shop__wrapper">
+    <div className={`shop__wrapper`}>
+      <h2>SHOP</h2>
       <div className="emailList__wrapper">
         <div className="logo">
           <img src="/KNIT_WHITE.png" alt="" />

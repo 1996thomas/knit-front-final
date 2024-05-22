@@ -24,13 +24,35 @@ export function renderRichText(richText) {
     return classNames.join(" ");
   };
 
+  const renderChildren = (children) => {
+    return children.map((child, index) => {
+      if (child.type === "text") {
+        return child.text;
+      } else if (child.type === "link") {
+        return (
+          <a
+            key={index}
+            href={child.url}
+            className={getClassName()}
+            target={child.newTab ? "_blank" : "_self"}
+            rel={child.newTab ? "noopener noreferrer" : undefined}
+          >
+            {renderChildren(child.children)}
+          </a>
+        );
+      } else {
+        return renderRichText(child);
+      }
+    });
+  };
+
   switch (richText.type) {
     case "heading":
       const headingLevel = richText.level;
       return React.createElement(
         `h${headingLevel}`,
         { key: richText.key, className: getClassName() },
-        richText.children[0]?.text || ""
+        renderChildren(richText.children)
       );
 
     case "image":
@@ -48,14 +70,14 @@ export function renderRichText(richText) {
       return React.createElement(
         "p",
         { key: richText.key, className: getClassName() },
-        richText.children[0]?.text || ""
+        renderChildren(richText.children)
       );
 
     case "quote":
       return React.createElement(
         "q",
         { key: richText.key, className: getClassName() },
-        richText.children[0]?.text || ""
+        renderChildren(richText.children)
       );
 
     case "list":
@@ -64,11 +86,18 @@ export function renderRichText(richText) {
         listType,
         { key: richText.key, className: getClassName() },
         richText.children.map((item, index) =>
-          React.createElement(
-            "li",
-            { key: index, className: getClassName() },
-            item.children[0]?.text || ""
-          )
+          React.createElement("li", { key: index, className: getClassName() }, [
+            listType === "ul" ? (
+              <span key="bullet" className="custom-bullet">
+                •{" "}
+              </span>
+            ) : (
+              <span key="number" className="custom-number">
+                {index + 1}.{" "}
+              </span>
+            ),
+            renderChildren(item.children),
+          ])
         )
       );
 

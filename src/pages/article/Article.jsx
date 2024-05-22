@@ -21,7 +21,7 @@ const Article = () => {
       setIsLoading(false);
     });
   }, [id]);
-
+console.log(article)
   useEffect(() => {
     if (parallaxRef.current) {
       gsap.to(parallaxRef.current, {
@@ -87,9 +87,11 @@ const Article = () => {
           </div>
           <div className="article-content">
             {article.attributes.content.map((content, index) => (
-              <React.Fragment key={index}>
-                {renderRichText(content)}
-              </React.Fragment>
+              <>
+                <React.Fragment key={index}>
+                  {renderRichText(content)}
+                </React.Fragment>
+              </>
             ))}
           </div>
         </div>

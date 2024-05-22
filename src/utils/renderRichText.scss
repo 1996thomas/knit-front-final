@@ -1,10 +1,13 @@
 @use "../sass/abstract/variable";
 .rich-text--paragraph {
   font-size: variable.$font-size-m;
-  margin-bottom: 3vw;
-  font-weight: 100;
-  line-height: 30px;
-  text-wrap:stable;
+  margin-bottom: 1vw;
+  font-weight: 200;
+  line-height: 28px;
+  text-wrap: stable;
+  a {
+    color: rgb(255, 109, 46);
+  }
 }
 
 .article-image--wrapper {
@@ -14,23 +17,46 @@
   align-self: center;
   overflow: hidden;
   img {
-    height: 120%;
+    height: 115%;
   }
 }
 
 .rich-text--heading-h3 {
-  font-size: variable.$font-size-l;
+  font-size: variable.$font-size-xl;
   margin-top: 3vw;
-  margin-bottom: 2vw;
+  margin-bottom: 1vw;
+  font-weight: 700;
+  max-width: 80%;
+  align-self: flex-start;
+}
+.rich-text--heading-h4 {
+  font-size: variable.$font-size-l;
+  margin-top: 0.5vw;
+  margin-bottom: 1vw;
   font-weight: 600;
   max-width: 80%;
   align-self: flex-start;
 }
 
-@media screen and (max-width: variable.$layout-breakpoint-small) {
-  .rich-text--heading-h3{
-    margin-top: 10vw;
+ul,
+ol {
+  li {
+    font-size: variable.$font-size-m;
   }
+  span {
+    font-size: variable.$font-size-m;
+  }
+  margin-bottom: 5vw;
+}
+
+@media screen and (max-width: variable.$layout-breakpoint-small) {
+  .rich-text--heading-h3 {
+    margin-top: 7vw;
+  }
+  .rich-text--heading-h4 {
+    margin-top: 1vw;
+  }
+
   .article-image--wrapper {
     align-self: center;
     height: 120%;
@@ -39,7 +65,17 @@
       object-position: top;
     }
   }
-  .article-image--wrapper:nth-child(odd) {
-    align-self: center;
-  }
+}
+
+.bold-text {
+  font-weight: bold;
+}
+.italic-text {
+  font-style: italic;
+}
+.underline-text {
+  text-decoration: underline;
+}
+.strike-text {
+  text-decoration: line-through;
 }

@@ -37,6 +37,14 @@
   max-width: 80%;
   align-self: flex-start;
 }
+.rich-text--heading-h5 {
+  font-size: variable.$font-size-l;
+  margin-top: 0.5vw;
+  margin-bottom: 1vw;
+  font-weight: 600;
+  max-width: 80%;
+  align-self: center;
+}
 
 ul,
 ol {

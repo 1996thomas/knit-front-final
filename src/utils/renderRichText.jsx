@@ -34,8 +34,7 @@ export function renderRichText(richText) {
             key={index}
             href={child.url}
             className={getClassName()}
-            target={child.newTab ? "_blank" : "_self"}
-            rel={child.newTab ? "noopener noreferrer" : undefined}
+            target={(child.newTab = "_blank")}
           >
             {renderChildren(child.children)}
           </a>

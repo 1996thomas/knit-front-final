@@ -1,6 +1,7 @@
 import React from "react";
 import ParallaxImage from "../components/ParallaxImage"; // Assurez-vous que le chemin est correct
 import "./renderRichText.scss";
+import InstagramEmbed from "./InstagramEmbed";
 
 export function renderRichText(richText) {
   const isBold = richText.children[0]?.bold === true;
@@ -27,6 +28,12 @@ export function renderRichText(richText) {
   const renderChildren = (children) => {
     return children.map((child, index) => {
       if (child.type === "text") {
+        const instagramUrlPattern =
+          /https:\/\/www\.instagram\.com\/p\/[a-zA-Z0-9_-]+/;
+        const match = child.text.match(instagramUrlPattern);
+        if (match) {
+          return <InstagramEmbed key={index} url={match[0]} />;
+        }
         return child.text;
       } else if (child.type === "link") {
         return (
@@ -34,7 +41,8 @@ export function renderRichText(richText) {
             key={index}
             href={child.url}
             className={getClassName()}
-            target={(child.newTab = "_blank")}
+            target="_blank"
+            rel="noopener noreferrer"
           >
             {renderChildren(child.children)}
           </a>

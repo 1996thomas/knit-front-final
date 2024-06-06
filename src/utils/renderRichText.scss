@@ -12,9 +12,10 @@
 
 .article-image--wrapper {
   width: 100%;
+  max-height: 50vh;
   align-self: center;
   overflow: hidden;
-  margin-bottom: -5%;
+  margin-bottom: -2%;
   img {
   }
 }

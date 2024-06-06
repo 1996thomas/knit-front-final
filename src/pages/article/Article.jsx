@@ -24,7 +24,7 @@ const Article = () => {
   useEffect(() => {
     if (parallaxRef.current) {
       gsap.to(parallaxRef.current, {
-        yPercent: 20,
+        yPercent: 30,
         ease: "power1",
         scrollTrigger: {
           trigger: parallaxRef.current,

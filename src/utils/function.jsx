@@ -2,10 +2,10 @@ import ArticleCard from "../pages/article/ArticleCard";
 
 export function findArticleByTags(tagName, articles) {
   const taggedArticles = articles
-    .filter((article) =>
-      article.attributes.tags.data.some(
-        (tag) => tag.attributes.name === tagName
-      )
+    .filter(
+      (article) =>
+        article.attributes.tags.data.length > 0 &&
+        article.attributes.tags.data[0].attributes.name === tagName
     )
     .map((article, index) => (
       <ArticleCard key={article.id} id={index} article={article} />

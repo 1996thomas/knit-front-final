@@ -1,9 +1,11 @@
 import React from "react";
-import ParallaxImage from "../components/ParallaxImage"; // Assurez-vous que le chemin est correct
+import ParallaxImage from "../components/ParallaxImage";
 import "./renderRichText.scss";
-import InstagramEmbed from "./InstagramEmbed";
+import InstagramEmbedDiv from "./InstagramEmbed";
+import YouTubeEmbed from "./YouTubeEmbed";
+import TwitterEmbed from "./TwitterEmbed";
 
-export function renderRichText(richText) {
+export const renderRichText = (richText) => {
   const isBold = richText.children[0]?.bold === true;
   const isItalic = richText.children[0]?.italic === true;
   const isUnderline = richText.children[0]?.underline === true;
@@ -28,14 +30,39 @@ export function renderRichText(richText) {
   const renderChildren = (children) => {
     return children.map((child, index) => {
       if (child.type === "text") {
-        const instagramUrlPattern =
-          /https:\/\/www\.instagram\.com\/p\/[a-zA-Z0-9_-]+/;
-        const match = child.text.match(instagramUrlPattern);
-        if (match) {
-          return <InstagramEmbed key={index} url={match[0]} />;
-        }
         return child.text;
       } else if (child.type === "link") {
+        const instagramUrlPattern =
+          /https:\/\/www\.instagram\.com\/p\/[a-zA-Z0-9_-]+/;
+        const youtubeUrlPattern =
+          /https:\/\/www\.youtube\.com\/watch\?v=[a-zA-Z0-9_-]+/;
+        const twitterUrlPattern =
+          /https:\/\/x\.com\/[a-zA-Z0-9_]+\/status\/[0-9]+/;
+
+        const instagramMatch = child.url.match(instagramUrlPattern);
+        const youtubeMatch = child.url.match(youtubeUrlPattern);
+        const twitterMatch = child.url.match(twitterUrlPattern);
+
+        if (instagramMatch) {
+          return <InstagramEmbedDiv key={index} url={instagramMatch[0]} />;
+        }
+
+        if (youtubeMatch) {
+          return <YouTubeEmbed key={index} url={youtubeMatch[0]} />;
+        }
+
+        if (twitterMatch) {
+          return <TwitterEmbed key={index} url={twitterMatch[0]} />;
+        }
+
+        const linkChildren = child.children.map((linkChild, linkIndex) => {
+          if (linkChild.type === "text") {
+            return linkChild.text;
+          } else {
+            return renderRichText(linkChild);
+          }
+        });
+
         return (
           <a
             key={index}
@@ -44,7 +71,7 @@ export function renderRichText(richText) {
             target="_blank"
             rel="noopener noreferrer"
           >
-            {renderChildren(child.children)}
+            {linkChildren}
           </a>
         );
       } else {
@@ -74,15 +101,24 @@ export function renderRichText(richText) {
       );
 
     case "paragraph":
+      let isEmbed = false;
+      if (richText.children.length > 1) {
+        if (richText.children[1].type === "link") {
+          isEmbed = true;
+        }
+      }
       return React.createElement(
-        "p",
-        { key: richText.key, className: getClassName() },
+        isEmbed ? "div" : "p",
+        {
+          key: richText.key,
+          className: getClassName(),
+        },
         renderChildren(richText.children)
       );
 
     case "quote":
       return React.createElement(
-        "q",
+        "blockquote",
         { key: richText.key, className: getClassName() },
         renderChildren(richText.children)
       );
@@ -111,4 +147,6 @@ export function renderRichText(richText) {
     default:
       return null;
   }
-}
+};
+
+export default renderRichText;

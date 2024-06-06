@@ -27,8 +27,8 @@ const Category = () => {
             <Link to="/articles">Retour aux articles</Link>
           </div>
           <div className="auto-grid">
-            {articles.map((article) => (
-              <ArticleCard article={article} />
+            {articles.map((article, i) => (
+              <ArticleCard article={article} key={i} />
             ))}
           </div>
         </>

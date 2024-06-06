@@ -1,42 +1,12 @@
-import React, { useEffect } from "react";
-
-const InstagramEmbed = ({ url }) => {
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.async = true;
-    script.src = "//www.instagram.com/embed.js";
-    document.body.appendChild(script);
-
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, [url]);
-
+import "./InstagramEmbed.scss";
+import { InstagramEmbed } from "react-social-media-embed";
+const InstagramEmbedDiv = ({ url }) => {
   return (
-    <blockquote
-      className="instagram-media"
-      data-instgrm-permalink={url}
-      data-instgrm-version="14"
-      style={{
-        margin: "0 auto",
-        maxWidth: "540px",
-        minWidth: "326px",
-        width: "calc(100% - 2px)",
-        alignSelf:'center'
-      }}
-    >
-      <div style={{ padding: "16px" }}>
-        <a
-          href={url}
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{ textDecoration: "none", color: "#c9c8cd" }}
-        >
-          View this post on Instagram
-        </a>
-      </div>
-    </blockquote>
+    <InstagramEmbed
+      url="https://www.instagram.com/p/CUbHfhpswxt/"
+      width={328}
+    />
   );
 };
 
-export default InstagramEmbed;
+export default InstagramEmbedDiv;

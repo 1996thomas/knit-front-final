@@ -11,13 +11,11 @@
 }
 
 .article-image--wrapper {
-  height: 30vw;
   width: 100%;
-  aspect-ratio: 4/3;
   align-self: center;
   overflow: hidden;
+  margin-bottom: -5%;
   img {
-    height: 115%;
   }
 }
 
@@ -38,7 +36,7 @@
   align-self: flex-start;
 }
 .rich-text--heading-h5 {
-  font-size: variable.$font-size-l;
+  font-size: variable.$font-size-m;
   margin-top: 0.5vw;
   margin-bottom: 1vw;
   font-weight: 600;
@@ -86,4 +84,19 @@ ol {
 }
 .strike-text {
   text-decoration: line-through;
+}
+
+.youtube-embed {
+  overflow: hidden;
+  padding-bottom: 56.25%;
+  position: relative;
+  height: 0;
+}
+
+.youtube-embed iframe {
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  position: absolute;
 }

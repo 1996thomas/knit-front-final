@@ -21,11 +21,10 @@ const Article = () => {
       setIsLoading(false);
     });
   }, [id]);
-console.log(article)
   useEffect(() => {
     if (parallaxRef.current) {
       gsap.to(parallaxRef.current, {
-        yPercent: 40,
+        yPercent: 20,
         ease: "power1",
         scrollTrigger: {
           trigger: parallaxRef.current,
@@ -87,11 +86,9 @@ console.log(article)
           </div>
           <div className="article-content">
             {article.attributes.content.map((content, index) => (
-              <>
-                <React.Fragment key={index}>
-                  {renderRichText(content)}
-                </React.Fragment>
-              </>
+              <React.Fragment key={index}>
+                {renderRichText(content)}
+              </React.Fragment>
             ))}
           </div>
         </div>

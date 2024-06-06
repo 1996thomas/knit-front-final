@@ -16,7 +16,7 @@ export default function ArticleCard({ id, article }) {
         <div className="tags">
           {article.attributes.tags.data.map((tag, key) => (
             <Link to={`/articles/categories/${tag.attributes.name}`} key={key}>
-              {key}
+              {tag.attributes.name}
             </Link>
           ))}
         </div>

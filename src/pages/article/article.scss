@@ -221,8 +221,19 @@
       .tags {
         transform: translateY(3vw);
         z-index: 999;
+        margin-bottom: -15%;
       }
-
+    }
+  }
+}
+@media screen and (max-width: 374px) {
+  .article__wrapper {
+    .article__header {
+      .tags {
+        transform: translateY(3%);
+        z-index: 999;
+        margin-bottom: -7%;
+      }
     }
   }
 }

@@ -1,26 +1,31 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useParams, Link } from "react-router-dom";
 import transition from "../../utils/transition/transition";
-import { getArticle } from "../../utils/apiCalls";
+import { getAd, getArticle, incrementAd } from "../../utils/apiCalls";
 import "./article.scss";
 import { renderRichText } from "../../utils/renderRichText";
 import SimilarContent from "../../components/similarContent";
-import { forwardRef } from "react";
 import formatFrenchDate from "../../utils/formatFrenchDate";
 import gsap from "gsap";
+import RSComp from "../../components/RSComp";
 
 const Article = () => {
   const { id } = useParams();
   const [article, setArticle] = useState(null);
+  const [ad, setAd] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const parallaxRef = useRef(null);
 
   useEffect(() => {
     getArticle(id).then((responseData) => {
       setArticle(responseData.data);
+      getAd().then((responseData) => {
+        setAd(responseData.data);
+      });
       setIsLoading(false);
     });
   }, [id]);
+
   useEffect(() => {
     if (parallaxRef.current) {
       gsap.to(parallaxRef.current, {
@@ -35,6 +40,12 @@ const Article = () => {
       });
     }
   }, [article]);
+
+  const handleAdClick = () => {
+    if (ad && ad.length > 0) {
+      incrementAd(); // Increment adCount when the ad is clicked
+    }
+  };
 
   if (isLoading) {
     return <p>Chargement en cours...</p>;
@@ -82,7 +93,17 @@ const Article = () => {
         </div>
         <div className="article__body">
           <div className="ads__wrapper">
-            <img src="/ad-nike.jpg" alt="Nike Ad" />
+            {ad && (
+              <a
+                className="ad"
+                target="_blank"
+                href={ad[0].attributes.adLink}
+                onClick={handleAdClick}
+              >
+                <span>Publicité</span>
+                <img src={ad[0].attributes.adImg.data.attributes.url} alt="" />
+              </a>
+            )}
           </div>
           <div className="article-content">
             {article.attributes.content.map((content, index) => (

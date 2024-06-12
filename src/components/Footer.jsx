@@ -6,7 +6,7 @@ export default function Footer() {
   return (
     <div className="footer__wrapper">
       <div className="rs__wrapper">
-          <RSComp/>
+          <RSComp color={"white"} flexDirection={"row"}/>
       </div>
       <span className="footer--separator" />
       <div className="contact__wrapper">

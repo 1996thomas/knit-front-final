@@ -5,14 +5,14 @@ import "./parallaxImage.scss"; // Créez ce fichier pour les styles spécifiques
 
 gsap.registerPlugin(ScrollTrigger);
 
-const ParallaxImage = ({ src, alt, className }) => {
+const ParallaxImage = ({ src, alt, className, figCaption }) => {
   const imageRef = useRef(null);
   const containerRef = useRef(null);
 
   useEffect(() => {
     if (imageRef.current && containerRef.current) {
       gsap.to(imageRef.current, {
-        yPercent: -10,
+        yPercent: -12,
         ease: "power1.out",
         scrollTrigger: {
           trigger: containerRef.current,
@@ -27,6 +27,7 @@ const ParallaxImage = ({ src, alt, className }) => {
   return (
     <div ref={containerRef} className="parallax-container">
       <img ref={imageRef} src={src} alt={alt} className={className} />
+      {figCaption && <p className="image-caption">{figCaption}</p>}
     </div>
   );
 };

@@ -3,7 +3,6 @@
   background-color: variable.$black;
   display: flex;
   font-weight: 800;
-  color:  variable.$white;
   align-items: center;
   padding-block: 2.5vw;
   p {
@@ -12,6 +11,7 @@
   }
   
   .contact__wrapper {
+    color:  variable.$white;
     display: flex;
     justify-content: space-evenly;
     flex-direction: column;

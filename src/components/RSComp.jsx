@@ -6,7 +6,7 @@ import { FaInstagram, FaTiktok } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import "./RSComp.scss";
 
-export default function RSComp() {
+export default function RSComp({ color, flexDirection }) {
   const homeArray = "INSTAGRAM".split("");
   const articleArray = "TIKTOK".split("");
   const homeLetterRefs = useRef([]);
@@ -28,7 +28,10 @@ export default function RSComp() {
   }, []);
 
   return (
-    <div className="rs-ul">
+    <div
+      className="rs-ul"
+      style={{ color: color, flexDirection: flexDirection }}
+    >
       <Link
         onClick={() => setIsOpen(false)}
         target="_blank"
@@ -41,7 +44,7 @@ export default function RSComp() {
             alignItems: "flex-end",
           }}
         >
-          <FaInstagram size={30} color="f4f3ee" style={{ marginRight: "5px" }} />
+          <FaInstagram size={30} color={color} style={{ marginRight: "5px" }} />
           {homeArray.map((letter, index) => (
             <div key={index} ref={(el) => (homeLetterRefs.current[index] = el)}>
               {letter}
@@ -61,7 +64,7 @@ export default function RSComp() {
             alignItems: "flex-end",
           }}
         >
-          <FaTiktok size={30} color="#f4f3ee" style={{ marginRight: "5px" }} />
+          <FaTiktok size={30} color={color} style={{ marginRight: "5px" }} />
           {articleArray.map((letter, index) => (
             <div
               key={index}

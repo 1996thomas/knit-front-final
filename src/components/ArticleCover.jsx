@@ -30,27 +30,30 @@ const ArticleCover = ({ article, index }) => {
     >
       <span className="dark-gradient" />
       <div className="title__wrapper">
-        <motion.p
-          className="article-title"
-          style={{ y: isInView ? y : 0, opacity: isInView ? opacity : 0 }}
-        >
-          {article.attributes.title}
-        </motion.p>
-        <motion.p
-          className="article-summary"
-          style={{ y: isInView ? y : 0, opacity: isInView ? opacity : 0 }}
-        >
-          <Link to={`/articles/${article.id}`}>
-            {article.attributes.summary}
-          </Link>
-        </motion.p>
-        <motion.span style={{ y: isInView ? y : 0, opacity: isInView ? opacity : 0 }}>
-          <Link className="article--link" to={`/articles/${article.id}`}>
-            Voir l'article
-          </Link>
-        </motion.span>
+        <Link to={`/articles/${article.id}`}>
+          <motion.p
+            className="article-title"
+            style={{ y: isInView ? y : 0, opacity: isInView ? opacity : 0 }}
+          >
+            {article.attributes.title}
+          </motion.p>
+          <motion.p
+            className="article-summary"
+            style={{ y: isInView ? y : 0, opacity: isInView ? opacity : 0 }}
+          >
+            <div>{article.attributes.summary}</div>
+          </motion.p>
+          <motion.span
+            style={{ y: isInView ? y : 0, opacity: isInView ? opacity : 0 }}
+          >
+            <div className="article--link">Voir l'article</div>
+          </motion.span>
+        </Link>
       </div>
-      <motion.div className="tags" style={{ y: isInView ? y : 0, opacity: isInView ? opacity : 0 }}>
+      <motion.div
+        className="tags"
+        style={{ y: isInView ? y : 0, opacity: isInView ? opacity : 0 }}
+      >
         {article.attributes.tags.data.map((tag, i) => (
           <Link to={`/articles/categories/${tag.attributes.name}`} key={i}>
             {tag.attributes.name}{" "}

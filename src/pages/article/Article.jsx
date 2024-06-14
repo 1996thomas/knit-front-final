@@ -94,7 +94,7 @@ const Article = () => {
         <div className="article__body">
           <div className="ads__wrapper">
             {ad && (
-              <a
+              <a  
                 className="ad"
                 target="_blank"
                 href={ad[0].attributes.adLink}

@@ -37,12 +37,12 @@ const ArticleCover = ({ article, index }) => {
           >
             {article.attributes.title}
           </motion.p>
-          <motion.p
+          <motion.div
             className="article-summary"
             style={{ y: isInView ? y : 0, opacity: isInView ? opacity : 0 }}
           >
-            <div>{article.attributes.summary}</div>
-          </motion.p>
+            <p>{article.attributes.summary}</p>
+          </motion.div>
           <motion.span
             style={{ y: isInView ? y : 0, opacity: isInView ? opacity : 0 }}
           >

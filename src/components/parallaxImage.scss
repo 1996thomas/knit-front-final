@@ -25,12 +25,12 @@
 
 .image-caption {
   position: absolute;
-  bottom: 6%; 
+  bottom: 0;
   left: 0;
   width: 100%;
   color: variable.$white;
   font-size: 1rem;
-  background-color: rgb(71, 71, 71);
+  background-color: rgba(71, 71, 71, 0.671);
   padding: 10px 15px;
   display: flex;
   align-items: center;
@@ -50,9 +50,7 @@
     }
 
   }
-  .image-caption{
-    bottom: 7%;
-  }
+
 }
 @media screen and (max-width: 375px) {
 
@@ -64,8 +62,5 @@
       object-position: top;
     }
 
-  }
-  .image-caption{
-    bottom: 15%;
   }
 }

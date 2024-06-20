@@ -17,9 +17,10 @@ const Articles = () => {
   const reelsRef = useRef([]);
 
   useEffect(() => {
-    getArticles().then((responseData) => {
-      const reverseArray = responseData.data.slice().reverse();
+    getArticles().then((sortedArticles) => {
+      const reverseArray = sortedArticles.slice().reverse();
       setArticles(reverseArray);
+      console.log(reverseArray);
       const sponsored = reverseArray.filter(
         (article) => article.attributes.sponsored
       );

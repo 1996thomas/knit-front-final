@@ -6,7 +6,8 @@ export async function getArticles() {
     const response = await axios.get(url, {
       params: { populate: "*" },
     });
-    return response.data;
+    const sortedData = response.data.data.sort((a, b) => a.id - b.id);
+    return sortedData;
   } catch (error) {
     handleAxiosError(error);
   }
@@ -77,7 +78,7 @@ export async function incrementAd() {
   try {
     // Step 1: Retrieve the latest ad
     const getAdsResponse = await axios.get(url, {
-      params: { populate: "*"},
+      params: { populate: "*" },
     });
 
     const latestAd = getAdsResponse.data.data[0];

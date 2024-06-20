@@ -7,7 +7,6 @@ export function findArticleByTags(tagName, articles) {
         article.attributes.tags.data.length > 0 &&
         article.attributes.tags.data[0].attributes.name === tagName
     )
-    .sort((a, b) => b.id - a.id) // Sort by descending ID
     .map((article, index) => (
       <ArticleCard key={article.id} id={index} article={article} />
     ));

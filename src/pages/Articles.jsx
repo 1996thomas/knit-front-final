@@ -18,9 +18,9 @@ const Articles = () => {
 
   useEffect(() => {
     getArticles().then((responseData) => {
-      const reverseArray = responseData.data.slice().reverse();
-      setArticles(reverseArray);
-      const sponsored = reverseArray.filter(
+      const sortedArray = responseData.data.sort((a, b) => b.id - a.id);
+      setArticles(sortedArray);
+      const sponsored = sortedArray.filter(
         (article) => article.attributes.sponsored
       );
       setSponsoredArticles(sponsored);

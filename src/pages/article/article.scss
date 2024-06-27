@@ -213,7 +213,7 @@
   }
   .article {
     .tags {
-      bottom: 40vw;
+      bottom: 45vw;
       left: 2.5vw;
       right: auto;
       height: fit-content;
@@ -233,7 +233,7 @@
   .article__wrapper {
     .article__header {
       .tags {
-        transform: translateY(5vw);
+        transform: translateY(6vw);
         z-index: 999;
         margin-bottom: -10%;
       }

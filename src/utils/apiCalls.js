@@ -96,3 +96,15 @@ export async function incrementAd() {
     handleAxiosError(error);
   }
 }
+
+export async function getCGU() {
+  const url = `${import.meta.env.VITE_API_URL}/api/cgus`;
+  try {
+    const response = await axios.get(url, {
+      params: { populate: "*" },
+    });
+    return response.data;
+  } catch (error) {
+    handleAxiosError(error);
+  }
+}

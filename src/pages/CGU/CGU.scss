@@ -1,0 +1,23 @@
+@use "../../sass/abstract/variable";
+.cgu__wrapper {
+  max-width: 60vw;
+  margin: 0 auto;
+  margin-block: calc(100px + 3vw);
+  display: flex;
+  flex-direction: column;   
+  margin-left: 3vw;
+  
+  h2 {
+    font-size: variable.$font-size-xxl;
+    font-weight: 700;
+    margin-bottom: 2vw;
+  }
+
+  p{
+    max-width: 65vw;
+  }
+  a {
+    font-size: variable.$font-size-m;
+    text-decoration: underline;
+  }
+}

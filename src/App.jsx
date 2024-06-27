@@ -12,6 +12,7 @@ import Category from "./pages/categories/Category";
 import { useRef } from "react";
 import NotFound from "./pages/404/NotFound";
 import Shop from "./pages/Shop/Shop";
+import CGU from "./pages/CGU/CGU";
 export default function App() {
   const location = useLocation();
   const HomeWithTransition = transition(Home);
@@ -20,6 +21,7 @@ export default function App() {
   const CategoryWithTransition = transition(Category);
   const NotFoundWithTransition = transition(NotFound);
   const ShopWithTransition = transition(Shop);
+  const CGUWithTransition = transition(CGU);
 
   return (
     <div className="app">
@@ -31,6 +33,7 @@ export default function App() {
             <Route path="/articles" element={<ArticlesWithTransition />} />
             <Route path="/articles/:id" element={<ArticleWithTransition />} />
             <Route path="/shop" element={<ShopWithTransition />} />
+            <Route path="/legal" element={<CGUWithTransition />} />
             <Route
               path="/articles/categories/:name"
               element={<CategoryWithTransition />}

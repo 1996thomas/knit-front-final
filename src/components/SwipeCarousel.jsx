@@ -8,7 +8,6 @@ import { useEffect } from "react";
 
 const DRAG_BUFFER = 20;
 export const SwipeCarousel = ({ articles }) => {
-  console.log(articles);
   const [dragging, setDragging] = useState(false);
   const [imageIndex, setImageIndex] = useState(0);
   const intervalRef = useRef();

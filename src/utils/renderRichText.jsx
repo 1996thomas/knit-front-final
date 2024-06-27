@@ -11,7 +11,6 @@ export const renderRichText = (richText) => {
   const isUnderline = richText.children[0]?.underline === true;
   const isStrikeThrough = richText.children[0]?.strikethrough === true;
 
-  console.log(richText);
   const getClassName = () => {
     const classNames = [`rich-text--${richText.type}`];
 

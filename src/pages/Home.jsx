@@ -8,21 +8,16 @@ import { useRef } from "react";
 import { ShowSponsoredArticles } from "../utils/function";
 import Shop from "./Shop/Shop";
 import gsap from "gsap";
+
 const Home = () => {
   const [articles, setArticles] = useState([]);
-  const [tags, setTags] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [sponsoredArticles, setSponsoredArticles] = useState([]);
   const reelsRef = useRef([]);
 
   useEffect(() => {
     getArticles().then((responseData) => {
       const reverseArray = responseData.data.slice().reverse();
       setArticles(reverseArray);
-      const sponsored = reverseArray.filter(
-        (article) => article.attributes.sponsored
-      );
-      setSponsoredArticles(sponsored);
       setIsLoading(false);
     });
   }, []);
@@ -53,7 +48,22 @@ const Home = () => {
   return (
     <div className="home">
       <div className="home__video">
-        <video playsInline autoPlay loop muted src="/lol.mp4"></video>
+        <video
+          className="video-desktop"
+          playsInline
+          autoPlay
+          loop
+          muted
+          src="/video-desktop.mp4"
+        ></video>
+        <video
+          className="video-mobile"
+          playsInline
+          autoPlay
+          loop
+          muted
+          src="/video-tel.mp4"
+        ></video>
       </div>
       <div className="sponsoredArticle__wrapper">
         <h2>Derniers articles</h2>

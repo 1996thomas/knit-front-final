@@ -30,3 +30,50 @@
     }
   }
 }
+.home {
+  &__video {
+    position: relative;
+    width: 100%;
+    height: auto;
+
+    video {
+      width: 100%;
+      height: auto;
+    }
+
+    .video-desktop {
+      display: none;
+    }
+
+    .video-mobile {
+      display: block;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .home__video {
+      .video-desktop {
+        display: block;
+      }
+
+      .video-mobile {
+        display: none;
+      }
+    }
+  }
+
+  @media (max-width: 767px) {
+    .home__video {
+      width: 100%;
+      height: auto;
+      z-index: -1;
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+
+      video {
+        object-fit: contain;
+      }
+    }
+  }
+}

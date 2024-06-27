@@ -30,7 +30,7 @@
 }
 @media screen and (max-width: variable.$layout-breakpoint-xsmall) {
   .reel {
-    --gap: 5rem;
+    --gap: 2rem;
 
     grid-auto-columns: calc(90% - (var(--gap) / 2));
   }

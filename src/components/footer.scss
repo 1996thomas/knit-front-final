@@ -37,6 +37,21 @@
     height: 250px;
   }
 }
+.link{
+  background-color: variable.$black;
+  margin: 0 auto;
+  color: variable.$white;
+  font-weight: 100;
+  font-size: 8px;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  padding-block: 1rem;
+  a{
+    color: variable.$yellow;
+    margin-left: 20px;
+  }
+}
 
 @media screen and (max-width: variable.$layout-breakpoint-small) {
   .footer__wrapper {

@@ -117,18 +117,37 @@ const Article = () => {
         </div>
       )}
       <Helmet>
-        <title>{article.attributes.title}</title>
-        <meta name="description" content={article.attributes.summary} />
-        <meta name="keywords" content={"streetwear, fashion, culture"} />
-        <meta property="og:title" content="Salut je suis un test" />
-        <meta property="og:description" content={article.attributes.summary} />
+        <title>KNIT - Votre média culturel et boutique en ligne</title>
         <meta
-          property="og:image"
-          content={article.attributes.thumbnail.data.attributes.url}
+          name="description"
+          content="KNIT est un média culturel ainsi qu'une boutique en ligne sur lequel seront exposées des marques streetwear indépendantes."
         />
         <meta
-          property="og:url"
-          content={`https://knit-front-final.vercel.app/media/${id}`}
+          property="og:title"
+          content="KNIT - Votre média culturel et boutique en ligne"
+        />
+        <meta
+          property="og:description"
+          content="KNIT est un média culturel ainsi qu'une boutique en ligne sur lequel seront exposées des marques streetwear indépendantes."
+        />
+        <meta
+          property="og:image"
+          content="https://knit-front-final.vercel.app/android-chrome-256x256.png"
+        />
+        <meta property="og:url" content="https://knit-front-final.vercel.app" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="KNIT - Votre média culturel et boutique en ligne"
+        />
+        <meta
+          name="twitter:description"
+          content="KNIT est un média culturel ainsi qu'une boutique en ligne sur lequel seront exposées des marques streetwear indépendantes."
+        />
+        <meta
+          name="twitter:image"
+          content="https://knit-front-final.vercel.app/android-chrome-256x256.png"
         />
       </Helmet>
     </>

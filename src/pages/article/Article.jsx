@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useParams, Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import transition from "../../utils/transition/transition";
 import { getAd, getArticle, incrementAd } from "../../utils/apiCalls";
 import "./article.scss";
@@ -53,6 +54,18 @@ const Article = () => {
 
   return (
     <>
+      <Helmet>
+        <title>{article.attributes.title}</title>
+        <meta name="description" content={article.attributes.summary} />
+        <meta property="og:title" content={article.attributes.title} />
+        <meta property="og:description" content={article.attributes.summary} />
+        <meta property="og:image" content={article.attributes.thumbnail.data.attributes.url} />
+        <meta property="og:url" content={window.location.href} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={article.attributes.title} />
+        <meta name="twitter:description" content={article.attributes.summary} />
+        <meta name="twitter:image" content={article.attributes.thumbnail.data.attributes.url} />
+      </Helmet>
       <div className="article__wrapper">
         <div className="article__header">
           <p className="publishedAt">

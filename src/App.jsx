@@ -9,10 +9,11 @@ import transition from "./utils/transition/transition";
 import Footer from "./components/Footer";
 import Article from "./pages/article/Article";
 import Category from "./pages/categories/Category";
-import { useRef } from "react";
 import NotFound from "./pages/404/NotFound";
 import Shop from "./pages/Shop/Shop";
 import CGU from "./pages/CGU/CGU";
+import { Helmet } from "react-helmet";
+
 export default function App() {
   const location = useLocation();
   const HomeWithTransition = transition(Home);
@@ -25,6 +26,33 @@ export default function App() {
 
   return (
     <div className="app">
+      <Helmet>
+        <title>KNIT - Votre média culturel et boutique en ligne</title>
+        <meta
+          name="description"
+          content="KNIT est un média culturel ainsi qu'une boutique en ligne sur lequel seront exposées des marques streetwear indépendantes."
+        />
+        <meta property="og:title" content="KNIT" />
+        <meta
+          property="og:description"
+          content="KNIT est un média culturel ainsi qu'une boutique en ligne sur lequel seront exposées des marques streetwear indépendantes."
+        />
+        <meta
+          property="og:image"
+          content="https://knit-front-final.vercel.app/android-chrome-256x256.png"
+        />
+        <meta property="og:url" content="https://knit-front-final.vercel.app" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="KNIT" />
+        <meta
+          name="twitter:description"
+          content="KNIT est un média culturel ainsi qu'une boutique en ligne sur lequel seront exposées des marques streetwear indépendantes."
+        />
+        <meta
+          name="twitter:image"
+          content="https://knit-front-final.vercel.app/android-chrome-256x256.png"
+        />
+      </Helmet>
       <Navbar />
       <div className="content">
         <AnimatePresence mode="wait">

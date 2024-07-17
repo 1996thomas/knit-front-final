@@ -13,6 +13,7 @@ import NotFound from "./pages/404/NotFound";
 import Shop from "./pages/Shop/Shop";
 import CGU from "./pages/CGU/CGU";
 import { HelmetProvider } from "react-helmet-async";
+import { Helmet } from "react-helmet-async";
 
 export default function App() {
   const helmetContext = {};
@@ -26,27 +27,32 @@ export default function App() {
   const CGUWithTransition = transition(CGU);
 
   return (
-    <HelmetProvider context={helmetContext}>
-      <div className="app">
-        <Navbar />
-        <div className="content">
-          <AnimatePresence mode="wait">
-            <Routes location={location} key={location.pathname}>
-              <Route index element={<HomeWithTransition />} />
-              <Route path="/media" element={<ArticlesWithTransition />} />
-              <Route path="/media/:id" element={<ArticleWithTransition />} />
-              <Route path="/shop" element={<ShopWithTransition />} />
-              <Route path="/legal" element={<CGUWithTransition />} />
-              <Route
-                path="/media/categories/:name"
-                element={<CategoryWithTransition />}
-              />
-              <Route path="*" element={<NotFoundWithTransition />} />
-            </Routes>
-          </AnimatePresence>
-        </div>
-        <Footer />
+    <div className="app">
+      <Helmet>
+        <title>Test</title>
+        <meta
+          name="description"
+          content="Beginner friendly page for learning React Helmet."
+        />
+      </Helmet>
+      <Navbar />
+      <div className="content">
+        <AnimatePresence mode="wait">
+          <Routes location={location} key={location.pathname}>
+            <Route index element={<HomeWithTransition />} />
+            <Route path="/media" element={<ArticlesWithTransition />} />
+            <Route path="/media/:id" element={<ArticleWithTransition />} />
+            <Route path="/shop" element={<ShopWithTransition />} />
+            <Route path="/legal" element={<CGUWithTransition />} />
+            <Route
+              path="/media/categories/:name"
+              element={<CategoryWithTransition />}
+            />
+            <Route path="*" element={<NotFoundWithTransition />} />
+          </Routes>
+        </AnimatePresence>
       </div>
-    </HelmetProvider>
+      <Footer />
+    </div>
   );
 }

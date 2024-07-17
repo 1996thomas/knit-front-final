@@ -28,13 +28,6 @@ export default function App() {
 
   return (
     <div className="app">
-      <Helmet>
-        <title>Test</title>
-        <meta
-          name="description"
-          content="Beginner friendly page for learning React Helmet."
-        />
-      </Helmet>
       <Navbar />
       <div className="content">
         <AnimatePresence mode="wait">

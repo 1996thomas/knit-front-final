@@ -6,12 +6,13 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useRef } from "react";
 import { Link } from "react-router-dom";
-export default function ArticleCard({ id, article }) {
+export default function ArticleCard({ article }) {
+  console.log(article)
   if (!article) return null;
 
   const articleBodyRef = useRef(null);
   return (
-    <Link to={`/media/${article.id}`} className="tagged-article__wrapper">
+    <Link to={`/media/${article.attributes.slug}`} className="tagged-article__wrapper">
       <div className="tagged-article__header">
         <div className="tags">
           {article.attributes.tags.data.map((tag, key) => (
@@ -28,7 +29,7 @@ export default function ArticleCard({ id, article }) {
       <div className="tagged-article__body" ref={articleBodyRef}>
         <p className="title">{article.attributes.title}</p>
         <p className="summary">{article.attributes.summary}</p>
-        <p to={`/media/${article.id}`} className="article--link">
+        <p className="article--link">
           Voir l'article
         </p>
       </div>

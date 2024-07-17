@@ -12,21 +12,21 @@ import SEO from "../../components/SEO";
 import { Helmet } from "react-helmet-async";
 
 const Article = () => {
-  const { id } = useParams();
+  const { slug } = useParams();
   const [article, setArticle] = useState(null);
   const [ad, setAd] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const parallaxRef = useRef(null);
 
   useEffect(() => {
-    getArticle(id).then((responseData) => {
-      setArticle(responseData.data);
+    getArticle(slug).then((responseData) => {
+      setArticle(responseData);
       getAd().then((responseData) => {
         setAd(responseData.data);
       });
       setIsLoading(false);
     });
-  }, [id]);
+  }, [slug]);
 
   useEffect(() => {
     if (parallaxRef.current) {
@@ -51,6 +51,10 @@ const Article = () => {
 
   if (isLoading) {
     return <p>Chargement en cours...</p>;
+  }
+
+  if (!article) {
+    return <p>Article non trouvé</p>;
   }
 
   return (

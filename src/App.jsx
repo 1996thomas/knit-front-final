@@ -34,7 +34,7 @@ export default function App() {
           <Routes location={location} key={location.pathname}>
             <Route index element={<HomeWithTransition />} />
             <Route path="/media" element={<ArticlesWithTransition />} />
-            <Route path="/media/:id" element={<ArticleWithTransition />} />
+            <Route path="/media/:slug" element={<ArticleWithTransition />} />
             <Route path="/shop" element={<ShopWithTransition />} />
             <Route path="/legal" element={<CGUWithTransition />} />
             <Route

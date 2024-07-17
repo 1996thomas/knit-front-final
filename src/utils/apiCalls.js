@@ -12,15 +12,28 @@ export async function getArticles() {
   }
 }
 
-export async function getArticle(articleId) {
-  const url = `${import.meta.env.VITE_API_URL}/api/articles/${articleId}`;
+export async function getArticle(slug) {
+  const url = `${import.meta.env.VITE_API_URL}/api/articles`;
   try {
     const response = await axios.get(url, {
-      params: { populate: "*" },
+      params: {
+        populate: "*",
+        filters: {
+          slug: {
+            $eq: slug,
+          },
+        },
+      },
     });
-    return response.data;
+    // Vérifiez si l'article existe et renvoyez-le
+    if (response.data && response.data.data && response.data.data.length > 0) {
+      return response.data.data[0];
+    } else {
+      throw new Error("Article not found");
+    }
   } catch (error) {
-    handleAxiosError(error);
+    console.error("Error fetching article:", error);
+    return null; // Retourne null en cas d'erreur
   }
 }
 
@@ -77,7 +90,7 @@ export async function incrementAd() {
   try {
     // Step 1: Retrieve the latest ad
     const getAdsResponse = await axios.get(url, {
-      params: { populate: "*"},
+      params: { populate: "*" },
     });
 
     const latestAd = getAdsResponse.data.data[0];

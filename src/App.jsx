@@ -26,6 +26,24 @@ export default function App() {
 
   return (
     <div className="app">
+      <Navbar />
+      <div className="content">
+        <AnimatePresence mode="wait">
+          <Routes location={location} key={location.pathname}>
+            <Route index element={<HomeWithTransition />} />
+            <Route path="/media" element={<ArticlesWithTransition />} />
+            <Route path="/media/:id" element={<ArticleWithTransition />} />
+            <Route path="/shop" element={<ShopWithTransition />} />
+            <Route path="/legal" element={<CGUWithTransition />} />
+            <Route
+              path="/media/categories/:name"
+              element={<CategoryWithTransition />}
+            />
+            <Route path="*" element={<NotFoundWithTransition />} />
+          </Routes>
+        </AnimatePresence>
+      </div>
+      <Footer />
       <Helmet>
         <title>KNIT - Votre média culturel et boutique en ligne</title>
         <meta
@@ -53,24 +71,6 @@ export default function App() {
           content="https://knit-front-final.vercel.app/android-chrome-256x256.png"
         />
       </Helmet>
-      <Navbar />
-      <div className="content">
-        <AnimatePresence mode="wait">
-          <Routes location={location} key={location.pathname}>
-            <Route index element={<HomeWithTransition />} />
-            <Route path="/articles" element={<ArticlesWithTransition />} />
-            <Route path="/articles/:id" element={<ArticleWithTransition />} />
-            <Route path="/shop" element={<ShopWithTransition />} />
-            <Route path="/legal" element={<CGUWithTransition />} />
-            <Route
-              path="/articles/categories/:name"
-              element={<CategoryWithTransition />}
-            />
-            <Route path="*" element={<NotFoundWithTransition />} />
-          </Routes>
-        </AnimatePresence>
-      </div>
-      <Footer />
     </div>
   );
 }

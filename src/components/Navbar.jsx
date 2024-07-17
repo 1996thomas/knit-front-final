@@ -53,12 +53,12 @@ export default function Navbar() {
 
   return (
     <>
-      {location.pathname === "/articles" && (
+      {location.pathname === "/media" && (
         <span className="dark-gradient--nav" />
       )}
       <div
         className={`navbar__wrapper ${
-          location.pathname === "/articles" || location.pathname === "/"
+          location.pathname === "/media" || location.pathname === "/"
             ? "navbar--transparent"
             : ""
         }`}
@@ -91,10 +91,10 @@ export default function Navbar() {
               className="shop"
               to={"/shop"}
             >
-              Shop
+              SHOP
             </Link>
-            <Link onClick={() => setIsOpen(false)} to={"/articles"}>
-              Articles
+            <Link onClick={() => setIsOpen(false)} to={"/media"}>
+              MEDIA
             </Link>
             <div className="tags-nav">
               {tags &&
@@ -102,7 +102,7 @@ export default function Navbar() {
                   <Link
                     key={key}
                     onClick={() => setIsOpen(false)}
-                    to={`/articles/categories/${tag.attributes.name}`}
+                    to={`/media/categories/${tag.attributes.name}`}
                   >
                     {tag.attributes.name}
                   </Link>

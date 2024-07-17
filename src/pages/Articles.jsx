@@ -65,7 +65,7 @@ const Articles = () => {
           <div key={index}>
             <div className="tagged-articles--header">
               <h2>{tag.attributes.name}</h2>
-              <Link to={`/articles/categories/${tag.attributes.name}`}>Voir tout</Link>
+              <Link to={`/media/categories/${tag.attributes.name}`}>Voir tout</Link>
             </div>
             <div className="reel" ref={(el) => (reelsRef.current[index] = el)}>
               {findArticleByTags(tag.attributes.name, articles)}

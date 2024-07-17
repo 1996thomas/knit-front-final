@@ -54,21 +54,6 @@ const Article = () => {
 
   return (
     <>
-      <Helmet>
-        <title>{article.attributes.title}</title>
-        <meta name="description" content={article.attributes.summary} />
-        <meta name="keywords" content={"streetwear, fashion, culture"} />
-        <meta property="og:title" content={article.attributes.title} />
-        <meta property="og:description" content={article.attributes.summary} />
-        <meta
-          property="og:image"
-          content={article.attributes.thumbnail.data.attributes.url}
-        />
-        <meta
-          property="og:url"
-          content={`https://knit-front-final.vercel.app/articles/${id}`}
-        />
-      </Helmet>
       <div className="article__wrapper">
         <div className="article__header">
           <p className="publishedAt">
@@ -79,10 +64,7 @@ const Article = () => {
           <div className="tags">
             <div>
               {article.attributes.tags.data.map((tag, key) => (
-                <Link
-                  to={`/articles/categories/${tag.attributes.name}`}
-                  key={key}
-                >
+                <Link to={`/media/categories/${tag.attributes.name}`} key={key}>
                   {tag.attributes.name}
                 </Link>
               ))}
@@ -116,7 +98,6 @@ const Article = () => {
                 href={ad[0].attributes.adLink}
                 onClick={handleAdClick}
               >
-                <span>Publicité</span>
                 <img src={ad[0].attributes.adImg.data.attributes.url} alt="" />
               </a>
             )}
@@ -135,6 +116,21 @@ const Article = () => {
           <SimilarContent article={article} />
         </div>
       )}
+      <Helmet>
+        <title>{article.attributes.title}</title>
+        <meta name="description" content={article.attributes.summary} />
+        <meta name="keywords" content={"streetwear, fashion, culture"} />
+        <meta property="og:title" content={article.attributes.title} />
+        <meta property="og:description" content={article.attributes.summary} />
+        <meta
+          property="og:image"
+          content={article.attributes.thumbnail.data.attributes.url}
+        />
+        <meta
+          property="og:url"
+          content={`https://knit-front-final.vercel.app/media/${id}`}
+        />
+      </Helmet>
     </>
   );
 };

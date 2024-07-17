@@ -30,7 +30,7 @@ const ArticleCover = ({ article, index }) => {
     >
       <span className="dark-gradient" />
       <div className="title__wrapper">
-        <Link to={`/media/${article.id}`}>
+        <Link to={`/media/${article.attributes.slug}`}>
           <motion.p
             className="article-title"
             style={{ y: isInView ? y : 0, opacity: isInView ? opacity : 0 }}

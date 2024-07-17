@@ -59,39 +59,6 @@ const Article = () => {
 
   return (
     <>
-      <Helmet>
-        {/* Standard metadata tags */}
-        <title>{article.attributes.title}</title>
-        <meta name="description" content={article.attributes.description} />
-        {/* End standard metadata tags */}
-        {/* Facebook tags */}
-        <meta property="og:title" content={article.attributes.title} />
-        <meta
-          property="og:description"
-          content={article.attributes.description}
-        />
-        <meta
-          property="og:image"
-          content="https://media.istockphoto.com/id/1443562748/fr/photo/mignon-chat-gingembre.jpg?s=612x612&w=0&k=20&c=ygNVVnqLk9V8BWu4VQ0D21u7-daIyHUoyKlCcx3K1E8="
-        ></meta>
-        <meta property="og:url" content="https://www.99knit.com"></meta>
-        <meta property="og:site_name" content="KNIT"></meta>
-        <meta property="og:type" content="Article" />
-
-        {/* End Facebook tags */}
-        {/* Twitter tags */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={article.attributes.title} />
-        <meta
-          name="twitter:description"
-          content={article.attributes.description}
-        />
-        <meta
-          name="twitter:image"
-          content="https://media.istockphoto.com/id/1443562748/fr/photo/mignon-chat-gingembre.jpg?s=612x612&w=0&k=20&c=ygNVVnqLk9V8BWu4VQ0D21u7-daIyHUoyKlCcx3K1E8="
-        />
-        {/* End Twitter tags */}
-      </Helmet>
       <div className="article__wrapper">
         <div className="article__header">
           <p className="publishedAt">

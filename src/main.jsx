@@ -10,7 +10,6 @@ import { HelmetProvider } from "react-helmet-async";
 const helmetContext = {};
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <HelmetProvider context={helmetContext}>
     <React.StrictMode>
       <Router>
         <ScrollToTop />
@@ -19,5 +18,4 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         </Routes>
       </Router>
     </React.StrictMode>
-  </HelmetProvider>
 );

@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useParams, Link } from "react-router-dom";
-import { Helmet } from "react-helmet";
 import transition from "../../utils/transition/transition";
 import { getAd, getArticle, incrementAd } from "../../utils/apiCalls";
 import "./article.scss";
@@ -9,6 +8,7 @@ import SimilarContent from "../../components/similarContent";
 import formatFrenchDate from "../../utils/formatFrenchDate";
 import gsap from "gsap";
 import RSComp from "../../components/RSComp";
+import SEO from "../../components/SEO";
 
 const Article = () => {
   const { id } = useParams();
@@ -54,6 +54,12 @@ const Article = () => {
 
   return (
     <>
+      <SEO
+        title="test"
+        description="test description"
+        name="test name"
+        type="article"
+      />
       <div className="article__wrapper">
         <div className="article__header">
           <p className="publishedAt">
@@ -116,40 +122,6 @@ const Article = () => {
           <SimilarContent article={article} />
         </div>
       )}
-      <Helmet>
-        <title>KNIT - Votre média culturel et boutique en ligne</title>
-        <meta
-          name="description"
-          content="KNIT est un média culturel ainsi qu'une boutique en ligne sur lequel seront exposées des marques streetwear indépendantes."
-        />
-        <meta
-          property="og:title"
-          content="KNIT - Votre média culturel et boutique en ligne"
-        />
-        <meta
-          property="og:description"
-          content="KNIT est un média culturel ainsi qu'une boutique en ligne sur lequel seront exposées des marques streetwear indépendantes."
-        />
-        <meta
-          property="og:image"
-          content="https://knit-front-final.vercel.app/android-chrome-256x256.png"
-        />
-        <meta property="og:url" content="https://knit-front-final.vercel.app" />
-        <meta property="og:type" content="website" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta
-          name="twitter:title"
-          content="KNIT - Votre média culturel et boutique en ligne"
-        />
-        <meta
-          name="twitter:description"
-          content="KNIT est un média culturel ainsi qu'une boutique en ligne sur lequel seront exposées des marques streetwear indépendantes."
-        />
-        <meta
-          name="twitter:image"
-          content="https://knit-front-final.vercel.app/android-chrome-256x256.png"
-        />
-      </Helmet>
     </>
   );
 };

@@ -30,7 +30,7 @@ const ArticleCover = ({ article, index }) => {
     >
       <span className="dark-gradient" />
       <div className="title__wrapper">
-        <Link to={`/articles/${article.id}`}>
+        <Link to={`/media/${article.id}`}>
           <motion.p
             className="article-title"
             style={{ y: isInView ? y : 0, opacity: isInView ? opacity : 0 }}
@@ -55,7 +55,7 @@ const ArticleCover = ({ article, index }) => {
         style={{ y: isInView ? y : 0, opacity: isInView ? opacity : 0 }}
       >
         {article.attributes.tags.data.map((tag, i) => (
-          <Link to={`/articles/categories/${tag.attributes.name}`} key={i}>
+          <Link to={`/media/categories/${tag.attributes.name}`} key={i}>
             {tag.attributes.name}{" "}
           </Link>
         ))}

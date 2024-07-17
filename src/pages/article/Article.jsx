@@ -120,7 +120,7 @@ const Article = () => {
         <title>{article.attributes.title}</title>
         <meta name="description" content={article.attributes.summary} />
         <meta name="keywords" content={"streetwear, fashion, culture"} />
-        <meta property="og:title" content={article.attributes.title} />
+        <meta property="og:title" content="Salut je suis un test" />
         <meta property="og:description" content={article.attributes.summary} />
         <meta
           property="og:image"

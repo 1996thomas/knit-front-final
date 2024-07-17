@@ -21,6 +21,7 @@
 @media screen and (max-width: variable.$layout-breakpoint-medium) {
   .reel {
     grid-auto-columns: calc(30% - (var(--gap) / 2));
+    scrollbar-color: variable.$background-darker variable.$background 
   }
 }
 @media screen and (max-width: variable.$layout-breakpoint-small) {

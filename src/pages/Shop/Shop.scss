@@ -5,8 +5,9 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  height: 70svh;
-  width: 100vw;
+  height: calc( 65svh + 100px);
+  
+  width: 100%;
   h2 {
     justify-self: flex-start ;
     color: transparent;

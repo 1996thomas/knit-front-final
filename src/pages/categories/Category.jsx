@@ -24,7 +24,7 @@ const Category = () => {
         <>
           <div className="category--header">
             <h2>{nameUppercase}</h2>
-            <Link to="/articles">Retour aux articles</Link>
+            <Link to="/media">Retour aux articles</Link>
           </div>
           <div className="auto-grid">
             {articles.map((article, i) => (

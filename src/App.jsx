@@ -12,6 +12,7 @@ import Category from "./pages/categories/Category";
 import NotFound from "./pages/404/NotFound";
 import Shop from "./pages/Shop/Shop";
 import CGU from "./pages/CGU/CGU";
+import { HelmetProvider } from "react-helmet-async";
 
 export default function App() {
   const location = useLocation();
@@ -24,25 +25,30 @@ export default function App() {
   const CGUWithTransition = transition(CGU);
 
   return (
-    <div className="app">
-      <Navbar />
-      <div className="content">
-        <AnimatePresence mode="wait">
-          <Routes location={location} key={location.pathname}>
-            <Route index element={<HomeWithTransition />} />
-            <Route path="/media" element={<ArticlesWithTransition />} />
-            <Route path="/media/:slug" element={<ArticleWithTransition />} />
-            <Route path="/shop" element={<ShopWithTransition />} />
-            <Route path="/legal" element={<CGUWithTransition />} />
-            <Route
-              path="/media/categories/:name"
-              element={<CategoryWithTransition />}
-            />
-            <Route path="*" element={<NotFoundWithTransition />} />
-          </Routes>
-        </AnimatePresence>
+    <HelmetProvider>
+      <div className="app">
+        <Navbar />
+        <div className="content">
+          <Helmet>
+            <title>Hello World</title>
+          </Helmet>
+          <AnimatePresence mode="wait">
+            <Routes location={location} key={location.pathname}>
+              <Route index element={<HomeWithTransition />} />
+              <Route path="/media" element={<ArticlesWithTransition />} />
+              <Route path="/media/:slug" element={<ArticleWithTransition />} />
+              <Route path="/shop" element={<ShopWithTransition />} />
+              <Route path="/legal" element={<CGUWithTransition />} />
+              <Route
+                path="/media/categories/:name"
+                element={<CategoryWithTransition />}
+              />
+              <Route path="*" element={<NotFoundWithTransition />} />
+            </Routes>
+          </AnimatePresence>
+        </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
+    </HelmetProvider>
   );
 }

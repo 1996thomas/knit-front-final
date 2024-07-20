@@ -5,12 +5,11 @@ import { motion } from "framer-motion";
 import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
-import { Power3 } from "gsap/gsap-core";
 import { useLocation } from "react-router-dom";
-import { useGSAP } from "@gsap/react";
 import { useEffect } from "react";
 import { getAllTags } from "../utils/apiCalls";
 import RSComp from "./RSComp";
+
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Navbar() {

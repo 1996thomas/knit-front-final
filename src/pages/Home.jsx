@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { SwipeCarousel } from "../components/SwipeCarousel";
 import transition from "../utils/transition/transition";
 import "./home.scss";
 import { useState } from "react";

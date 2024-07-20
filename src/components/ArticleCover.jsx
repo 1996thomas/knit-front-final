@@ -63,5 +63,4 @@ const ArticleCover = ({ article, index }) => {
     </motion.div>
   );
 };
-
 export default ArticleCover;

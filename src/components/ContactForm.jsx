@@ -40,9 +40,8 @@ function ContactForm() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     setIsSubmitting(true);
-    setMessage(""); // Reset message
+    setMessage("");
 
-    // Validate form
     if (!validateForm()) {
       setIsSubmitting(false);
       return;

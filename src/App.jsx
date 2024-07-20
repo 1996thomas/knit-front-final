@@ -12,7 +12,6 @@ import Category from "./pages/categories/Category";
 import NotFound from "./pages/404/NotFound";
 import Shop from "./pages/Shop/Shop";
 import CGU from "./pages/CGU/CGU";
-import { HelmetProvider } from "react-helmet-async";
 
 export default function App() {
   const location = useLocation();
@@ -25,7 +24,6 @@ export default function App() {
   const CGUWithTransition = transition(CGU);
 
   return (
-    <HelmetProvider>
       <div className="app">
         <Navbar />
         <div className="content">
@@ -47,6 +45,5 @@ export default function App() {
         </div>
         <Footer />
       </div>
-    </HelmetProvider>
   );
 }

@@ -12,7 +12,7 @@ import Category from "./pages/categories/Category";
 import NotFound from "./pages/404/NotFound";
 import Shop from "./pages/Shop/Shop";
 import CGU from "./pages/CGU/CGU";
-import { HelmetProvider } from "react-helmet-async";
+import { HelmetProvider, Helmet } from "react-helmet-async";
 
 export default function App() {
   const location = useLocation();

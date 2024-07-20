@@ -59,6 +59,32 @@ const Article = () => {
 
   return (
     <>
+      <Helmet>
+        <title>{article.attributes.title}</title>
+        <meta name="description" content={article.attributes.description} />
+        <meta name="keywords" content="streetwear, fashion, culture" />
+        <meta property="og:title" content={article.attributes.title} />
+        <meta
+          property="og:description"
+          content={article.attributes.description}
+        />
+        <meta
+          property="og:image"
+          content={article.attributes.thumbnail.data.attributes.url}
+        />
+        <meta property="og:url" content={article.attributes.ogUrl} />
+        <meta property="og:type" content="article"/>
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={article.attributes.title} />
+        <meta
+          name="twitter:description"
+          content={article.attributes.description}
+        />
+        <meta
+          name="twitter:image"
+          content={article.attributes.thumbnail.data.attributes.url}
+        />
+      </Helmet>
       <div className="article__wrapper">
         <div className="article__header">
           <p className="publishedAt">

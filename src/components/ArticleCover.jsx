@@ -56,7 +56,7 @@ const ArticleCover = ({ article, index }) => {
       >
         {article.attributes.tags.data.map((tag, i) => (
           <Link to={`/media/categories/${tag.attributes.name}`} key={i}>
-            {tag.attributes.name}{" "}
+            {tag.attributes.name}
           </Link>
         ))}
       </motion.div>

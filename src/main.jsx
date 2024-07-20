@@ -7,7 +7,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ScrollToTop from "./utils/ScrollToTop.jsx";
 import { HelmetProvider } from "react-helmet-async";
 
-const helmetContext = {};
 
 ReactDOM.createRoot(document.getElementById("root")).render(
     <React.StrictMode>

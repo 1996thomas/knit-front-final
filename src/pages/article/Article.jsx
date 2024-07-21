@@ -54,12 +54,14 @@ const Article = () => {
     return <p>Article non trouvé</p>;
   }
 
+  console.log(article)
+
   return (
     <>
       <div className="article__wrapper">
         <div className="article__header">
           <p className="publishedAt">
-            {formatFrenchDate(article.attributes.publishedAt)}
+            {formatFrenchDate(article.attributes.updatedAt)}
           </p>
 
           <h2>{article.attributes.title}</h2>

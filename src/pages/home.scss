@@ -8,12 +8,30 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
     video {
       object-fit: cover;
       height: auto;
       width: 100%;
       object-position: center;
       width: 100vw;
+
+    }
+    .scrollDown--btn{
+      position: absolute;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      text-transform: uppercase;
+      gap: 20px;
+      justify-content: center;
+      bottom: 0;
+      left: 50%;
+      transform: translate(-50%, -20%);
+      p{
+        font-size: variable.$font-size-m;
+        font-weight: bold;
+      }
     }
   }
 

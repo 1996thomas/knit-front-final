@@ -7,11 +7,16 @@ import { useRef } from "react";
 import { ShowSponsoredArticles } from "../utils/function";
 import Shop from "./Shop/Shop";
 import gsap from "gsap";
+import ScrollToPlugin from "gsap/ScrollToPlugin";
+import { FaRegArrowAltCircleDown } from "react-icons/fa";
+
+gsap.registerPlugin(ScrollToPlugin);
 
 const Home = () => {
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const reelsRef = useRef([]);
+  const scrollButtonRef = useRef(null);
 
   useEffect(() => {
     getArticles().then((responseData) => {
@@ -37,6 +42,17 @@ const Home = () => {
           delay: 0.5,
         });
       });
+
+      // Add scroll button event listener
+      if (scrollButtonRef.current) {
+        scrollButtonRef.current.addEventListener("click", () => {
+          gsap.to(window, {
+            scrollTo: window.innerHeight,
+            duration: 1,
+            ease: "power2.inOut",
+          });
+        });
+      }
     }
   }, [isLoading, articles]);
 
@@ -54,7 +70,8 @@ const Home = () => {
           loop
           muted
           src="/video-desktop.mp4"
-        ></video>
+        />
+
         <video
           className="video-mobile"
           playsInline
@@ -62,7 +79,11 @@ const Home = () => {
           loop
           muted
           src="/video-tel.mp4"
-        ></video>
+        />
+        <div className="scrollDown--btn" ref={scrollButtonRef}>
+          <FaRegArrowAltCircleDown size={60} />
+          <p>Découvrir</p>
+        </div>
       </div>
       <div className="sponsoredArticle__wrapper">
         <h2>Derniers articles</h2>

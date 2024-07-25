@@ -89,7 +89,7 @@ const Home = () => {
       <div className="sponsoredArticle__wrapper">
         <h2>Derniers articles</h2>
         <div className="reel" ref={(el) => (reelsRef.current[0] = el)}>
-          {articles.map((article, index) => {
+          {articles.slice(0,5).map((article, index) => {
             return <ArticleCard key={article.id} index={index} article={article} />;
           })}
           {/* <ShowSponsoredArticles articles={articles} /> */}

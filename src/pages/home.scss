@@ -2,7 +2,7 @@
 .home {
   .home__video {
     height: 100svh;
-    width: 100vw;
+    // width: 100vw;
     background-color: variable.$black;
     overflow: hidden;
     display: flex;
@@ -14,7 +14,6 @@
       height: auto;
       width: 100%;
       object-position: center;
-      width: 100vw;
 
     }
     .scrollDown--btn{

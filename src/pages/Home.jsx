@@ -9,6 +9,7 @@ import Shop from "./Shop/Shop";
 import gsap from "gsap";
 import ScrollToPlugin from "gsap/ScrollToPlugin";
 import { FaRegArrowAltCircleDown } from "react-icons/fa";
+import ArticleCard from "./article/ArticleCard";
 
 gsap.registerPlugin(ScrollToPlugin);
 
@@ -88,7 +89,10 @@ const Home = () => {
       <div className="sponsoredArticle__wrapper">
         <h2>Derniers articles</h2>
         <div className="reel" ref={(el) => (reelsRef.current[0] = el)}>
-          <ShowSponsoredArticles articles={articles} />
+          {articles.map((article, index) => {
+            return <ArticleCard key={article.id} index={index} article={article} />;
+          })}
+          {/* <ShowSponsoredArticles articles={articles} /> */}
         </div>
       </div>
       <Shop />

@@ -1,9 +1,14 @@
 import { useRef } from "react";
 import { Link } from "react-router-dom";
+
 export default function ArticleCard({ article }) {
   if (!article) return null;
 
   const articleBodyRef = useRef(null);
+  const thumbnailUrl = article.attributes.thumbnail.data 
+    ? article.attributes.thumbnail.data.attributes.url 
+    : "default-thumbnail-url"; // replace with a default image URL if necessary
+
   return (
     <Link
       to={`/media/${article.attributes.slug}`}
@@ -18,7 +23,7 @@ export default function ArticleCard({ article }) {
           ))}
         </div>
         <img
-          src={`${article.attributes.thumbnail.data.attributes.url}`}
+          src={thumbnailUrl}
           alt={article.attributes.title || "Article Thumbnail"}
         />
       </div>

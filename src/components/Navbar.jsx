@@ -1,14 +1,11 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import "./navbar.scss";
+import React, { useState, useEffect, useRef } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
-import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
-import { useLocation } from "react-router-dom";
-import { useEffect } from "react";
 import { getAllTags } from "../utils/apiCalls";
 import RSComp from "./RSComp";
+import "./navbar.scss";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -52,19 +49,22 @@ export default function Navbar() {
 
   return (
     <>
-      {location.pathname === "/media" && (
+      {location.pathname === "/" ||
+      location.pathname === "/media/special/monsieur-bonheur" ? (
         <span className="dark-gradient--nav" />
-      )}
+      ) : null}
       <div
         className={`navbar__wrapper ${
-          location.pathname === "/media" || location.pathname === "/"
+          location.pathname === "/" ||
+          location.pathname === "/media/special/monsieur-bonheur" ||
+          location.pathname === "/media"
             ? "navbar--transparent"
             : ""
         }`}
       >
-        <div className={" logo__wrapper "}>
+        <div className={"logo__wrapper"}>
           <Link to={"/"} onClick={() => setIsOpen(false)}>
-            <img src="/KNIT_WHITE_1.png" alt="" />
+            <img src="/KNIT_WHITE_1.png" alt="Logo" />
           </Link>
         </div>
 

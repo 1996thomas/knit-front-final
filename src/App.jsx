@@ -12,6 +12,7 @@ import Category from "./pages/categories/Category";
 import NotFound from "./pages/404/NotFound";
 import Shop from "./pages/Shop/Shop";
 import CGU from "./pages/CGU/CGU";
+import SpecialArticle from "./pages/article/Special/SpecialArticle";
 
 export default function App() {
   const location = useLocation();
@@ -22,6 +23,7 @@ export default function App() {
   const NotFoundWithTransition = transition(NotFound);
   const ShopWithTransition = transition(Shop);
   const CGUWithTransition = transition(CGU);
+  const SpecialArticleTransition = transition(SpecialArticle);
 
   return (
       <div className="app">
@@ -35,6 +37,7 @@ export default function App() {
               <Route path="/media/:slug" element={<ArticleWithTransition />} />
               <Route path="/shop" element={<ShopWithTransition />} />
               <Route path="/legal" element={<CGUWithTransition />} />
+              <Route path="/media/special/:slug" element={<SpecialArticleTransition />} />
               <Route
                 path="/media/categories/:name"
                 element={<CategoryWithTransition />}

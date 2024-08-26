@@ -37,7 +37,7 @@ export default function SpecialArticle() {
     // ANIMATION HERO
     gsap.to(".hero", {
       yPercent: -20,
-      scale: 0.2,
+      transform: "scale(0.2)",
       ease: "none",
       scrollTrigger: {
         trigger: ".hero",

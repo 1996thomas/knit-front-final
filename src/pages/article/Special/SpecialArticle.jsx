@@ -7,31 +7,31 @@ import { data } from "./data";
 export default function SpecialArticle() {
   const loaderRef = useRef(null);
 
-  useEffect(() => {
-    const minimumLoadingTime = 500; // in milliseconds
-    const startTime = Date.now();
-    console.log(data);
+  // useEffect(() => {
+  //   const minimumLoadingTime = 500; // in milliseconds
+  //   const startTime = Date.now();
+  //   console.log(data);
 
-    window.addEventListener("load", () => {
-      const timeElapsed = Date.now() - startTime;
-      const remainingTime = minimumLoadingTime - timeElapsed;
-      const delay = remainingTime > 0 ? remainingTime : 0;
-      setTimeout(() => {
-        if (loaderRef.current) {
-          gsap.to(loaderRef.current, {
-            opacity: 0,
-            duration: 1,
-            ease: "power2.out",
-            onComplete: () => {
-              if (loaderRef.current) {
-                loaderRef.current.style.display = "none";
-              }
-            },
-          });
-        }
-      }, delay);
-    });
-  }, []);
+  //   window.addEventListener("load", () => {
+  //     const timeElapsed = Date.now() - startTime;
+  //     const remainingTime = minimumLoadingTime - timeElapsed;
+  //     const delay = remainingTime > 0 ? remainingTime : 0;
+  //     setTimeout(() => {
+  //       if (loaderRef.current) {
+  //         gsap.to(loaderRef.current, {
+  //           opacity: 0,
+  //           duration: 1,
+  //           ease: "power2.out",
+  //           onComplete: () => {
+  //             if (loaderRef.current) {
+  //               loaderRef.current.style.display = "none";
+  //             }
+  //           },
+  //         });
+  //       }
+  //     }, delay);
+  //   });
+  // }, []);
 
   useEffect(() => {
     // ANIMATION HERO
@@ -62,14 +62,14 @@ export default function SpecialArticle() {
 
   return (
     <div className="special-article__wrapper">
-      <div className="loader" ref={loaderRef}>
+      {/* <div className="loader" ref={loaderRef}>
         <div className="loader--heading">
           <img src="/KNIT_WHITE.png" />
           <p>présente</p>
           <h1>MONSIEUR BONHEUR</h1>.
         </div>
         <img src="/50.JPG" alt="" />
-      </div>
+      </div> */}
       <div className="container">
         <section className="hero">
           <h1>Le visage des oublié-e-s</h1>

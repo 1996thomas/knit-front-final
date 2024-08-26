@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "@studio-freight/lenis";
@@ -7,10 +7,15 @@ import "./special-article.scss";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function QuestionResponse({ uniqueId, question, reponse, imgsSrc }) {
-  const maxWidth = window.innerWidth;
-  const maxHeight = window.innerHeight;
+  const [windowHeight, setWindowHeight] = useState(window.innerHeight);
 
   useLayoutEffect(() => {
+    const updateHeight = () => {
+      setWindowHeight(window.innerHeight);
+    };
+
+    window.addEventListener("resize", updateHeight);
+
     // Initialisation de Lenis pour un défilement lisse
     const lenis = new Lenis();
     lenis.on("scroll", ScrollTrigger.update);
@@ -18,6 +23,9 @@ export default function QuestionResponse({ uniqueId, question, reponse, imgsSrc 
       lenis.raf(time * 1000);
     });
     gsap.ticker.lagSmoothing(0);
+
+    // Recréer les ScrollTriggers lors du changement de taille
+    ScrollTrigger.refresh();
 
     // Timeline pour l'animation des cadres de la question
     const questionFrameAnimation = gsap.timeline({
@@ -75,7 +83,7 @@ export default function QuestionResponse({ uniqueId, question, reponse, imgsSrc 
       scrub: 1,
       onUpdate: (self) => {
         const progress = self.progress;
-        const translateY = 5 + (3 + 70 / window.innerHeight) * progress * 100;
+        const translateY = 5 + (3 + 70 / windowHeight) * progress * 100;
         const translateX = 25 - 25 * progress;
 
         if (progress > 0.8) {
@@ -110,8 +118,8 @@ export default function QuestionResponse({ uniqueId, question, reponse, imgsSrc 
       scrub: true,
       onUpdate: (self) => {
         const scaleProgress = 1 + self.progress;
-        const scaleX = Math.min(scaleProgress, maxWidth / 100);
-        const scaleY = Math.min(scaleProgress, maxHeight / 100);
+        const scaleX = Math.min(scaleProgress, window.innerWidth / 100);
+        const scaleY = Math.min(scaleProgress, windowHeight / 100);
         const scale = Math.min(scaleX, scaleY);
 
         gsap.to(`#revealer-${uniqueId}`, {
@@ -163,6 +171,7 @@ export default function QuestionResponse({ uniqueId, question, reponse, imgsSrc 
 
     // Cleanup des triggers et des animations lors du démontage du composant
     return () => {
+      window.removeEventListener("resize", updateHeight);
       questionFrameAnimation.kill();
       pinnedTextTrigger.kill();
       pinnedQuestionTrigger.kill();
@@ -171,7 +180,7 @@ export default function QuestionResponse({ uniqueId, question, reponse, imgsSrc 
       largeHeadingTextTrigger.kill();
       gsap.ticker.remove(lenis.raf);
     };
-  }, [uniqueId]);
+  }, [uniqueId, windowHeight]);
 
   return (
     <>

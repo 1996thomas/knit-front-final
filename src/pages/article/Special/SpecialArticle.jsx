@@ -3,6 +3,7 @@ import "./special-article.scss";
 import { gsap } from "gsap";
 import QuestionResponse from "./QuestionResponse";
 import { data } from "./data";
+import { useLayoutEffect } from "react";
 
 export default function SpecialArticle() {
   const loaderRef = useRef(null);

@@ -143,21 +143,30 @@
       margin: 0 auto;
       padding: 10px;
       opacity: 0;
-      font-family: Helvetica, sans-serif;
-      font-size: clamp(9px, 2vw, 30px);
       line-height: 1.2;
       color: white;
       font-weight: 500;
       text-transform: uppercase;
       z-index: 1000;
-      // transform: translateY(100%);
+      margin-top: 2vw;
+      position: relative;
+
+      p {
+        font-family: Helvetica, sans-serif;
+        font-size: clamp(9px, 2vw, 45px);
+      }
     }
 
     .question__frame--left {
-      width: 5vw;
-      height: 5vw;
+      width: 10vw;
+      height: 3vw;
       position: absolute;
-      transform: translate(-50%, -50%);
+      top: 0%;
+      left: 0;
+      transform: translate(
+        -50%,
+        -50%
+      ); // Centrage de l'élément pour l'animation
 
       &::before {
         content: "";
@@ -178,32 +187,36 @@
         width: 100%;
       }
     }
+
     .question__frame--right {
+      background: url('/public/KNIT_WHITE.png') no-repeat center;
+      background-size: contain;
       width: 5vw;
       height: 5vw;
+      // background-color: white;
       position: absolute;
-      right: 50%;
-      bottom: 50%;
-      transform: translate(50%, 25%);
+      right: 0;
+      bottom: 0;
+      transform: translate(50%, 50%); // Centrage de l'élément pour l'animation
 
-      &::before {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        height: 100%;
-        background-color: white;
-        width: 3px;
-      }
-      &::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        height: 3px;
-        background-color: white;
-        width: 100%;
-      }
+      // &::before {
+      //   content: "";
+      //   position: absolute;
+      //   bottom: 0;
+      //   right: 0;
+      //   height: 100%;
+      //   background-color: white;
+      //   width: 3px;
+      // }
+      // &::after {
+      //   content: "";
+      //   position: absolute;
+      //   bottom: 0;
+      //   right: 0;
+      //   height: 3px;
+      //   background-color: white;
+      //   width: 100%;
+      // }
     }
   }
   section.pinned {

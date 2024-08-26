@@ -34,13 +34,30 @@ export default function QuestionResponse({
       })
       .fromTo(
         `#question-wrapper-${uniqueId} .question__frame--left`,
-        { left: "10px", top: "10px", opacity: 0 },
-        { left: "0", top: "0", opacity: 1, duration: 1, ease: "power2.out" }
+        { xPercent: 100, yPercent: 100, opacity: 0, transformOrigin: "top left" },
+        {
+          xPercent: -5,
+          yPercent: -15,
+          opacity: 1,
+          duration: 1,
+          ease: "power2.out",
+        }
       )
       .fromTo(
         `#question-wrapper-${uniqueId} .question__frame--right`,
-        { right: "50%", bottom: "50%", opacity: 0 },
-        { right: "0%", bottom: "0%", opacity: 1, duration: 1, ease: "power2.out" },
+        {
+          xPercent: 100,
+          yPercent: 100,
+          opacity: 0,
+          transformOrigin: "bottom right",
+        },
+        {
+          xPercent: 5,
+          yPercent: 5,
+          opacity: 1,
+          duration: 1,
+          ease: "power2.out",
+        },
         "<" // Démarre en même temps que l'animation de gauche
       )
       .to(
@@ -48,8 +65,6 @@ export default function QuestionResponse({
         { opacity: 1, duration: 0.5, ease: "power2.in" },
         "-=0.7" // Démarre juste avant la fin des animations des cadres
       );
-
-    // Autres animations liées à la section
 
     ScrollTrigger.create({
       trigger: `#pinned-${uniqueId}`,
@@ -76,35 +91,34 @@ export default function QuestionResponse({
       scrub: 1,
       onUpdate: (self) => {
         const progress = self.progress;
-        const top = 5 + "calc(3vw + 70px)" * progress;
-        const left = 25 - 25 * progress;
-
-        if (progress > 0) {
+        const translateY = 5 + (3 + 70 / window.innerHeight) * progress * 100; // Conversion de calc(3vw + 70px) en pourcentage
+        const translateX = 25 - 25 * progress;
+    
+        if (progress > .8) {
           gsap.to(`#revealer-${uniqueId}`, {
             opacity: 1,
-            position: "fixed",
-            right: `${left}%`,
-            top: `${top}%`,
+            transform: `translate(${translateX}%, ${translateY}%)`,
             ease: "none",
             duration: 0,
           });
-        } else {
+        } 
+        else {
           gsap.to(`#revealer-${uniqueId}`, {
             opacity: 0,
-            right: "50%",
-            top: "0%",
+            transform: "translate(0%, 0%)",
             ease: "none",
             duration: 0,
           });
         }
-
+    
         gsap.to(`#question--carousel-${uniqueId}`, {
-          transform: `translateX(${-left}%)`,
+          transform: `translateX(${-translateX}%)`,
           ease: "none",
           duration: 0,
         });
       },
     });
+    
 
     const textOpacityTrigger = ScrollTrigger.create({
       trigger: `#whitespace-${uniqueId}`,
@@ -121,7 +135,7 @@ export default function QuestionResponse({
         const scale = Math.min(scaleX, scaleY);
 
         gsap.to(`#revealer-${uniqueId}`, {
-          scale: scale,
+          transform: `scale(${scale})`,
           ease: "none",
           duration: 0,
         });
@@ -140,7 +154,8 @@ export default function QuestionResponse({
             duration: 0.5,
             ease: "power1.out",
           });
-        } else {
+        }
+         else {
           gsap.to(`#pinned-${uniqueId} p`, {
             opacity: 0,
             yPercent: 0,
@@ -188,11 +203,11 @@ export default function QuestionResponse({
             <img src={i} alt="" key={index} />
           ))}
         </div>
-        <p className="question--paragraph">
+        <div className="question--paragraph">
           <span className="question__frame--left" />
           <span className="question__frame--right" />
-          {question}
-        </p>
+          <p>{question}</p>
+        </div>
       </section>
       <section id={`whitespace-${uniqueId}`} className="whitespace"></section>
       <section id={`pinned-${uniqueId}`} className="pinned">

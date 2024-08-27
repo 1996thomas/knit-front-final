@@ -3,10 +3,15 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "@studio-freight/lenis";
 import "./special-article.scss";
-
+import useOrientation from "../../../utils/useOrientation";
 gsap.registerPlugin(ScrollTrigger);
 
-export default function QuestionResponse({ uniqueId, question, reponse, imgsSrc }) {
+export default function QuestionResponse({
+  uniqueId,
+  question,
+  reponse,
+  imgsSrc,
+}) {
   const [windowHeight, setWindowHeight] = useState(window.innerHeight);
 
   useLayoutEffect(() => {
@@ -40,13 +45,35 @@ export default function QuestionResponse({ uniqueId, question, reponse, imgsSrc 
     questionFrameAnimation
       .fromTo(
         `#question-wrapper-${uniqueId} .question__frame--left`,
-        { xPercent: 100, yPercent: 100, opacity: 0, transformOrigin: "top left" },
-        { xPercent: -5, yPercent: -15, opacity: 1, duration: 1, ease: "power2.out" },
+        {
+          xPercent: 100,
+          yPercent: 100,
+          opacity: 0,
+          transformOrigin: "top left",
+        },
+        {
+          xPercent: -5,
+          yPercent: -15,
+          opacity: 1,
+          duration: 1,
+          ease: "power2.out",
+        }
       )
       .fromTo(
         `#question-wrapper-${uniqueId} .question__frame--right`,
-        { xPercent: 50, yPercent: 100, opacity: 0, transformOrigin: "bottom right" },
-        { xPercent: -50, yPercent: 5, opacity: 1, duration: 1, ease: "power2.out" },
+        {
+          xPercent: 50,
+          yPercent: 100,
+          opacity: 0,
+          transformOrigin: "bottom right",
+        },
+        {
+          xPercent: -50,
+          yPercent: 5,
+          opacity: 1,
+          duration: 1,
+          ease: "power2.out",
+        },
         "<"
       )
       .to(
@@ -184,8 +211,14 @@ export default function QuestionResponse({ uniqueId, question, reponse, imgsSrc 
 
   return (
     <>
-      <section id={`question-wrapper-${uniqueId}`} className="question--wrapper">
-        <div className="question--carousel" id={`question--carousel-${uniqueId}`}>
+      <section
+        id={`question-wrapper-${uniqueId}`}
+        className="question--wrapper"
+      >
+        <div
+          className="question--carousel"
+          id={`question--carousel-${uniqueId}`}
+        >
           {imgsSrc.map((i, index) => (
             <img src={i} alt="" key={index} />
           ))}
@@ -203,7 +236,10 @@ export default function QuestionResponse({ uniqueId, question, reponse, imgsSrc 
           <img src={imgsSrc[1]} alt="" />
         </div>
       </section>
-      <section className="large-heading__wrapper" id={`large-heading__wrapper-${uniqueId}`}>
+      <section
+        className="large-heading__wrapper"
+        id={`large-heading__wrapper-${uniqueId}`}
+      >
         <span className="grain"></span>
         <p>“Déconstruire certaines idées reçues”</p>
       </section>

@@ -4,10 +4,12 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import QuestionResponse from "./QuestionResponse";
 import { data } from "./data";
+import useOrientation from "../../../utils/useOrientation";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function SpecialArticle() {
+  const isLandscape = useOrientation();
   const heroRef = useRef(null);
   const heroTitleRef = useRef(null);
 
@@ -44,7 +46,7 @@ export default function SpecialArticle() {
     }
   }, []);
 
-  return (
+  return isLandscape ? (
     <div className="special-article__wrapper">
       <div className="container">
         <section
@@ -85,5 +87,7 @@ export default function SpecialArticle() {
         ))}
       </div>
     </div>
+  ) : (
+    <p>Tourne l'écran pour acceder a l'article </p>
   );
 }

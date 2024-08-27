@@ -5,6 +5,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import QuestionResponse from "./QuestionResponse";
 import { data } from "./data";
 import useOrientation from "../../../utils/useOrientation";
+import PortraitLayout from "./PortraitLayout";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -88,6 +89,6 @@ export default function SpecialArticle() {
       </div>
     </div>
   ) : (
-    <p>Tourne l'écran pour acceder a l'article </p>
+    <PortraitLayout />
   );
 }

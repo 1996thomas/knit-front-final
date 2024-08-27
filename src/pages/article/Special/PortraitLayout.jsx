@@ -72,8 +72,9 @@ export default function PortraitLayout() {
           93
         </h2>
       </div>
-      <div className="phone__wrapper" ref={phoneWrapperRef}>
-        <img src="/phone.svg" alt="Phone" />
+      <div className="phone__wrapper">
+        <img  ref={phoneWrapperRef} src="/phone.svg" alt="Phone" />
+        <p>Passe en mode paysage pour voir l'article</p>
       </div>
       <div className="portrait-carousel__wrapper">
         <div className="carousel" ref={carouselRef}>

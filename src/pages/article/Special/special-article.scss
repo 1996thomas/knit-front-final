@@ -3,9 +3,9 @@
 .special-article__wrapper {
   width: 100vw;
   overflow: hidden;
-  font-family: "Climate Crisis", sans-serif;
+  // font-family: "Climate Crisis", sans-serif;
   font-optical-sizing: auto;
-  font-weight: 400;
+  font-weight: 000;
   font-style: normal;
   font-variation-settings: "YEAR" 1979;
   background-color: white;
@@ -55,7 +55,6 @@
   h1 {
     text-transform: uppercase;
     font-size: 8vw;
-    letter-spacing: -4px;
   }
 
   section.hero {
@@ -264,9 +263,9 @@
     overflow: hidden;
 
     img {
+      object-fit: cover;
       width: 100%;
       height: 100%;
-      object-fit: cover;
     }
   }
 
@@ -307,18 +306,60 @@
 }
 
 .portrait__wrapper {
-  min-height: 100dvh;
   display: flex;
-  align-items: center;
-  justify-content: center;
   flex-direction: column;
+  background-color: #141414;
+  padding-top: 90px;
+  height: 100vh;
+  align-items: center;
+  justify-content: space-around;
+  color: white;
+  .portrait__heading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5vw;
+    text-align: center;
+    h1 {
+      // font-family: "Climate Crisis", sans-serif;
+      font-size: 10vw;
+      font-weight: 900;
+      text-transform: uppercase;
+      
+    }
+    h2 {
+      font-family: Helvetica, sans-serif;
+      font-weight: 700;
+      font-size: 5vw;
+      color: yellow;
+
+    }
+  }
 
   .phone__wrapper {
-    width: 40vw;
-    height: 40vw;
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     img {
       width: 100%;
       height: 100%;
+    }
+    flex: 0;
+  }
+  .portrait-carousel__wrapper {
+
+    overflow: hidden;
+    width: 100%;
+    max-width: 100%;
+    .carousel {
+      display: flex;
+      width: max-content;
+      .carousel__image {
+        width: 66.6vw;
+        aspect-ratio: 4/3;
+        object-fit: cover;
+      }
     }
   }
 

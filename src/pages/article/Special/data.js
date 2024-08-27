@@ -21,3 +21,13 @@ export const data = [
     imgsSrc: ["/93e vague.JPG", "/l'urgence.JPG", "/emporter sur place.jpg"],
   },
 ];
+
+export const portraitCarousel = [
+  "/93e vague.JPG",
+  "/l'urgence.JPG",
+  "/emporter sur place.jpg",
+  "/1.JPG",
+  "/1a.JPG",
+  "/15.JPG",
+  "/50.JPG",
+];

@@ -13,6 +13,9 @@ import NotFound from "./pages/404/NotFound";
 import Shop from "./pages/Shop/Shop";
 import CGU from "./pages/CGU/CGU";
 import SpecialArticle from "./pages/article/Special/SpecialArticle";
+import Lenis from "@studio-freight/lenis";
+import ScrollTrigger from "gsap/ScrollTrigger";
+import gsap from "gsap";
 
 export default function App() {
   const location = useLocation();
@@ -25,28 +28,40 @@ export default function App() {
   const CGUWithTransition = transition(CGU);
   const SpecialArticleTransition = transition(SpecialArticle);
 
-  return (
-      <div className="app">
-        <Navbar />
-        <div className="content">
+  const lenis = new Lenis();
+  lenis.on("scroll", ScrollTrigger.update);
+  gsap.ticker.add((time) => {
+    lenis.raf(time * 1000);
+  });
+  gsap.ticker.lagSmoothing(0);
 
-          <AnimatePresence mode="wait">
-            <Routes location={location} key={location.pathname}>
-              <Route index element={<HomeWithTransition />} />
-              <Route path="/media" element={<ArticlesWithTransition />} />
-              <Route path="/media/:slug" element={<ArticleWithTransition />} />
-              <Route path="/shop" element={<ShopWithTransition />} />
-              <Route path="/legal" element={<CGUWithTransition />} />
-              <Route path="/media/special/:slug" element={<SpecialArticleTransition />} />
-              <Route
-                path="/media/categories/:name"
-                element={<CategoryWithTransition />}
-              />
-              <Route path="*" element={<NotFoundWithTransition />} />
-            </Routes>
-          </AnimatePresence>
-        </div>
-        <Footer />
+  // Recréer les ScrollTriggers lors du changement de taille
+  ScrollTrigger.refresh();
+
+  return (
+    <div className="app">
+      <Navbar />
+      <div className="content">
+        <AnimatePresence mode="wait">
+          <Routes location={location} key={location.pathname}>
+            <Route index element={<HomeWithTransition />} />
+            <Route path="/media" element={<ArticlesWithTransition />} />
+            <Route path="/media/:slug" element={<ArticleWithTransition />} />
+            <Route path="/shop" element={<ShopWithTransition />} />
+            <Route path="/legal" element={<CGUWithTransition />} />
+            <Route
+              path="/media/special/:slug"
+              element={<SpecialArticleTransition />}
+            />
+            <Route
+              path="/media/categories/:name"
+              element={<CategoryWithTransition />}
+            />
+            <Route path="*" element={<NotFoundWithTransition />} />
+          </Routes>
+        </AnimatePresence>
       </div>
+      <Footer />
+    </div>
   );
 }

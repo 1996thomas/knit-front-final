@@ -22,15 +22,6 @@ export default function QuestionResponse({
     window.addEventListener("resize", updateHeight);
 
     // Initialisation de Lenis pour un défilement lisse
-    const lenis = new Lenis();
-    lenis.on("scroll", ScrollTrigger.update);
-    gsap.ticker.add((time) => {
-      lenis.raf(time * 1000);
-    });
-    gsap.ticker.lagSmoothing(100);
-
-    // Recréer les ScrollTriggers lors du changement de taille
-    ScrollTrigger.refresh();
 
     // Timeline pour l'animation des cadres de la question
     const questionFrameAnimation = gsap.timeline({
@@ -221,7 +212,7 @@ export default function QuestionResponse({
       textOpacityTrigger.kill();
       scaleTrigger.kill();
       largeHeadingTextTrigger.kill();
-      gsap.ticker.remove(lenis.raf);
+      // gsap.ticker.remove(lenis.raf);
     };
   }, [uniqueId, windowHeight]);
 

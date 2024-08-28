@@ -59,26 +59,9 @@ export default function QuestionResponse({
           ease: "power2.out",
         }
       )
-      .fromTo(
-        `#question-wrapper-${uniqueId} .question__frame--right`,
-        {
-          xPercent: 50,
-          yPercent: 100,
-          opacity: 0,
-          transformOrigin: "bottom right",
-        },
-        {
-          xPercent: -50,
-          yPercent: 5,
-          opacity: 1,
-          duration: 1,
-          ease: "power2.out",
-        },
-        "<"
-      )
       .to(
         `#question-wrapper-${uniqueId} .question--paragraph`,
-        { opacity: 1, duration: 0.5, ease: "power2.in" },
+        { opacity: 1, duration: 0.5, transform:'translateY(0)', ease: "power2.in" },
         "-=0.7"
       );
 
@@ -167,10 +150,10 @@ export default function QuestionResponse({
     // ScrollTrigger pour gérer le scale et la luminosité
     const scaleTrigger = ScrollTrigger.create({
       trigger: `#whitespace-${uniqueId}`,
-      start: "top 50%",
+      start: "top 20%",
       end: "bottom bottom",
       scrub: true,
-      markers: false,
+      markers: true,
       onUpdate: (self) => {
         const scaleProgress = 1 + self.progress;
         const scaleX = Math.min(scaleProgress, window.innerWidth / 100);
@@ -183,7 +166,7 @@ export default function QuestionResponse({
           duration: 0,
         });
 
-        const brightness = Math.max(1 - 0.6 * scaleProgress, 0.4);
+        const brightness = Math.max(1 - 0.6 * scaleProgress * 0.5, 0.4);
         gsap.to(`#revealer-${uniqueId}`, {
           filter: `brightness(${brightness})`,
           ease: "none",
@@ -201,10 +184,10 @@ export default function QuestionResponse({
       markers: false,
       onUpdate: (self) => {
         gsap.to(`#large-heading__wrapper-${uniqueId} > p`, {
-          opacity: self.progress,
+          opacity: 1,
           transform: "translateX(0)",
-          duration: 0.4,
-          ease: "sine.inOut",
+          duration: 0.3,
+          ease: "power2.in",
         });
       },
     });

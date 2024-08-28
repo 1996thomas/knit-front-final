@@ -138,13 +138,39 @@ export default function QuestionResponse({
     });
 
     // ScrollTrigger pour gérer l'opacité et la transformation du texte dans la section pinned
-    const textOpacityAndScaleTrigger = ScrollTrigger.create({
+    const textOpacityTrigger = ScrollTrigger.create({
       trigger: `#whitespace-${uniqueId}`,
       start: "top 20%",
+      end: "bottom 50%",
+      scrub: true,
+      pin: true,
+      markers: false,
+      onUpdate: (self) => {
+        if (self.progress > 0.5) {
+          gsap.to(`#pinned-${uniqueId} p`, {
+            opacity: 1,
+            y: "20vh",
+            duration: 0.5,
+            ease: "power1.out",
+          });
+        } else {
+          gsap.to(`#pinned-${uniqueId} p`, {
+            opacity: 0,
+            yPercent: 0,
+            duration: 0.5,
+            ease: "power1.in",
+          });
+        }
+      },
+    });
+
+    // ScrollTrigger pour gérer le scale et la luminosité
+    const scaleTrigger = ScrollTrigger.create({
+      trigger: `#whitespace-${uniqueId}`,
+      start: "top 50%",
       end: "bottom bottom",
       scrub: true,
-      pin:true,
-      markers:true,
+      markers: false,
       onUpdate: (self) => {
         const scaleProgress = 1 + self.progress;
         const scaleX = Math.min(scaleProgress, window.innerWidth / 100);
@@ -157,29 +183,12 @@ export default function QuestionResponse({
           duration: 0,
         });
 
-        const brightness = Math.max(1 - 0.6 * self.progress, 0.4);
+        const brightness = Math.max(1 - 0.6 * scaleProgress, 0.4);
         gsap.to(`#revealer-${uniqueId}`, {
           filter: `brightness(${brightness})`,
           ease: "none",
           duration: 0,
         });
-
-        if (self.progress > 0.5) {
-          gsap.to(`#pinned-${uniqueId} p`, {
-            opacity: self.progress,
-            y: "20vh",
-            delay:.5,
-            duration: 0.5,
-            ease: "power1.out",
-          });
-        } else {
-          gsap.to(`#pinned-${uniqueId} p`, {
-            opacity: 0,
-            yPercent: 0,
-            duration: 0.5,
-            ease: "power1.out",
-          });
-        }
       },
     });
 
@@ -188,8 +197,8 @@ export default function QuestionResponse({
       trigger: `#large-heading__wrapper-${uniqueId} > p`,
       start: "top center",
       end: "bottom bottom",
-      markers:true,
       scrub: true,
+      markers: false,
       onUpdate: (self) => {
         gsap.to(`#large-heading__wrapper-${uniqueId} > p`, {
           opacity: self.progress,
@@ -207,7 +216,8 @@ export default function QuestionResponse({
       pinnedTextTrigger.kill();
       pinnedQuestionTrigger.kill();
       carouselAndRevealerTrigger.kill();
-      textOpacityAndScaleTrigger.kill();
+      textOpacityTrigger.kill();
+      scaleTrigger.kill();
       largeHeadingTextTrigger.kill();
       gsap.ticker.remove(lenis.raf);
     };

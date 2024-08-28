@@ -140,9 +140,11 @@ export default function QuestionResponse({
     // ScrollTrigger pour gérer l'opacité et la transformation du texte dans la section pinned
     const textOpacityAndScaleTrigger = ScrollTrigger.create({
       trigger: `#whitespace-${uniqueId}`,
-      start: "top 50%",
+      start: "top 20%",
       end: "bottom bottom",
       scrub: true,
+      pin:true,
+      markers:true,
       onUpdate: (self) => {
         const scaleProgress = 1 + self.progress;
         const scaleX = Math.min(scaleProgress, window.innerWidth / 100);
@@ -166,6 +168,7 @@ export default function QuestionResponse({
           gsap.to(`#pinned-${uniqueId} p`, {
             opacity: self.progress,
             y: "20vh",
+            delay:.5,
             duration: 0.5,
             ease: "power1.out",
           });
@@ -185,6 +188,7 @@ export default function QuestionResponse({
       trigger: `#large-heading__wrapper-${uniqueId} > p`,
       start: "top center",
       end: "bottom bottom",
+      markers:true,
       scrub: true,
       onUpdate: (self) => {
         gsap.to(`#large-heading__wrapper-${uniqueId} > p`, {

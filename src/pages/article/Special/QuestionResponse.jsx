@@ -150,7 +150,7 @@ export default function QuestionResponse({
     // ScrollTrigger pour gérer le scale et la luminosité
     const scaleTrigger = ScrollTrigger.create({
       trigger: `#whitespace-${uniqueId}`,
-      start: "top 20%",
+      start: "top 25%",
       end: "bottom bottom",
       scrub: true,
       markers: true,

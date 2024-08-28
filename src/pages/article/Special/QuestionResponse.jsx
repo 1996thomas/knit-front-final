@@ -27,7 +27,7 @@ export default function QuestionResponse({
     gsap.ticker.add((time) => {
       lenis.raf(time * 1000);
     });
-    gsap.ticker.lagSmoothing(0);
+    gsap.ticker.lagSmoothing(100);
 
     // Recréer les ScrollTriggers lors du changement de taille
     ScrollTrigger.refresh();
@@ -61,7 +61,12 @@ export default function QuestionResponse({
       )
       .to(
         `#question-wrapper-${uniqueId} .question--paragraph`,
-        { opacity: 1, duration: 0.5, transform:'translateY(0)', ease: "power2.in" },
+        {
+          opacity: 1,
+          duration: 0.5,
+          transform: "translateY(0)",
+          ease: "power2.in",
+        },
         "-=0.7"
       );
 
@@ -125,16 +130,17 @@ export default function QuestionResponse({
       trigger: `#whitespace-${uniqueId}`,
       start: "top 20%",
       end: "bottom 50%",
-      scrub: true,
-      pin: true,
       markers: false,
       onUpdate: (self) => {
-        if (self.progress > 0.5) {
+        const progress = self.progress;
+        if (progress > 0.4) {
           gsap.to(`#pinned-${uniqueId} p`, {
             opacity: 1,
             y: "20vh",
             duration: 0.5,
+            scrub: true,
             ease: "power1.out",
+            delay: 0.1, // Légère pause pour permettre à l'animation de scale de finir
           });
         } else {
           gsap.to(`#pinned-${uniqueId} p`, {
@@ -150,28 +156,41 @@ export default function QuestionResponse({
     // ScrollTrigger pour gérer le scale et la luminosité
     const scaleTrigger = ScrollTrigger.create({
       trigger: `#whitespace-${uniqueId}`,
-      start: "top 25%",
+      start: "top 30%",
       end: "bottom bottom",
       scrub: true,
-      markers: true,
+      markers: false,
       onUpdate: (self) => {
         const scaleProgress = 1 + self.progress;
         const scaleX = Math.min(scaleProgress, window.innerWidth / 100);
         const scaleY = Math.min(scaleProgress, windowHeight / 100);
         const scale = Math.min(scaleX, scaleY);
 
+        // Garder votre scale tel quel
         gsap.to(`#revealer-${uniqueId}`, {
           transform: `scale(${scale})`,
           ease: "none",
           duration: 0,
         });
 
-        const brightness = Math.max(1 - 0.6 * scaleProgress * 0.5, 0.4);
-        gsap.to(`#revealer-${uniqueId}`, {
-          filter: `brightness(${brightness})`,
-          ease: "none",
-          duration: 0,
-        });
+        // Ajuster l'animation du brightness pour éviter le flash
+        if (self.progress > 0.2) {
+          // Commencer la luminosité après 20% du scale
+          const brightnessProgress = (self.progress - 0.2) / 0.8;
+          const brightness = Math.max(1 - 0.4 * brightnessProgress, 0.6); // Ajuster la réduction de brightness
+          gsap.to(`#revealer-${uniqueId}`, {
+            filter: `brightness(${brightness})`,
+            ease: "power2.out", // Transition douce
+            duration: 0.3, // Un peu plus long pour rendre l'animation moins brusque
+          });
+        } else {
+          // Assurer une transition lisse sans flash en gardant la luminosité stable avant le seuil
+          gsap.to(`#revealer-${uniqueId}`, {
+            filter: `brightness(1)`, // Brightness initial à 1
+            ease: "none",
+            duration: 0,
+          });
+        }
       },
     });
 
@@ -186,8 +205,8 @@ export default function QuestionResponse({
         gsap.to(`#large-heading__wrapper-${uniqueId} > p`, {
           opacity: 1,
           transform: "translateX(0)",
-          duration: 0.3,
-          ease: "power2.in",
+          duration: 0.4,
+          ease: "sine.inOut",
         });
       },
     });

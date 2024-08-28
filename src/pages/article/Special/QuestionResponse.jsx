@@ -55,7 +55,7 @@ export default function QuestionResponse({
         {
           opacity: 1,
           duration: 0.5,
-          transform: "translateY(0)",
+          // transform: "translateY(0)",
           ease: "power2.in",
         },
         "-=0.7"

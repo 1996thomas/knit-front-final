@@ -156,7 +156,7 @@
       max-width: 95%;
       margin: 2vw auto 0;
       opacity: 0;
-      transform: translateY(-20px);
+      // transform: translateY(-20px);
       padding: 10px;
       opacity: 0;
       line-height: 1.2;
@@ -385,8 +385,16 @@
   }
 }
 
-@media (orientation: landscape) {
+@media (orientation: landscape) and (max-width: 1024px) {
   .special-article__wrapper section.question--wrapper .question--paragraph {
+    background-color: red;
+    margin: 0;
     width: 100%;
+    max-width: 100%;
+    height: 50vh;
+    background-color: #141414;
+    opacity: 1;
+    padding-top: 2vw;
+
   }
 }

@@ -28,7 +28,6 @@ export default function SpecialArticle() {
     //       start: "top center",
     //     },
     //   });
-
     //   tl.from(heroRef.current, {
     //     opacity: 0,
     //     y: 50,
@@ -44,7 +43,6 @@ export default function SpecialArticle() {
     //     },
     //     "-=0.5"
     //   ); // Overlap the animations slightly
-
     //   // Cleanup on component unmount
     //   return () => {
     //     tl.kill();
@@ -53,7 +51,7 @@ export default function SpecialArticle() {
     // }
   }, [loading, isDesktop, isPhoneLandscape]);
 
-  return (
+  return isDesktop || isPhoneLandscape ? (
     <div className="special-article__wrapper">
       <div className="container">
         <section
@@ -95,5 +93,11 @@ export default function SpecialArticle() {
       </div>
       {loading && <Loader duration={3000} onComplete={handleLoaderComplete} />}
     </div>
+  ) : (
+    loading && (
+      <>
+        <PortraitLayout />
+      </>
+    )
   );
 }

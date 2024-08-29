@@ -3,11 +3,17 @@ import gsap from "gsap";
 import "./special-article.scss";
 import { portraitCarousel } from "./data";
 import { useState } from "react";
+import Loader from "./Loader";
 
 export default function PortraitLayout() {
   const phoneWrapperRef = useRef(null);
   const carouselRef = useRef(null);
   const [imagesLoaded, setImagesLoaded] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  const handleLoaderComplete = () => {
+    setLoading(false);
+  };
 
   useEffect(() => {
     // Précharger les images
@@ -73,7 +79,7 @@ export default function PortraitLayout() {
         </h2>
       </div>
       <div className="phone__wrapper">
-        <img  ref={phoneWrapperRef} src="/phone.svg" alt="Phone" />
+        <img ref={phoneWrapperRef} src="/phone.svg" alt="Phone" />
         <p>Passe en mode paysage pour voir l'article</p>
       </div>
       <div className="portrait-carousel__wrapper">
@@ -83,6 +89,7 @@ export default function PortraitLayout() {
           ))}
         </div>
       </div>
+      {loading && <Loader duration={3000} onComplete={handleLoaderComplete} />}
     </div>
   );
 }

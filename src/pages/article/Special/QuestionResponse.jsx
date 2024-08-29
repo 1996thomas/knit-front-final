@@ -116,33 +116,6 @@ export default function QuestionResponse({
     });
 
     // ScrollTrigger pour gérer l'opacité et la transformation du texte dans la section pinned
-    const textOpacityTrigger = ScrollTrigger.create({
-      trigger: `#whitespace-${uniqueId}`,
-      start: "top 20%",
-      end: "bottom 50%",
-      markers: false,
-      onUpdate: (self) => {
-        const progress = self.progress;
-        if (progress > 0.4) {
-          gsap.to(`#pinned-${uniqueId} p`, {
-            opacity: 1,
-            y: "20vh",
-            duration: 0.5,
-            scrub: true,
-            ease: "power1.out",
-            delay: 0.1, // Légère pause pour permettre à l'animation de scale de finir
-          });
-        } else {
-          gsap.to(`#pinned-${uniqueId} p`, {
-            opacity: 0,
-            yPercent: 0,
-            duration: 0.5,
-            ease: "power1.in",
-          });
-        }
-      },
-    });
-
     // ScrollTrigger pour gérer le scale et la luminosité
     const scaleTrigger = ScrollTrigger.create({
       trigger: `#whitespace-${uniqueId}`,
@@ -171,7 +144,7 @@ export default function QuestionResponse({
           gsap.to(`#revealer-${uniqueId}`, {
             filter: `brightness(${brightness})`,
             ease: "power2.out", // Transition douce
-            duration: 0.3, // Un peu plus long pour rendre l'animation moins brusque
+            duration: 0.3,
           });
         } else {
           // Assurer une transition lisse sans flash en gardant la luminosité stable avant le seuil
@@ -181,6 +154,39 @@ export default function QuestionResponse({
             duration: 0,
           });
         }
+      },
+      onComplete: () => {
+        // Lancer l'animation du texte une fois que l'animation du revealer est terminée
+        gsap.to(`#pinned-${uniqueId} p`, {
+          opacity: 1,
+          y: "20vh",
+          duration: 0.5,
+          ease: "power1.out",
+        });
+      },
+    });
+
+    // ScrollTrigger pour gérer l'animation du texte
+    const textOpacityTrigger = ScrollTrigger.create({
+      trigger: `#whitespace-${uniqueId}`,
+      start: "top 20%",
+      end: "bottom 50%",
+      markers: false,
+      onEnter: () => {
+        gsap.to(`#pinned-${uniqueId} p`, {
+          opacity: 1,
+          y: "20vh",
+          duration: 0.5,
+          ease: "power1.out",
+        });
+      },
+      onLeaveBack: () => {
+        gsap.to(`#pinned-${uniqueId} p`, {
+          opacity: 0,
+          y: "0vh",
+          duration: 0.1, // Petite durée pour une transition rapide
+          ease: "power1.out",
+        });
       },
     });
 

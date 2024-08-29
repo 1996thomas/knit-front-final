@@ -161,6 +161,7 @@
       text-transform: uppercase;
       position: relative;
       will-change: transorm;
+      opacity: 0;
       p {
         font-family: Object Sans;
         font-weight: 500;
@@ -381,6 +382,6 @@
 
 @media (max-device-width: 930px) and (orientation: landscape) {
   .special-article__wrapper section.question--wrapper .question--paragraph {
-    margin: 1rem auto;
+    margin: 2rem auto;
   }
 }

@@ -21,37 +21,39 @@ export default function SpecialArticle() {
   };
 
   useEffect(() => {
-    if (!loading && (isDesktop || isPhoneLandscape)) {
-      gsap.from(heroRef.current, {
-        opacity: 0,
-        y: 50,
-        duration: 1,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: heroRef.current,
-          start: "top center",
-        },
-      });
+    // if (!loading && (isDesktop || isPhoneLandscape)) {
+    //   const tl = gsap.timeline({
+    //     scrollTrigger: {
+    //       trigger: heroRef.current,
+    //       start: "top center",
+    //     },
+    //   });
 
-      gsap.from(heroTitleRef.current, {
-        opacity: 0,
-        y: 20,
-        delay: 0.5,
-        duration: 1,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: heroTitleRef.current,
-          start: "top center",
-        },
-      });
-    }
+    //   tl.from(heroRef.current, {
+    //     opacity: 0,
+    //     y: 50,
+    //     duration: 1,
+    //     ease: "power2.out",
+    //   }).from(
+    //     heroTitleRef.current,
+    //     {
+    //       opacity: 0,
+    //       y: 20,
+    //       duration: 1,
+    //       ease: "power2.out",
+    //     },
+    //     "-=0.5"
+    //   ); // Overlap the animations slightly
+
+    //   // Cleanup on component unmount
+    //   return () => {
+    //     tl.kill();
+    //     ScrollTrigger.kill();
+    //   };
+    // }
   }, [loading, isDesktop, isPhoneLandscape]);
 
-  if (loading) {
-    return <Loader duration={3000} onComplete={handleLoaderComplete} />;
-  }
-
-  return isDesktop || isPhoneLandscape ? (
+  return (
     <div className="special-article__wrapper">
       <div className="container">
         <section
@@ -91,8 +93,7 @@ export default function SpecialArticle() {
           />
         ))}
       </div>
+      {loading && <Loader duration={3000} onComplete={handleLoaderComplete} />}
     </div>
-  ) : (
-    <PortraitLayout />
   );
 }

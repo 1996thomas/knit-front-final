@@ -34,32 +34,15 @@ export default function QuestionResponse({
       },
     });
 
-    questionFrameAnimation
-      .fromTo(
-        `#question-wrapper-${uniqueId} > .question__frame--left`,
-        {
-          xPercent: 100,
-          yPercent: 100,
-          opacity: 0,
-          transformOrigin: "top left",
-        },
-        {
-          xPercent: -5,
-          yPercent: -15,
-          opacity: 1,
-          duration: 1,
-          ease: "power2.out",
-        }
-      )
-      .to(
-        `#question-wrapper-${uniqueId} > .question--paragraph`,
-        {
-          opacity: 1,
-          duration: 0.5,
-          ease: "power2.in",
-        },
-        "-=0.7"
-      );
+    questionFrameAnimation.to(
+      `#question-wrapper-${uniqueId} > .question--paragraph`,
+      {
+        opacity: 1,
+        duration: 0.5,
+        ease: "power2.in",
+      },
+      "-=0.7"
+    );
 
     // ScrollTrigger pour épingler la section du texte
     const pinnedTextTrigger = ScrollTrigger.create({
@@ -238,7 +221,6 @@ export default function QuestionResponse({
           ))}
         </div>
         <div className="question--paragraph">
-          <span className="question__frame--left" />
           <span className="question__frame--right" />
           <p>{question}</p>
         </div>

@@ -29,7 +29,7 @@ const Spinner = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        width: `${isPhoneLandscape ? "50px" : "80px"}`,
+        width: `${isPhoneLandscape ? "40px" : "80px"}`,
         height: "80px",
         position: "fixed",
         bottom: "2%",
@@ -38,7 +38,7 @@ const Spinner = () => {
     >
       <svg
         ref={spinnerRef}
-        width={isPhoneLandscape ? "50" : "80"}
+        width={isPhoneLandscape ? "40" : "80"}
         height="80"
         viewBox="0 0 220 220"
         xmlns="http://www.w3.org/2000/svg"
@@ -79,7 +79,7 @@ const Spinner = () => {
           transform: "translate(-50%, -50%)",
         }}
       >
-        <FaCartPlus size={isPhoneLandscape ? 15 : 25} color="white" />
+        <FaCartPlus size={isPhoneLandscape ? 12 : 25} color="white" />
       </div>
     </a>
   );

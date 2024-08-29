@@ -158,6 +158,7 @@ export default function QuestionResponse({
       end: "bottom 50%",
       markers: false,
       onEnter: () => {
+        gsap.killTweensOf(`#pinned-${uniqueId} p`); // Stoppe toute animation en cours
         gsap.to(`#pinned-${uniqueId} p`, {
           opacity: 1,
           y: "20vh",
@@ -166,10 +167,11 @@ export default function QuestionResponse({
         });
       },
       onLeaveBack: () => {
+        gsap.killTweensOf(`#pinned-${uniqueId} p`); // Stoppe toute animation en cours
         gsap.to(`#pinned-${uniqueId} p`, {
           opacity: 0,
           y: "0vh",
-          duration: 0.1, // Petite durée pour une transition rapide
+          duration: 0.05, // Petite durée pour une transition rapide
           ease: "power1.out",
         });
       },

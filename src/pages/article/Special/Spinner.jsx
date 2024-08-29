@@ -24,7 +24,7 @@ const Spinner = () => {
 
   return (
     <a
-    href="https://www.revers-editions.com/marvin-bonheur"
+      href="https://www.revers-editions.com/marvin-bonheur"
       style={{
         display: "flex",
         justifyContent: "center",
@@ -32,8 +32,8 @@ const Spinner = () => {
         width: `${isPhoneLandscape ? "40px" : "80px"}`,
         height: "80px",
         position: "fixed",
-        bottom: "2%",
-        left: "2%",
+        bottom: isPhoneLandscape ? "0" : "10px",
+        left: "10px",
       }}
     >
       <svg

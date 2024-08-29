@@ -1,0 +1,12 @@
+@use "../../../sass/abstract/variable";
+.loader {
+  height: 100dvh;
+  width: 100vw;
+  background-color: variable.$black;
+  display: flex;
+  align-items: center;
+  font-family: "Object Sans";
+  font-weight: 800;
+  color: variable.$white;
+  font-size: 30vw;
+}

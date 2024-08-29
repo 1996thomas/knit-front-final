@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./special-article.scss";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -6,47 +6,50 @@ import QuestionResponse from "./QuestionResponse";
 import { data } from "./data";
 import useOrientation from "../../../utils/useOrientation";
 import PortraitLayout from "./PortraitLayout";
-import Spinner from "./Spinner";
+import Loader from "./Loader"; // Import the Loader component
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function SpecialArticle() {
   const { isDesktop, isPhoneLandscape } = useOrientation();
+  const [loading, setLoading] = useState(true);
   const heroRef = useRef(null);
   const heroTitleRef = useRef(null);
 
-  useEffect(() => {
-    const heroElement = heroRef.current;
-    const heroTitleElement = heroTitleRef.current;
+  const handleLoaderComplete = () => {
+    setLoading(false);
+  };
 
-    if (heroElement && heroTitleElement) {
-      // ANIMATION HERO
-      gsap.to(heroElement, {
-        yPercent: -20,
-        scale: 0.8,
-        ease: "none",
+  useEffect(() => {
+    if (!loading && (isDesktop || isPhoneLandscape)) {
+      gsap.from(heroRef.current, {
+        opacity: 0,
+        y: 50,
+        duration: 1,
+        ease: "power2.out",
         scrollTrigger: {
-          trigger: heroElement,
-          start: "top top",
-          end: "bottom top",
-          scrub: true,
-          debounce: 1, // Ajout du debounce pour améliorer la performance
+          trigger: heroRef.current,
+          start: "top center",
         },
       });
 
-      gsap.to(heroTitleElement, {
-        yPercent: -5,
-        ease: "none",
+      gsap.from(heroTitleRef.current, {
+        opacity: 0,
+        y: 20,
+        delay: 0.5,
+        duration: 1,
+        ease: "power2.out",
         scrollTrigger: {
-          trigger: heroElement,
-          start: "top top",
-          end: "bottom top",
-          scrub: true,
-          debounce: 1, // Ajout du debounce pour améliorer la performance
+          trigger: heroTitleRef.current,
+          start: "top center",
         },
       });
     }
-  }, []);
+  }, [loading, isDesktop, isPhoneLandscape]);
+
+  if (loading) {
+    return <Loader duration={3000} onComplete={handleLoaderComplete} />;
+  }
 
   return isDesktop || isPhoneLandscape ? (
     <div className="special-article__wrapper">

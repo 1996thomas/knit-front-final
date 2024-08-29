@@ -383,5 +383,6 @@
 @media (max-device-width: 930px) and (orientation: landscape) {
   .special-article__wrapper section.question--wrapper .question--paragraph {
     margin: 2rem auto;
+    max-width: 98vw;
   }
 }

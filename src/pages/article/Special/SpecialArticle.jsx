@@ -6,11 +6,12 @@ import QuestionResponse from "./QuestionResponse";
 import { data } from "./data";
 import useOrientation from "../../../utils/useOrientation";
 import PortraitLayout from "./PortraitLayout";
+import Spinner from "./Spinner";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function SpecialArticle() {
-  const isLandscape = useOrientation();
+  const { isDesktop, isPhoneLandscape } = useOrientation();
   const heroRef = useRef(null);
   const heroTitleRef = useRef(null);
 
@@ -47,7 +48,7 @@ export default function SpecialArticle() {
     }
   }, []);
 
-  return isLandscape ? (
+  return isDesktop || isPhoneLandscape ? (
     <div className="special-article__wrapper">
       <div className="container">
         <section

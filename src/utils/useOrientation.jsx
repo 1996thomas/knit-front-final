@@ -1,22 +1,24 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 const useOrientation = () => {
-  const [isLandscape, setIsLandscape] = useState(window.matchMedia("(orientation: landscape)").matches);
+  const [isPhoneLandscape, setIsPhoneLandscape] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
-    const handleOrientationChange = () => {
-      setIsLandscape(window.matchMedia("(orientation: landscape)").matches);
+    const updateOrientation = () => {
+      const isLandscapeMode = window.innerWidth > window.innerHeight;
+      const isMobile = window.innerWidth <= 950; // Par exemple, moins de 768px pour considérer un téléphone
+      setIsPhoneLandscape(isLandscapeMode && isMobile);
+      setIsDesktop(window.innerWidth >= 950); // Détection du bureau
     };
 
-    const mediaQuery = window.matchMedia("(orientation: landscape)");
-    mediaQuery.addEventListener('change', handleOrientationChange);
+    updateOrientation();
+    window.addEventListener("resize", updateOrientation);
 
-    return () => {
-      mediaQuery.removeEventListener('change', handleOrientationChange);
-    };
+    return () => window.removeEventListener("resize", updateOrientation);
   }, []);
 
-  return isLandscape;
+  return { isPhoneLandscape, isDesktop };
 };
 
 export default useOrientation;

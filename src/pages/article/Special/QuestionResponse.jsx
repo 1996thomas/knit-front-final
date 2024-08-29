@@ -4,6 +4,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "@studio-freight/lenis";
 import "./special-article.scss";
 import useOrientation from "../../../utils/useOrientation";
+import Spinner from "./Spinner";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function QuestionResponse({
@@ -35,7 +36,7 @@ export default function QuestionResponse({
 
     questionFrameAnimation
       .fromTo(
-        `#question-wrapper-${uniqueId} .question__frame--left`,
+        `#question-wrapper-${uniqueId} > .question__frame--left`,
         {
           xPercent: 100,
           yPercent: 100,
@@ -51,7 +52,7 @@ export default function QuestionResponse({
         }
       )
       .to(
-        `#question-wrapper-${uniqueId} .question--paragraph`,
+        `#question-wrapper-${uniqueId} > .question--paragraph`,
         {
           opacity: 1,
           duration: 0.5,
@@ -143,6 +144,7 @@ export default function QuestionResponse({
           const brightness = Math.max(1 - 0.4 * brightnessProgress, 0.6); // Ajuster la réduction de brightness
           gsap.to(`#revealer-${uniqueId}`, {
             filter: `brightness(${brightness})`,
+            zIndex: 0,
             ease: "power2.out", // Transition douce
             duration: 0.3,
           });
@@ -241,6 +243,8 @@ export default function QuestionResponse({
           <p>{question}</p>
         </div>
       </section>
+      <Spinner />
+
       <section id={`whitespace-${uniqueId}`} className="whitespace"></section>
       <section id={`pinned-${uniqueId}`} className="pinned">
         <p style={{ opacity: 0, transform: "translateY(50px)" }}>{reponse}</p>

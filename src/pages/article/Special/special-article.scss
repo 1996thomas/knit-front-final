@@ -216,7 +216,6 @@
 
   section.pinned {
     will-change: transorm;
-
     position: absolute;
     top: 100vh;
     width: 100%;
@@ -237,6 +236,8 @@
       text-transform: uppercase;
       max-width: 95%;
       margin: 0 auto;
+      z-index: 100;
+
     }
   }
 
@@ -287,6 +288,7 @@
     .grain {
       flex: 2;
       will-change: transorm;
+      position: relative;
     }
 
     p {
@@ -384,5 +386,6 @@
   .special-article__wrapper section.question--wrapper .question--paragraph {
     margin: 2rem auto;
     max-width: 98vw;
+    width: 100%;
   }
 }

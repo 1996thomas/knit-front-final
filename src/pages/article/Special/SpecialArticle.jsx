@@ -6,7 +6,7 @@ import QuestionResponse from "./QuestionResponse";
 import { data } from "./data";
 import useOrientation from "../../../utils/useOrientation";
 import PortraitLayout from "./PortraitLayout";
-import Loader from "./Loader"; // Import the Loader component
+import Loader from "./Loader";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -15,89 +15,96 @@ export default function SpecialArticle() {
   const [loading, setLoading] = useState(true);
   const heroRef = useRef(null);
   const heroTitleRef = useRef(null);
+  const timelineRef = useRef(null);
+  const timelineIntroRef = useRef(null);
+  const introRef = useRef(null);
+  const imageWrapperRef = useRef(null); // Ref for the image wrapper
 
   const handleLoaderComplete = () => {
     setLoading(false);
   };
 
   useEffect(() => {
-    // if (!loading && (isDesktop || isPhoneLandscape)) {
-    //   const tl = gsap.timeline({
-    //     scrollTrigger: {
-    //       trigger: heroRef.current,
-    //       start: "top center",
-    //     },
-    //   });
-    //   tl.from(heroRef.current, {
-    //     opacity: 0,
-    //     y: 50,
-    //     duration: 1,
-    //     ease: "power2.out",
-    //   }).from(
-    //     heroTitleRef.current,
-    //     {
-    //       opacity: 0,
-    //       y: 20,
-    //       duration: 1,
-    //       ease: "power2.out",
-    //     },
-    //     "-=0.5"
-    //   ); // Overlap the animations slightly
-    //   // Cleanup on component unmount
-    //   return () => {
-    //     tl.kill();
-    //     ScrollTrigger.kill();
-    //   };
-    // }
+    if (!loading && (isDesktop || isPhoneLandscape)) {
+      gsap.to(imageWrapperRef.current, {
+        width: "33.33vw",
+        overflow: "hidden",
+        filter: "grayscale(0)",
+        scrollTrigger: {
+          trigger: imageWrapperRef.current,
+          start: "top center",
+          scrub: true,
+        },
+      });
+    }
+    return () => {
+      if (timelineRef.current) {
+        timelineRef.current.kill();
+      }
+    };
   }, [loading, isDesktop, isPhoneLandscape]);
 
-  return isDesktop || isPhoneLandscape ? (
-    <div className="special-article__wrapper">
-      <div className="container">
-        <section
-          className="hero"
-          ref={heroRef}
-          style={{ willChange: "transform" }}
-        >
-          <h1 ref={heroTitleRef} style={{ willChange: "transform" }}>
-            Le visage des oublié-e-s
-          </h1>
-          <div className="hero--info">
-            <span>© Marvin Bonheur</span>
-            <span>Interview par Paul-Louis Godier</span>
-            <span>Septembre 2024</span>
-            <span>Réalisé par KNIT</span>
+  return (
+    <div className={`special-article__wrapper ${loading ? "loading" : ""}`}>
+      <Loader duration={3000} onComplete={handleLoaderComplete} />
+
+      {/* Render the content in the background while hidden */}
+      <div className={`content ${loading ? "hidden" : ""}`}>
+        {isDesktop || isPhoneLandscape ? (
+          <div className="container">
+            <section
+              className="hero"
+              ref={heroRef}
+              style={{ willChange: "transform" }}
+            >
+              <h1 ref={heroTitleRef} style={{ willChange: "transform" }}>
+                Le visage des oublié-e-s
+              </h1>
+              <div className="hero--info">
+                <span>© Marvin Bonheur</span>
+                <span>Interview par Paul-Louis Godier</span>
+                <span>Septembre 2024</span>
+                <span>Réalisé par KNIT</span>
+              </div>
+            </section>
+            <section className="intro" ref={introRef}>
+              <div className="intro-img__wrapper" ref={imageWrapperRef}>
+                <img src="/1a.JPG" alt="" />
+              </div>
+              <div className="top">
+                <h2>Entretien Marvin Bonheur</h2>
+                <h2>une mise en lumière du 93</h2>
+              </div>
+              <div className="bottom">
+                <p>
+                  Dix ans de cheminement photographique plus tard, Monsieur
+                  Bonheur, artiste originaire d’Aulnay-Sous-Bois sort son
+                  premier livre : « La trilogie du Bonheur ». Un travail sur le
+                  93, département de la Seine-Saint-Denis, dans lequel il a
+                  grandi. Avec son appareil compact argentique, clin d’œil au
+                  Kodak jetable jaune 27 poses de son enfance, il raconte ses
+                  souvenirs d’adolescence, relate du quotidien des jeunes de
+                  quartier et dépeint avec fierté la culture de la rue.
+                </p>
+              </div>
+            </section>
           </div>
-        </section>
-        <section className="info">
-          <div className="intro--carousel">
-            <img src="/1.JPG" alt="" />
-            <img src="/1a.JPG" alt="" />
-            <img src="/93e vague.JPG" alt="" />
-          </div>
-          <div className="intro">
-            <p>SALUT</p>
-          </div>
-        </section>
+        ) : (
+          <PortraitLayout />
+        )}
+
+        <div className="question-reponse__wrapper">
+          {data.map((item, index) => (
+            <QuestionResponse
+              key={index}
+              uniqueId={index}
+              reponse={item.reponse}
+              question={item.question}
+              imgsSrc={item.imgsSrc}
+            />
+          ))}
+        </div>
       </div>
-      <div className="question-reponse__wrapper">
-        {data.map((item, index) => (
-          <QuestionResponse
-            key={index}
-            uniqueId={index}
-            reponse={item.reponse}
-            question={item.question}
-            imgsSrc={item.imgsSrc}
-          />
-        ))}
-      </div>
-      {loading && <Loader duration={3000} onComplete={handleLoaderComplete} />}
     </div>
-  ) : (
-    loading && (
-      <>
-        <PortraitLayout />
-      </>
-    )
   );
 }

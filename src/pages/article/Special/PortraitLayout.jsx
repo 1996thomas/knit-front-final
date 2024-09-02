@@ -89,7 +89,6 @@ export default function PortraitLayout() {
           ))}
         </div>
       </div>
-      {loading && <Loader duration={3000} onComplete={handleLoaderComplete} />}
     </div>
   );
 }

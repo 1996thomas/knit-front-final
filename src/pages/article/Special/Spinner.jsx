@@ -31,9 +31,10 @@ const Spinner = () => {
         alignItems: "center",
         width: `${isPhoneLandscape ? "40px" : "80px"}`,
         height: "80px",
+        mixBlendMode:"difference",
         position: "fixed",
-        bottom: isPhoneLandscape ? "0" : "10px",
-        left: "10px",
+        bottom: isPhoneLandscape ? "-10px" : "20px",
+        left: "15px",
       }}
     >
       <svg

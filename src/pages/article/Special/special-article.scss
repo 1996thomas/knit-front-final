@@ -67,10 +67,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    position: absolute;
+    // position: absolute;
     top: 0;
     left: 0;
-    z-index: 1000;
 
     h1 {
       text-align: center;
@@ -83,7 +82,7 @@
       bottom: 2%;
       left: 0;
       width: 100%;
-      justify-content: space-around;
+      justify-content: space-evenly;
 
       span {
         text-transform: uppercase;
@@ -108,28 +107,64 @@
     }
   }
 
-  section.info {
-    width: 100vw;
+  .intro {
     height: 200vh;
-    background-color: #141414;
-
-    .intro--carousel {
-      display: flex;
-      object-fit: cover;
-      height: 100vh;
-    }
-
-    .intro--carousel img {
-      will-change: transorm;
-      display: block;
-    }
-    .intro {
-      flex: 1;
-      height: 100vh;
-      color: white;
-      display: flex;
-      justify-content: center;
+    overflow: hidden;
+    max-width: 100vw;
+    width: 100%;
+    .top {
+      position: relative;
       align-items: center;
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+      justify-content: space-between;
+      padding-inline: 2vw;
+      background-color: #141414;
+      overflow: hidden;
+      h2 {
+        font-size: 5vw;
+        font-weight: 800;
+        text-transform: uppercase;
+        max-width: 33.33%;
+      }
+      :last-child {
+        text-align: right;
+      }
+    }
+    .bottom {
+      height: fit-content;
+      margin-block: 20vh;
+      display: flex;
+      align-items: center;
+
+      p {
+        font-size: clamp(2vw, 1.5vw, 45px);
+        line-height: 2;
+        max-width: 98vw;
+        margin: 0 auto;
+        text-align: justify;
+      }
+    }
+
+    .intro-img__wrapper {
+filter: grayscale(1);
+      width: 10vw;
+      position: absolute;
+      height: 100vh;
+      overflow: hidden;
+      transform-origin: center;
+      top: 50%;
+      left: 50%;
+      z-index: 2;
+      transform: translate(-50%, 50%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      img {
+        width: 100%;
+        height: 100%;
+      }
     }
   }
 
@@ -153,8 +188,8 @@
     }
 
     .question--paragraph {
+      color: white;
       line-height: 1.2;
-      color: #ff1414;
       font-weight: 500;
       max-width: 95vw;
       margin: 5vw auto;
@@ -237,14 +272,12 @@
       max-width: 95%;
       margin: 0 auto;
       z-index: 100;
-
     }
   }
 
   section.whitespace {
     width: 100%;
     height: 100vh;
-    background-color: red;
     position: relative;
     z-index: -1;
   }

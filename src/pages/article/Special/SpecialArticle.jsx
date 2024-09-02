@@ -7,6 +7,8 @@ import { data } from "./data";
 import useOrientation from "../../../utils/useOrientation";
 import PortraitLayout from "./PortraitLayout";
 import Loader from "./Loader";
+import { getSpecialArticle } from "../../../utils/apiCalls";
+import { useParams } from "react-router-dom";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -19,13 +21,46 @@ export default function SpecialArticle() {
   const timelineIntroRef = useRef(null);
   const introRef = useRef(null);
   const imageWrapperRef = useRef(null); // Ref for the image wrapper
+  const [specialArticle, setSpecialArticle] = useState(null);
+  const [dialog, setDialog] = useState([]);
+  const [carousel, setCarousel] = useState();
+  const { slug } = useParams();
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleLoaderComplete = () => {
     setLoading(false);
   };
 
   useEffect(() => {
-    if (!loading && (isDesktop || isPhoneLandscape)) {
+    getSpecialArticle(slug).then((responseData) => {
+      setSpecialArticle(responseData);
+
+      const dialog = [];
+      const carousel = responseData.attributes.specialCarousel.data;
+
+      // Populate dialog array
+      dialog.push(responseData.attributes.dialog);
+      console.log(dialog);
+      // Append 3 URLs from carousel to each dialog entry
+      const enrichedDialog = dialog[0].map((entry, index) => {
+        const carouselUrls = [
+          carousel[(index - 1 + carousel.length) % carousel.length], // carousel[i - 1] (circular)
+          carousel[index % carousel.length], // carousel[i]
+          carousel[(index + 1) % carousel.length], // carousel[i + 1] (circular)
+        ];
+
+        return {
+          ...entry,
+          carouselUrls: carouselUrls.reverse(),
+        };
+      });
+
+      setDialog(enrichedDialog);
+    });
+  }, [slug]);
+
+  useEffect(() => {
+    if (!isLoading && (isDesktop || isPhoneLandscape)) {
       gsap.to(imageWrapperRef.current, {
         width: "33.33vw",
         overflow: "hidden",
@@ -43,6 +78,10 @@ export default function SpecialArticle() {
       }
     };
   }, [loading, isDesktop, isPhoneLandscape]);
+
+  if (!specialArticle) {
+    return <p>Article non trouvé</p>;
+  }
 
   return (
     <div className={`special-article__wrapper ${loading ? "loading" : ""}`}>
@@ -94,14 +133,8 @@ export default function SpecialArticle() {
         )}
 
         <div className="question-reponse__wrapper">
-          {data.map((item, index) => (
-            <QuestionResponse
-              key={index}
-              uniqueId={index}
-              reponse={item.reponse}
-              question={item.question}
-              imgsSrc={item.imgsSrc}
-            />
+          {dialog.map((item, index) => (
+            <QuestionResponse key={index} uniqueId={index} item={item} />
           ))}
         </div>
       </div>

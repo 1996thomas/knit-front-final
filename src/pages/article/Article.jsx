@@ -54,8 +54,6 @@ const Article = () => {
     return <p>Article non trouvé</p>;
   }
 
-  console.log(article)
-
   return (
     <>
       <div className="article__wrapper">

@@ -148,10 +148,11 @@
     }
 
     .intro-img__wrapper {
-filter: grayscale(1);
+      will-change: width;
+      filter: grayscale(1);
       width: 10vw;
       position: absolute;
-      height: 100vh;
+      height: 100dvh;
       overflow: hidden;
       transform-origin: center;
       top: 50%;
@@ -162,8 +163,9 @@ filter: grayscale(1);
       align-items: center;
       justify-content: center;
       img {
-        width: 100%;
+        width: auto; /* ou une autre valeur selon vos besoins */
         height: 100%;
+        object-fit: cover; /* ou contain, selon l'effet désiré */
       }
     }
   }
@@ -188,10 +190,12 @@ filter: grayscale(1);
     }
 
     .question--paragraph {
+      display: flex;
       color: white;
       line-height: 1.2;
       font-weight: 500;
       max-width: 95vw;
+      width: 100%;
       margin: 5vw auto;
       text-transform: uppercase;
       position: relative;

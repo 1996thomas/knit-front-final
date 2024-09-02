@@ -121,3 +121,28 @@ export async function getCGU() {
     handleAxiosError(error);
   }
 }
+
+export async function getSpecialArticle(slug) {
+  const url = `${import.meta.env.VITE_API_URL}/api/special-articles/`;
+  try {
+    const response = await axios.get(url, {
+      params: {
+        populate: "*",
+        filters: {
+          slug: {
+            $eq: slug,
+          },
+        },
+      },
+    });
+    // Vérifiez si l'article existe et renvoyez-le
+    if (response.data && response.data.data && response.data.data.length > 0) {
+      return response.data.data[0];
+    } else {
+      throw new Error("Article not found");
+    }
+  } catch (error) {
+    console.error("Error fetching article:", error);
+    return null; // Retourne null en cas d'erreur
+  }
+}

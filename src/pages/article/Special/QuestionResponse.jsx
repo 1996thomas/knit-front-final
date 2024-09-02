@@ -7,13 +7,10 @@ import useOrientation from "../../../utils/useOrientation";
 import Spinner from "./Spinner";
 gsap.registerPlugin(ScrollTrigger);
 
-export default function QuestionResponse({
-  uniqueId,
-  question,
-  reponse,
-  imgsSrc,
-}) {
+export default function QuestionResponse({ item, uniqueId }) {
   const [windowHeight, setWindowHeight] = useState(window.innerHeight);
+
+  console.log(item)
 
   useLayoutEffect(() => {
     const updateHeight = () => {
@@ -151,7 +148,6 @@ export default function QuestionResponse({
       },
     });
 
-    // ScrollTrigger pour gérer l'animation du texte
     const textOpacityTrigger = ScrollTrigger.create({
       trigger: `#whitespace-${uniqueId}`,
       start: "top 20%",
@@ -218,22 +214,24 @@ export default function QuestionResponse({
           className="question--carousel"
           id={`question--carousel-${uniqueId}`}
         >
-          {imgsSrc.map((i, index) => (
-            <img src={i} alt="" key={index} />
+          {item.carouselUrls.map((i, index) => (
+            <img src={`${i.attributes.url}`} alt="" key={index} />
           ))}
         </div>
         <div className="question--paragraph">
           <span className="question__frame--right" />
-          <p>{question}</p>
+          <p>{item.question[0].children[0].text}</p>
         </div>
       </section>
       <Spinner />
 
       <section id={`whitespace-${uniqueId}`} className="whitespace"></section>
       <section id={`pinned-${uniqueId}`} className="pinned">
-        <p style={{ opacity: 0, transform: "translateY(50px)" }}>{reponse}</p>
+        <p style={{ opacity: 0, transform: "translateY(50px)" }}>
+          {item.reponse[0].children[0].text}
+        </p>
         <div id={`revealer-${uniqueId}`} className="revealer">
-          <img src={imgsSrc[1]} alt="" />
+          <img src={item.carouselUrls[1].attributes.url} alt="" />
         </div>
       </section>
       <section

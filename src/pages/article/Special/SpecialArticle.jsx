@@ -9,6 +9,8 @@ import PortraitLayout from "./PortraitLayout";
 import Loader from "./Loader";
 import { getSpecialArticle } from "../../../utils/apiCalls";
 import { useParams } from "react-router-dom";
+import { useLayoutEffect } from "react";
+import NotFound from "../../404/NotFound";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -34,7 +36,7 @@ export default function SpecialArticle() {
   useEffect(() => {
     getSpecialArticle(slug).then((responseData) => {
       setSpecialArticle(responseData);
-
+      setIsLoading(false);
       const dialog = [];
       const carousel = responseData.attributes.specialCarousel.data;
 
@@ -59,16 +61,16 @@ export default function SpecialArticle() {
     });
   }, [slug]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!isLoading && (isDesktop || isPhoneLandscape)) {
       gsap.to(imageWrapperRef.current, {
-        width: "33.33vw",
-        overflow: "hidden",
+        width: "33.33%",
         filter: "grayscale(0)",
         scrollTrigger: {
           trigger: imageWrapperRef.current,
           start: "top center",
           scrub: true,
+          markers: true,
         },
       });
     }
@@ -77,10 +79,10 @@ export default function SpecialArticle() {
         timelineRef.current.kill();
       }
     };
-  }, [loading, isDesktop, isPhoneLandscape]);
+  }, [isLoading, isDesktop, isPhoneLandscape]);
 
   if (!specialArticle) {
-    return <p>Article non trouvé</p>;
+    return <NotFound />;
   }
 
   return (

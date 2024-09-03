@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from "react";
+import React, { useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "@studio-freight/lenis";
@@ -10,7 +10,16 @@ gsap.registerPlugin(ScrollTrigger);
 export default function QuestionResponse({ item, uniqueId }) {
   const [windowHeight, setWindowHeight] = useState(window.innerHeight);
 
-  console.log(item)
+  // Creating refs for elements
+  const questionWrapperRef = useRef(null);
+  const questionCarouselRef = useRef(null);
+  const paragraphRef = useRef(null);
+  const whitespaceRef = useRef(null);
+  const pinnedRef = useRef(null);
+  const revealerRef = useRef(null);
+  const largeHeadingWrapperRef = useRef(null);
+
+  console.log(item);
 
   useLayoutEffect(() => {
     const updateHeight = () => {
@@ -19,12 +28,10 @@ export default function QuestionResponse({ item, uniqueId }) {
 
     window.addEventListener("resize", updateHeight);
 
-    // Initialisation de Lenis pour un défilement lisse
-
     // Timeline pour l'animation des cadres de la question
     const questionFrameAnimation = gsap.timeline({
       scrollTrigger: {
-        trigger: `#question-wrapper-${uniqueId}`,
+        trigger: questionWrapperRef.current,
         start: "top bottom",
         end: "bottom top",
         scrub: true,
@@ -32,7 +39,7 @@ export default function QuestionResponse({ item, uniqueId }) {
     });
 
     questionFrameAnimation.to(
-      `#question-wrapper-${uniqueId} > .question--paragraph`,
+      paragraphRef.current,
       {
         opacity: 1,
         duration: 0.5,
@@ -43,9 +50,9 @@ export default function QuestionResponse({ item, uniqueId }) {
 
     // ScrollTrigger pour épingler la section du texte
     const pinnedTextTrigger = ScrollTrigger.create({
-      trigger: `#pinned-${uniqueId}`,
+      trigger: pinnedRef.current,
       start: "top top",
-      endTrigger: `#whitespace-${uniqueId}`,
+      endTrigger: whitespaceRef.current,
       end: "bottom top",
       pin: true,
       pinSpacing: false,
@@ -53,9 +60,9 @@ export default function QuestionResponse({ item, uniqueId }) {
 
     // ScrollTrigger pour épingler la section de la question
     const pinnedQuestionTrigger = ScrollTrigger.create({
-      trigger: `#question-wrapper-${uniqueId}`,
+      trigger: questionWrapperRef.current,
       start: "top top",
-      endTrigger: `#whitespace-${uniqueId}`,
+      endTrigger: whitespaceRef.current,
       end: "bottom top",
       pin: true,
       pinSpacing: false,
@@ -63,7 +70,7 @@ export default function QuestionResponse({ item, uniqueId }) {
 
     // ScrollTrigger pour animer le carrousel d'images et le revealer
     const carouselAndRevealerTrigger = ScrollTrigger.create({
-      trigger: `#question-wrapper-${uniqueId}`,
+      trigger: questionWrapperRef.current,
       start: "top top",
       end: "bottom 50%",
       scrub: 1,
@@ -73,14 +80,14 @@ export default function QuestionResponse({ item, uniqueId }) {
         const translateX = 25 - 25 * progress;
 
         if (progress > 0.8) {
-          gsap.to(`#revealer-${uniqueId}`, {
+          gsap.to(revealerRef.current, {
             opacity: 1,
             transform: `translate(${translateX}%, ${translateY}%)`,
             ease: "none",
             duration: 0,
           });
         } else {
-          gsap.to(`#revealer-${uniqueId}`, {
+          gsap.to(revealerRef.current, {
             opacity: 0,
             transform: "translate(0%, 0%)",
             ease: "none",
@@ -88,7 +95,7 @@ export default function QuestionResponse({ item, uniqueId }) {
           });
         }
 
-        gsap.to(`#question--carousel-${uniqueId}`, {
+        gsap.to(questionCarouselRef.current, {
           transform: `translateX(${-translateX}%)`,
           ease: "none",
           duration: 0,
@@ -97,9 +104,8 @@ export default function QuestionResponse({ item, uniqueId }) {
     });
 
     // ScrollTrigger pour gérer l'opacité et la transformation du texte dans la section pinned
-    // ScrollTrigger pour gérer le scale et la luminosité
     const scaleTrigger = ScrollTrigger.create({
-      trigger: `#whitespace-${uniqueId}`,
+      trigger: whitespaceRef.current,
       start: "top 30%",
       end: "bottom bottom",
       scrub: true,
@@ -110,36 +116,31 @@ export default function QuestionResponse({ item, uniqueId }) {
         const scaleY = Math.min(scaleProgress, windowHeight / 100);
         const scale = Math.min(scaleX, scaleY);
 
-        // Garder votre scale tel quel
-        gsap.to(`#revealer-${uniqueId}`, {
+        gsap.to(revealerRef.current, {
           transform: `scale(${scale})`,
           ease: "none",
           duration: 0,
         });
 
-        // Ajuster l'animation du brightness pour éviter le flash
         if (self.progress > 0.2) {
-          // Commencer la luminosité après 20% du scale
           const brightnessProgress = (self.progress - 0.2) / 0.8;
-          const brightness = Math.max(1 - 0.4 * brightnessProgress, 0.6); // Ajuster la réduction de brightness
-          gsap.to(`#revealer-${uniqueId}`, {
-            filter: `brightness(${brightness})`,
+          const brightness = Math.max(1 - 0.4 * brightnessProgress, 0.5);
+          gsap.to(revealerRef.current, {
+            filter: `brightness(${brightness}) blur(${brightness * 0.5}px)`,
             zIndex: 0,
-            ease: "power2.out", // Transition douce
+            ease: "power2.out",
             duration: 0.3,
           });
         } else {
-          // Assurer une transition lisse sans flash en gardant la luminosité stable avant le seuil
-          gsap.to(`#revealer-${uniqueId}`, {
-            filter: `brightness(1)`, // Brightness initial à 1
+          gsap.to(revealerRef.current, {
+            filter: `brightness(1)`,
             ease: "none",
             duration: 0,
           });
         }
       },
       onComplete: () => {
-        // Lancer l'animation du texte une fois que l'animation du revealer est terminée
-        gsap.to(`#pinned-${uniqueId} p`, {
+        gsap.to(pinnedRef.current.querySelector("p"), {
           opacity: 1,
           y: "20vh",
           duration: 0.5,
@@ -149,13 +150,13 @@ export default function QuestionResponse({ item, uniqueId }) {
     });
 
     const textOpacityTrigger = ScrollTrigger.create({
-      trigger: `#whitespace-${uniqueId}`,
+      trigger: whitespaceRef.current,
       start: "top 20%",
       end: "bottom 50%",
       markers: false,
       onEnter: () => {
-        gsap.killTweensOf(`#pinned-${uniqueId} p`); // Stoppe toute animation en cours
-        gsap.to(`#pinned-${uniqueId} p`, {
+        gsap.killTweensOf(pinnedRef.current.querySelector("p"));
+        gsap.to(pinnedRef.current.querySelector("p"), {
           opacity: 1,
           y: "20vh",
           duration: 0.5,
@@ -163,11 +164,11 @@ export default function QuestionResponse({ item, uniqueId }) {
         });
       },
       onLeaveBack: () => {
-        gsap.killTweensOf(`#pinned-${uniqueId} p`); // Stoppe toute animation en cours
-        gsap.to(`#pinned-${uniqueId} p`, {
+        gsap.killTweensOf(pinnedRef.current.querySelector("p"));
+        gsap.to(pinnedRef.current.querySelector("p"), {
           opacity: 0,
           y: "0vh",
-          duration: 0.05, // Petite durée pour une transition rapide
+          duration: 0.05,
           ease: "power1.out",
         });
       },
@@ -175,13 +176,13 @@ export default function QuestionResponse({ item, uniqueId }) {
 
     // ScrollTrigger pour animer le texte principal
     const largeHeadingTextTrigger = ScrollTrigger.create({
-      trigger: `#large-heading__wrapper-${uniqueId} > p`,
+      trigger: largeHeadingWrapperRef.current.querySelector("p"),
       start: "top center",
       end: "bottom bottom",
       scrub: true,
       markers: false,
       onUpdate: (self) => {
-        gsap.to(`#large-heading__wrapper-${uniqueId} > p`, {
+        gsap.to(largeHeadingWrapperRef.current.querySelector("p"), {
           opacity: 1,
           transform: "translateX(0)",
           duration: 0.4,
@@ -200,7 +201,6 @@ export default function QuestionResponse({ item, uniqueId }) {
       textOpacityTrigger.kill();
       scaleTrigger.kill();
       largeHeadingTextTrigger.kill();
-      // gsap.ticker.remove(lenis.raf);
     };
   }, [uniqueId, windowHeight]);
 
@@ -209,34 +209,41 @@ export default function QuestionResponse({ item, uniqueId }) {
       <section
         id={`question-wrapper-${uniqueId}`}
         className="question--wrapper"
+        ref={questionWrapperRef}
       >
         <div
           className="question--carousel"
           id={`question--carousel-${uniqueId}`}
+          ref={questionCarouselRef}
         >
           {item.carouselUrls.map((i, index) => (
             <img src={`${i.attributes.url}`} alt="" key={index} />
           ))}
         </div>
-        <div className="question--paragraph">
+        <div className="question--paragraph" ref={paragraphRef}>
           <span className="question__frame--right" />
           <p>{item.question[0].children[0].text}</p>
         </div>
       </section>
       <Spinner />
 
-      <section id={`whitespace-${uniqueId}`} className="whitespace"></section>
-      <section id={`pinned-${uniqueId}`} className="pinned">
+      <section
+        id={`whitespace-${uniqueId}`}
+        className="whitespace"
+        ref={whitespaceRef}
+      ></section>
+      <section id={`pinned-${uniqueId}`} className="pinned" ref={pinnedRef}>
         <p style={{ opacity: 0, transform: "translateY(50px)" }}>
           {item.reponse[0].children[0].text}
         </p>
-        <div id={`revealer-${uniqueId}`} className="revealer">
+        <div id={`revealer-${uniqueId}`} className="revealer" ref={revealerRef}>
           <img src={item.carouselUrls[1].attributes.url} alt="" />
         </div>
       </section>
       <section
         className="large-heading__wrapper"
         id={`large-heading__wrapper-${uniqueId}`}
+        ref={largeHeadingWrapperRef}
       >
         <span className="grain"></span>
         <p>“Déconstruire certaines idées reçues”</p>

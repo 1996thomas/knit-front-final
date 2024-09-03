@@ -70,7 +70,6 @@ export default function SpecialArticle() {
           trigger: imageWrapperRef.current,
           start: "top center",
           scrub: true,
-          markers: true,
         },
       });
     }

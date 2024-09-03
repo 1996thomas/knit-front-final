@@ -11,6 +11,7 @@ import { getSpecialArticle } from "../../../utils/apiCalls";
 import { useParams } from "react-router-dom";
 import { useLayoutEffect } from "react";
 import NotFound from "../../404/NotFound";
+import Spinner from "./Spinner";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -128,6 +129,7 @@ export default function SpecialArticle() {
                 </p>
               </div>
             </section>
+            <Spinner/>
           </div>
         ) : (
           <PortraitLayout />

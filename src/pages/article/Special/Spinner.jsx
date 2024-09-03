@@ -12,7 +12,6 @@ import useOrientation from "../../../utils/useOrientation";
 const Spinner = () => {
   const spinnerRef = useRef(null);
   const { isDesktop, isPhoneLandscape } = useOrientation();
-  console.log(isPhoneLandscape);
   useEffect(() => {
     gsap.to(spinnerRef.current, {
       rotation: 360,

@@ -5,6 +5,7 @@ import Lenis from "@studio-freight/lenis";
 import "./special-article.scss";
 import useOrientation from "../../../utils/useOrientation";
 import Spinner from "./Spinner";
+
 gsap.registerPlugin(ScrollTrigger);
 
 export default function QuestionResponse({ item, uniqueId }) {
@@ -19,8 +20,6 @@ export default function QuestionResponse({ item, uniqueId }) {
   const revealerRef = useRef(null);
   const largeHeadingWrapperRef = useRef(null);
 
-  console.log(item);
-
   useLayoutEffect(() => {
     const updateHeight = () => {
       setWindowHeight(window.innerHeight);
@@ -28,7 +27,7 @@ export default function QuestionResponse({ item, uniqueId }) {
 
     window.addEventListener("resize", updateHeight);
 
-    // Timeline pour l'animation des cadres de la question
+    // Timeline for the question frames animation
     const questionFrameAnimation = gsap.timeline({
       scrollTrigger: {
         trigger: questionWrapperRef.current,
@@ -48,7 +47,7 @@ export default function QuestionResponse({ item, uniqueId }) {
       "-=0.7"
     );
 
-    // ScrollTrigger pour épingler la section du texte
+    // ScrollTrigger for pinning the text section
     const pinnedTextTrigger = ScrollTrigger.create({
       trigger: pinnedRef.current,
       start: "top top",
@@ -58,7 +57,7 @@ export default function QuestionResponse({ item, uniqueId }) {
       pinSpacing: false,
     });
 
-    // ScrollTrigger pour épingler la section de la question
+    // ScrollTrigger for pinning the question section
     const pinnedQuestionTrigger = ScrollTrigger.create({
       trigger: questionWrapperRef.current,
       start: "top top",
@@ -68,7 +67,7 @@ export default function QuestionResponse({ item, uniqueId }) {
       pinSpacing: false,
     });
 
-    // ScrollTrigger pour animer le carrousel d'images et le revealer
+    // ScrollTrigger for animating the image carousel and revealer
     const carouselAndRevealerTrigger = ScrollTrigger.create({
       trigger: questionWrapperRef.current,
       start: "top top",
@@ -103,7 +102,7 @@ export default function QuestionResponse({ item, uniqueId }) {
       },
     });
 
-    // ScrollTrigger pour gérer l'opacité et la transformation du texte dans la section pinned
+    // ScrollTrigger for scaling and transforming the text in the pinned section
     const scaleTrigger = ScrollTrigger.create({
       trigger: whitespaceRef.current,
       start: "top 30%",
@@ -174,15 +173,15 @@ export default function QuestionResponse({ item, uniqueId }) {
       },
     });
 
-    // ScrollTrigger pour animer le texte principal
+    // ScrollTrigger for animating the large heading text
     const largeHeadingTextTrigger = ScrollTrigger.create({
-      trigger: largeHeadingWrapperRef.current.querySelector("p"),
+      trigger: largeHeadingWrapperRef.current?.querySelector("p"),
       start: "top center",
       end: "bottom bottom",
       scrub: true,
       markers: false,
       onUpdate: (self) => {
-        gsap.to(largeHeadingWrapperRef.current.querySelector("p"), {
+        gsap.to(largeHeadingWrapperRef.current?.querySelector("p"), {
           opacity: 1,
           transform: "translateX(0)",
           duration: 0.4,
@@ -191,7 +190,7 @@ export default function QuestionResponse({ item, uniqueId }) {
       },
     });
 
-    // Cleanup des triggers et des animations lors du démontage du composant
+    // Cleanup triggers and animations on component unmount
     return () => {
       window.removeEventListener("resize", updateHeight);
       questionFrameAnimation.kill();
@@ -225,8 +224,6 @@ export default function QuestionResponse({ item, uniqueId }) {
           <p>{item.question[0].children[0].text}</p>
         </div>
       </section>
-      <Spinner />
-
       <section
         id={`whitespace-${uniqueId}`}
         className="whitespace"
@@ -240,13 +237,16 @@ export default function QuestionResponse({ item, uniqueId }) {
           <img src={item.carouselUrls[1].attributes.url} alt="" />
         </div>
       </section>
+
       <section
         className="large-heading__wrapper"
         id={`large-heading__wrapper-${uniqueId}`}
         ref={largeHeadingWrapperRef}
       >
         <span className="grain"></span>
-        <p>“Déconstruire certaines idées reçues”</p>
+        {item.LargeHeading ? (
+          <p>{item.LargeHeading[0]?.children[0]?.text}</p>
+        ) : null}
       </section>
     </>
   );

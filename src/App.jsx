@@ -16,6 +16,8 @@ import SpecialArticle from "./pages/article/Special/SpecialArticle";
 import Lenis from "@studio-freight/lenis";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import gsap from "gsap";
+import useOrientation from "./utils/useOrientation";
+import { useEffect } from "react";
 
 export default function App() {
   const location = useLocation();
@@ -27,16 +29,35 @@ export default function App() {
   const ShopWithTransition = transition(Shop);
   const CGUWithTransition = transition(CGU);
   const SpecialArticleTransition = transition(SpecialArticle);
+  const { isDesktop } = useOrientation();
 
-  const lenis = new Lenis();
-  lenis.on("scroll", ScrollTrigger.update);
-  gsap.ticker.add((time) => {
-    lenis.raf(time * 1000);
-  });
-  gsap.ticker.lagSmoothing(0);
+  function initializeLenis() {
+    let lenis = new Lenis({
+      duration: 3,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      direction: "vertical",
+      gestureDirection: "vertical",
+      smooth: true,
+      smoothTouch: false,
+      touchMultiplier: 2,
+      infinite: false,
+      autoResize: true,
+    });
 
-  // Recréer les ScrollTriggers lors du changement de taille
-  ScrollTrigger.refresh();
+    lenis.on("scroll", (e) => {});
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+  }
+
+  useEffect(() => {
+    isDesktop && initializeLenis();
+  }, [isDesktop]);
+
 
   return (
     <div className="app">

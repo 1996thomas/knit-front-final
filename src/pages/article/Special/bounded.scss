@@ -1,0 +1,47 @@
+@use "../../../sass//abstract/variable";
+.bounded-container {
+  display: flex;
+  flex-direction: column;
+  .bounded-paragraph {
+    line-height: 1.33;
+    padding-left: 50px;
+    padding-bottom: 8px;
+  }
+  .bold {
+    color: variable.$orange;
+    font-style: bold;
+    font-size: calc(variable.$font-size-m * 1.001);
+  }
+  .italic {
+    font-style: italic;
+    font-size: calc(variable.$font-size-m * 1.001);
+  }
+  .normal {
+    font-size: calc(variable.$font-size-m);
+  }
+}
+.question-section {
+  margin-bottom: 20px;
+}
+
+.mobile {
+  .bounded-paragraph {
+    line-height: 3ch;
+    padding-left: 0;
+    padding-inline: 10px;
+    text-align: justify;
+  }
+
+  .bold {
+    color: variable.$orange;
+    font-style: bold;
+    font-size: calc(variable.$font-size-m * 0.8);
+  }
+  .italic {
+    font-style: italic;
+    font-size: calc(variable.$font-size-m * 0.8);
+  }
+  .normal {
+    font-size: calc(variable.$font-size-m * 0.8);
+  }
+}

@@ -33,7 +33,7 @@ export default function App() {
 
   function initializeLenis() {
     let lenis = new Lenis({
-      duration: 3,
+      duration: 1,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       direction: "vertical",
       gestureDirection: "vertical",
@@ -57,7 +57,6 @@ export default function App() {
   useEffect(() => {
     isDesktop && initializeLenis();
   }, [isDesktop]);
-
 
   return (
     <div className="app">

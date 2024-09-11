@@ -1,0 +1,16 @@
+@use "../../../sass/abstract/variable";
+.responsive {
+  color: variable.$white;
+  background-color: variable.$black;
+  display: flex;
+  flex-direction: column;
+  gap: 3vw;
+  .section-wrapper {
+
+    img {
+      width: 100%;
+      position: sticky;
+      top: 0;
+    }
+  }
+}

@@ -26,22 +26,30 @@
 
 .mobile {
   .bounded-paragraph {
-    line-height: 3ch;
     padding-left: 0;
     padding-inline: 10px;
     text-align: justify;
+    line-height: 1.2;
   }
+
+  .normal {
+    font-size: calc(variable.$font-size-m * 0.9);
+  }
+
 
   .bold {
     color: variable.$orange;
     font-style: bold;
-    font-size: calc(variable.$font-size-m * 0.8);
   }
   .italic {
     font-style: italic;
-    font-size: calc(variable.$font-size-m * 0.8);
-  }
-  .normal {
-    font-size: calc(variable.$font-size-m * 0.8);
+    font-size: calc(variable.$font-size-m * 0.9);
   }
 }
+
+ .question-section{
+    .normal{
+        font-size: calc(variable.$font-size-m * 1.2);
+        font-weight: 600;
+    }
+  }

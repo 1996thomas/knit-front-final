@@ -6,11 +6,21 @@
   flex-direction: column;
   gap: 3vw;
   .section-wrapper {
-
     img {
+      height: 100vh;
+      object-fit: contain;
       width: 100%;
       position: sticky;
+      object-position: top;
+      z-index: 100;
       top: 0;
+    }
+    .question-section{
+      height: 100vh;
+    }
+    .reponse-section{
+      height: 150vh;
+      overflow-y: scroll;
     }
   }
 }

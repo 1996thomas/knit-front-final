@@ -14,12 +14,15 @@
       object-position: top;
       z-index: 100;
       top: 0;
+      will-change: opacity;
+      
     }
     .question-section {
       margin-bottom: 5vh;
       background-color: variable.$black;
       position: relative;
       z-index: 100;
+      will-change: filter;
     }
     .reponse-section {
       background-color: variable.$black;

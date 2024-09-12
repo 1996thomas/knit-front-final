@@ -36,18 +36,18 @@ export default function SpecialArticleMobile({ isMobile, article }) {
       // Animation for the question
       gsap.fromTo(
         question,
-        { opacity: 0 },
+        { filter: "opacity(0)" },
         {
-          opacity: 1,
+          filter: "opacity(1)",
           scrollTrigger: {
             trigger: question,
             start: "top center",
             end: "bottom top",
             pin: true,
-            onLeave: () => gsap.to(question, { opacity: 0 }),
-            onLeaveBack: () => gsap.to(question, { opacity: 0 }),
-            onEnter: () => gsap.to(question, { opacity: 1 }),
-            onEnterBack: () => gsap.to(question, { opacity: 1 }),
+            onLeave: () => gsap.to(question, { filter: "opacity(0)"  }),
+            onLeaveBack: () => gsap.to(question, { filter: "opacity(0)"  }),
+            onEnter: () => gsap.to(question, { filter: "opacity(1)"  }),
+            onEnterBack: () => gsap.to(question, { filter: "opacity(1)" }),
           },
         }
       );

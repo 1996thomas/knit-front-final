@@ -44,8 +44,8 @@ export default function SpecialHero({ isMobile }) {
           <img src={isMobile ? "/50.JPG" : "/1a.JPG"} alt="" />
         </div>
         <div className="top">
-          <h2>Entretien Marvin Bonheur</h2>
-          <h2>une mise en lumière du 93</h2>
+          <h2>Marvin Bonheur</h2>
+          <h2>mise en lumière du 93</h2>
         </div>
         <div className="bottom">
           <p>

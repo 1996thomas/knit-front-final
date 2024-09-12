@@ -12,6 +12,9 @@ section.hero {
 
   h1 {
     text-align: center;
+    font-size: variable.$font-size-xl;
+    font-weight: 900;
+    text-transform: uppercase;
   }
 
   .hero--info {
@@ -58,21 +61,22 @@ section.hero {
   .top {
     position: relative;
     align-items: center;
+    flex-direction: column;
     display: flex;
-    height: 100vh;
+    height: 70vh;
     overflow: hidden;
-    justify-content: space-between;
-    padding-inline: 2vw;
+    justify-content: space-evenly;
     background-color: #141414;
     overflow: hidden;
     h2 {
-      font-size: 5vw;
+        font-size: calc(variable.$font-size-xxl * .9);
+      text-wrap: nowrap;
       font-weight: 800;
+      text-align: center;
       text-transform: uppercase;
-      max-width: 33.33%;
-    }
-    :last-child {
-      text-align: right;
+      width: 100%;
+      z-index: 1000;
+      mix-blend-mode:exclusion;
     }
   }
   .bottom {
@@ -94,7 +98,7 @@ section.hero {
     filter: grayscale(1);
     width: 10vw;
     position: absolute;
-    height: 100dvh;
+    height: 70dvh;
     overflow: hidden;
     transform-origin: center;
     left: 50%;
@@ -119,7 +123,7 @@ section.hero {
       height: 100vh;
       background-color: variable.$black;
       background-image: url("/public/1a.JPG");
-      background-size: contain;
+      background-size: cover;
       background-repeat: no-repeat;
       background-position: bottom;
       display: flex;
@@ -127,8 +131,6 @@ section.hero {
     }
 
     .hero--info {
-      top: 85px;
-      height: fit-content;
       span {
         font-size: 6px;
         letter-spacing: 0px;
@@ -140,11 +142,16 @@ section.hero {
   .intro {
     .top {
       height: 50vh;
+      h2{
+        font-size: calc(variable.$font-size-xl * .9);
+      }
     }
     .bottom {
       p {
         font-size: 5vw;
         text-wrap: pretty;
+    text-align: justify;
+    padding: 1rem;
       }
     }
     .intro-img__wrapper {

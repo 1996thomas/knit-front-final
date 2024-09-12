@@ -15,8 +15,8 @@ gsap.registerPlugin(ScrollTrigger);
 export default function SpecialArticleDesktop({ isMobile, article }) {
   const scrollableSectionRef = useRef(null);
   const imgsContainerRef = useRef(null);
-
-  console.log(article);
+  const qaWrapperRef = useRef(null);
+  const progressBar = useRef(null);
 
   useLayoutEffect(() => {
     const sections = document.querySelectorAll(
@@ -40,43 +40,61 @@ export default function SpecialArticleDesktop({ isMobile, article }) {
             start: "top 20%",
             end: "bottom top",
             onEnter: () => {
+              gsap.to(section, { opacity: 1 });
+
               if (images) {
                 gsap.to(images, { opacity: 0 }); // Cache toutes les images
                 gsap.to(images[index], { opacity: 1 }); // Affiche l'image correspondant à l'index
               }
             },
             onLeave: () => {
+              gsap.to(section, { opacity: 0 });
+
               if (images) {
                 gsap.to(images[index], { opacity: 0 }); // Cache l'image lorsque la section quitte la vue
               }
             },
             onEnterBack: () => {
+              gsap.to(section, { opacity: 1 });
+
               if (images) {
                 gsap.to(images, { opacity: 0 }); // Cache toutes les images
                 gsap.to(images[index], { opacity: 1 }); // Affiche l'image à nouveau quand on revient en arrière
               }
             },
             onLeaveBack: () => {
+              gsap.to(section, { opacity: 0, duration: 0.1 });
               if (images) {
                 gsap.to(images[index], { opacity: 0 }); // Cache l'image quand on revient en arrière
               }
             },
-            scrub: true,
             pin: true,
           },
         }
       );
     });
+    const updateProgressBar = () => {
+      const scrollableHeight =
+        qaWrapperRef.current.scrollHeight - window.innerHeight;
+      const scrolled = window.scrollY;
+      const progress = (scrolled / scrollableHeight) * 100;
+      progressBar.current.style.width = `${progress}%`; // Mise à jour de la largeur
+    };
+
+    window.addEventListener("scroll", updateProgressBar);
 
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      window.removeEventListener("scroll", updateProgressBar);
     };
   }, []);
 
   return (
     <div className="special__wrapper desktop">
       <SpecialHero isMobile={isMobile} />
-      <section className="question-reponse__wrapper">
+      <section className="question-reponse__wrapper" ref={qaWrapperRef}>
+        <div className="progress-bar" ref={progressBar}></div>{" "}
+        {/* Barre de progression */}
         <div className="spacer"></div>
         <div className="fixed-section">
           <div className="image__wrapper">

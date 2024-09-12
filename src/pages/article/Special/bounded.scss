@@ -26,14 +26,13 @@
 
 .mobile {
   .bounded-paragraph {
-    padding-left: 0;
-    padding-inline: 10px;
+    padding: 10px;
     text-align: justify;
     line-height: 1.2;
   }
 
   .normal {
-    font-size: calc(variable.$font-size-m * 0.9);
+    font-size: calc(variable.$font-size-m * 1.2);
   }
 
 

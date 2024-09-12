@@ -20,6 +20,7 @@ export default function SpecialArticle() {
       setIsLoading(false);
     });
   }, [slug]);
+  
 
   useEffect(() => {
     const handleResize = () => {

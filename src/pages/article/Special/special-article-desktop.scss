@@ -56,10 +56,20 @@
         gap: 5vh;
         flex-direction: column;
         background-color: variable.$black;
-
         align-items: center;
         justify-content: center;
       }
     }
   }
+}
+
+.progress-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 10px; /* Hauteur de la barre */
+  width: 0%; /* Commence avec une largeur de 0 */
+  background-color: variable.$orange; /* Couleur de la barre de progression */
+  z-index: 1000; /* Toujours au-dessus des autres éléments */
+  transition: width 0.2s ease;
 }

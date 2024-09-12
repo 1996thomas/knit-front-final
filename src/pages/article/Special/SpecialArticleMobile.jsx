@@ -12,11 +12,11 @@ export default function SpecialArticleMobile({ isMobile, article }) {
 
   useLayoutEffect(() => {
     const sections = gsap.utils.toArray(".section-wrapper");
+    const progressBar = document.querySelector(".progress-bar");
 
     sections.forEach((section) => {
       const image = section.querySelector(".sticky-image");
       const question = section.querySelector(".question-section");
-      const reponse = section.querySelector(".reponse-section");
 
       gsap.fromTo(
         image,
@@ -27,6 +27,8 @@ export default function SpecialArticleMobile({ isMobile, article }) {
             trigger: section,
             start: "top top",
             end: "bottom bottom",
+            pinSpacing: false,
+            pin: false,
           },
         }
       );
@@ -39,20 +41,32 @@ export default function SpecialArticleMobile({ isMobile, article }) {
           opacity: 1,
           scrollTrigger: {
             trigger: question,
-            start: "top 50%", // Start showing question when it reaches 50% from the top of the viewport
-            end: "bottom top", // Keep it visible until it reaches 50% from the bottom of the viewport
+            start: "top center",
+            end: "bottom top",
             pin: true,
-            onLeave: () => gsap.to(question, { opacity: 0 }), // Hide question when leaving
-            onLeaveBack: () => gsap.to(question, { opacity: 0 }), // Show question when entering back
-            onEnter: () => gsap.to(question, { opacity: 1 }), // Show question when entering back
-            onEnterBack: () => gsap.to(question, { opacity: 1 }), // Show question when entering back
+            onLeave: () => gsap.to(question, { opacity: 0 }),
+            onLeaveBack: () => gsap.to(question, { opacity: 0 }),
+            onEnter: () => gsap.to(question, { opacity: 1 }),
+            onEnterBack: () => gsap.to(question, { opacity: 1 }),
           },
         }
       );
     });
 
+    // Mise à jour de la barre de progression
+    const updateProgressBar = () => {
+      const scrollableHeight =
+        sectionRef.current.scrollHeight - window.innerHeight;
+      const scrolled = window.scrollY;
+      const progress = (scrolled / scrollableHeight) * 100;
+      progressBar.style.width = `${progress}%`; // Mise à jour de la largeur
+    };
+
+    window.addEventListener("scroll", updateProgressBar);
+
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      window.removeEventListener("scroll", updateProgressBar);
     };
   }, []);
 
@@ -63,6 +77,7 @@ export default function SpecialArticleMobile({ isMobile, article }) {
         className="question-reponse__wrapper responsive"
         ref={sectionRef}
       >
+        <div className="progress-bar"></div> {/* Barre de progression */}
         {article.dialog.map((i, index) => (
           <div className="section-wrapper" key={index} id={`section-${index}`}>
             <img

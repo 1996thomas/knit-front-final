@@ -7,7 +7,7 @@
   gap: 3vw;
   .section-wrapper {
     img {
-      height: 100vh;
+      height: 80vh;
       object-fit: contain;
       width: 100%;
       position: sticky;
@@ -15,9 +15,17 @@
       z-index: 100;
       top: 0;
     }
-    .question-section{
-      margin-bottom: 20vh;
+    .question-section {
+      margin-bottom: 5vh;
+      background-color: variable.$black;
+      position: relative;
+      z-index: 100;
     }
-
+    .reponse-section {
+      background-color: variable.$black;
+      position: relative;
+      z-index: 100;
+      margin-bottom: 10vh;
+    }
   }
 }

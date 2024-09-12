@@ -121,9 +121,20 @@ section.hero {
       background-image: url("/public/1a.JPG");
       background-size: contain;
       background-repeat: no-repeat;
-      background-position: center;
+      background-position: bottom;
       display: flex;
       filter: brightness(0.7);
+    }
+
+    .hero--info {
+      top: 85px;
+      height: fit-content;
+      span {
+        font-size: 6px;
+        letter-spacing: 0px;
+        padding: 0.25em 1em;
+
+      }
     }
   }
   .intro {

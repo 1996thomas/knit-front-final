@@ -34,6 +34,7 @@ const Spinner = () => {
         position: "fixed",
         bottom: isPhoneLandscape ? "-10px" : "20px",
         left: "15px",
+        zIndex:1000
       }}
     >
       <svg

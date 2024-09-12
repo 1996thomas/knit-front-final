@@ -18,7 +18,7 @@ export default function SpecialHero({ isMobile }) {
         trigger: imageWrapperRef.current,
         start: "top 70%",
         scrub: true,
-        markers: true,
+        markers: false,
       },
     });
   });

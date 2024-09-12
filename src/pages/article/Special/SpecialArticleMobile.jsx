@@ -43,26 +43,10 @@ export default function SpecialArticleMobile({ isMobile, article }) {
             end: "bottom top", // Keep it visible until it reaches 50% from the bottom of the viewport
             pin: true,
             onLeave: () => gsap.to(question, { opacity: 0 }), // Hide question when leaving
+            onLeaveBack: () => gsap.to(question, { opacity: 0 }), // Show question when entering back
+            onEnter: () => gsap.to(question, { opacity: 1 }), // Show question when entering back
             onEnterBack: () => gsap.to(question, { opacity: 1 }), // Show question when entering back
           },
-        }
-      );
-
-      // Animation for the answer
-      gsap.fromTo(
-        reponse,
-        { opacity: 0 },
-        {
-          opacity: 1,
-          scrollTrigger: {
-            trigger: reponse,
-            start: "top 40%", // Start showing answer when it reaches 50% from the top of the viewport
-            end: "bottom top", // Keep it visible until it reaches 50% from the bottom of the viewport
-            pin: true,
-            onLeave: () => gsap.to(question, { opacity: 0 }), // Hide question when leaving
-            onEnterBack: () => gsap.to(question, { opacity: 1 }), // Show question when entering back
-          },
-          duration: 0.4,
         }
       );
     });

@@ -15,7 +15,7 @@ export default function Loader({ duration = 3000, onComplete }) {
       const elapsed = Date.now() - startTime;
       const newPercentage = Math.min(
         100,
-        Math.floor((elapsed / duration) * 50) * 8
+        Math.floor((elapsed / duration) * 50) * 7
       );
 
       if (newPercentage > percentage) {

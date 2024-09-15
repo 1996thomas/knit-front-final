@@ -3,6 +3,7 @@ import SpecialArticleDesktop from "./SpecialArticleDesktop";
 import SpecialArticleMobile from "./SpecialArticleMobile";
 import { getSpecialArticle } from "../../../utils/apiCalls";
 import { useParams } from "react-router-dom";
+import Loader from "./Loader";
 
 export default function SpecialArticle() {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
@@ -20,7 +21,6 @@ export default function SpecialArticle() {
       setIsLoading(false);
     });
   }, [slug]);
-  
 
   useEffect(() => {
     const handleResize = () => {
@@ -33,12 +33,19 @@ export default function SpecialArticle() {
     };
   }, []);
   if (isLoading) {
-    return null; // Ou un spinner/loader si vous le souhaitez
+    return null;
   }
-
-  return isMobile ? (
-    <SpecialArticleMobile isMobile={isMobile} article={specialArticle} />
-  ) : (
-    <SpecialArticleDesktop isMobile={isMobile} article={specialArticle} />
+  const handleLoaderComplete = () => {
+    setIsLoading(false);
+  };
+  return (
+    <div>
+        <Loader duration={3000} onComplete={handleLoaderComplete}/>
+      {isMobile ? (
+        <SpecialArticleMobile isMobile={isMobile} article={specialArticle} />
+      ) : (
+        <SpecialArticleDesktop isMobile={isMobile} article={specialArticle} />
+      )}
+    </div>
   );
 }

@@ -1,0 +1,30 @@
+@use "../../../sass/abstract/variable";
+.promo-section__wrapper {
+  min-height: 50vh;
+  height: 100%;
+  margin-top: 50vh;
+  position: relative;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  text-transform: uppercase;
+  text-align: center;
+  gap: 5vw;
+  background-color: variable.$black;
+  color: variable.$white;
+  justify-content: center;
+  align-items: center;
+  p {
+    font-size: variable.$font-size-l;
+    max-width: 80%;
+    margin: 0 auto;
+  }
+  a{
+    color: variable.$orange;
+    font-weight: 900;
+  }
+}
+
+.mobile {
+margin-top: 0;
+}

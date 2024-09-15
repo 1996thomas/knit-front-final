@@ -4,6 +4,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "./special-article-mobile.scss";
 import SpecialHero from "./SpecialHero";
 import Bounded from "./Bounded";
+import PromoSection from "./PromoSection";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -44,9 +45,9 @@ export default function SpecialArticleMobile({ isMobile, article }) {
             start: "top center",
             end: "bottom top",
             pin: true,
-            onLeave: () => gsap.to(question, { filter: "opacity(0)"  }),
-            onLeaveBack: () => gsap.to(question, { filter: "opacity(0)"  }),
-            onEnter: () => gsap.to(question, { filter: "opacity(1)"  }),
+            onLeave: () => gsap.to(question, { filter: "opacity(0)" }),
+            onLeaveBack: () => gsap.to(question, { filter: "opacity(0)" }),
+            onEnter: () => gsap.to(question, { filter: "opacity(1)" }),
             onEnterBack: () => gsap.to(question, { filter: "opacity(1)" }),
           },
         }
@@ -95,6 +96,7 @@ export default function SpecialArticleMobile({ isMobile, article }) {
           </div>
         ))}
       </section>
+      <PromoSection isMobile={isMobile} />
     </div>
   );
 }

@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import { getSpecialArticle } from "../../../utils/apiCalls";
 import { useParams } from "react-router-dom";
 import Bounded from "./Bounded";
+import PromoSection from "./PromoSection";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -135,6 +136,7 @@ export default function SpecialArticleDesktop({ isMobile, article }) {
           ))}
         </div>
       </section>
+      <PromoSection/>
     </div>
   );
 }

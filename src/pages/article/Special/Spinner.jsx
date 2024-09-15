@@ -11,7 +11,7 @@ import useOrientation from "../../../utils/useOrientation";
 
 const Spinner = () => {
   const spinnerRef = useRef(null);
-  const { isDesktop, isPhoneLandscape } = useOrientation();
+  const { isDesktop } = useOrientation();
   useEffect(() => {
     gsap.to(spinnerRef.current, {
       rotation: 360,
@@ -28,18 +28,18 @@ const Spinner = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        width: `${isPhoneLandscape ? "40px" : "60px"}`,
+        width: "60px",
         height: "60px",
-        mixBlendMode:"difference",
+        mixBlendMode: "difference",
         position: "fixed",
-        bottom: isPhoneLandscape ? "-10px" : "40px",
-        left: "15px",
-        zIndex:1000
+        bottom: isDesktop ? "15px" : "25px",
+        left: isDesktop ? "20px" : "15px",
+        zIndex: 1000,
       }}
     >
       <svg
         ref={spinnerRef}
-        width={isPhoneLandscape ? "40" : "60"}
+        width="60"
         height="60"
         viewBox="0 0 220 220"
         xmlns="http://www.w3.org/2000/svg"
@@ -78,10 +78,9 @@ const Spinner = () => {
           top: "50%",
           left: "50%",
           transform: "translate(-50%, -50%)",
-          // backgroundColor:'red'
         }}
       >
-        <FaCartPlus size={isPhoneLandscape ? 12 : 25} color="white" />
+        <FaCartPlus size={25} color="white" />
       </div>
     </a>
   );

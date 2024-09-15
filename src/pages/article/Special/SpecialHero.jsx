@@ -9,19 +9,9 @@ export default function SpecialHero({ isMobile }) {
   const heroRef = useRef(null);
   const imageWrapperRef = useRef(null);
   const introRef = useRef(null);
+  const neuftroisRef = useRef(null);
 
-  useLayoutEffect(() => {
-    gsap.to(imageWrapperRef.current, {
-      width: isMobile ? "100%" : "33.33%",
-      filter: "grayscale(0)",
-      scrollTrigger: {
-        trigger: imageWrapperRef.current,
-        start: "top 70%",
-        scrub: true,
-        markers: false,
-      },
-    });
-  });
+
   return (
     <div className="container">
       <section
@@ -40,12 +30,13 @@ export default function SpecialHero({ isMobile }) {
         </div>
       </section>
       <section className="intro" ref={introRef}>
-        <div className="intro-img__wrapper" ref={imageWrapperRef}>
-          <img src={isMobile ? "/50.JPG" : "/1a.JPG"} alt="" />
-        </div>
         <div className="top">
-          <h2>Marvin Bonheur</h2>
-          <h2>mise en lumière du 93</h2>
+          <h2>MONSIEUR BONHEUR</h2>
+          <h3>
+            mise en lumière du
+            <br />
+            <span ref={neuftroisRef}>93</span>
+          </h3>
         </div>
         <div className="bottom">
           <p>

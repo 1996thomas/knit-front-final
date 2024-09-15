@@ -28,19 +28,19 @@ const Spinner = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        width: `${isPhoneLandscape ? "40px" : "80px"}`,
-        height: "80px",
+        width: `${isPhoneLandscape ? "40px" : "60px"}`,
+        height: "60px",
         mixBlendMode:"difference",
         position: "fixed",
-        bottom: isPhoneLandscape ? "-10px" : "20px",
+        bottom: isPhoneLandscape ? "-10px" : "40px",
         left: "15px",
         zIndex:1000
       }}
     >
       <svg
         ref={spinnerRef}
-        width={isPhoneLandscape ? "40" : "80"}
-        height="80"
+        width={isPhoneLandscape ? "40" : "60"}
+        height="60"
         viewBox="0 0 220 220"
         xmlns="http://www.w3.org/2000/svg"
         style={{ position: "absolute", top: 0, left: 0, zIndex: -1000 }}
@@ -78,6 +78,7 @@ const Spinner = () => {
           top: "50%",
           left: "50%",
           transform: "translate(-50%, -50%)",
+          // backgroundColor:'red'
         }}
       >
         <FaCartPlus size={isPhoneLandscape ? 12 : 25} color="white" />

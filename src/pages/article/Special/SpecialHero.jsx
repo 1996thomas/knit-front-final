@@ -51,12 +51,14 @@ export default function SpecialHero({ isMobile }) {
           <p>
             Dix ans de cheminement photographique plus tard, Monsieur Bonheur,
             artiste originaire d’Aulnay-Sous-Bois sort son premier livre : « La
-            trilogie du Bonheur ». Un travail sur le 93, département de la
-            Seine-Saint-Denis, dans lequel il a grandi. Avec son appareil
-            compact argentique, clin d’œil au Kodak jetable jaune 27 poses de
-            son enfance, il raconte ses souvenirs d’adolescence, relate du
-            quotidien des jeunes de quartier et dépeint avec fierté la culture
-            de la rue.
+            trilogie du Bonheur ».
+          </p>
+          <p>
+            Un travail sur le 93, département de la Seine-Saint-Denis, dans
+            lequel il a grandi. Avec son appareil compact argentique, clin d’œil
+            au Kodak jetable jaune 27 poses de son enfance, il raconte ses
+            souvenirs d’adolescence, relate du quotidien des jeunes de quartier
+            et dépeint avec fierté la culture de la rue.
           </p>
         </div>
       </section>

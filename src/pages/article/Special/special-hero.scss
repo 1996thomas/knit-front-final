@@ -92,9 +92,11 @@ section.hero {
     }
   }
   .bottom {
-    height: 70vh;
+    height: 50vh;
     display: flex;
-    padding-top: 10vh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     background-color: variable.$white;
 
     p {

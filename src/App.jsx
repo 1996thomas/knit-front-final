@@ -18,6 +18,7 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 import gsap from "gsap";
 import useOrientation from "./utils/useOrientation";
 import { useEffect } from "react";
+import SpecialCTA from "./pages/article/Special/SpecialCTA";
 
 export default function App() {
   const location = useLocation();
@@ -60,6 +61,7 @@ export default function App() {
 
   return (
     <div className="app">
+      <SpecialCTA/>
       <Navbar />
       <div className="content">
         <AnimatePresence mode="wait">

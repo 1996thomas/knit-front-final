@@ -15,7 +15,7 @@ du-bonheur/	"
         </a>
       </p>
       <div>
-        <p>Pour découvrir le travail de Monsieur Bonheur</p>
+        <p>découvrir le travail de Monsieur Bonheur</p>
         <a href="https://www.instagram.com/monsieurbonheur/" target="_blank">
           <FaInstagram size={isMobile ? 40 : 100} />
         </a>

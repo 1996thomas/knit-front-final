@@ -57,7 +57,8 @@ export default function Navbar() {
         className={`navbar__wrapper ${
           location.pathname === "/" ||
           location.pathname === "/media/special/monsieur-bonheur" ||
-          location.pathname === "/media"
+          location.pathname === "/media" ||
+          location.pathname === "/media/"
             ? "navbar--transparent"
             : ""
         }`}

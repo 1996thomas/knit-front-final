@@ -19,29 +19,43 @@ const ArticleCover = ({ article, index }) => {
   const y = useTransform(scrollY, (value) => `calc(-${value * 0.15}px)`);
   const opacity = useTransform(scrollY, [0, height], [1, 0], { clamp: false });
 
+  // Use the correct structure for API or static article
+  const isApiArticle = !!article.attributes; // Check if the article has the 'attributes' field (API article)
+  const backgroundImage = isApiArticle
+    ? article.attributes.cover.data.attributes.url
+    : article.image; // Use `image` for static article
+  const title = isApiArticle ? article.attributes.title : article.title;
+  const summary = isApiArticle ? article.attributes.summary : article.content;
+  const slug = isApiArticle
+    ? `/media/${article.attributes.slug}`
+    : article.slug; // Link for static article
+  const tags = isApiArticle
+    ? article.attributes.tags.data.map((tag) => tag.attributes.name) // API tags
+    : article.tags; // Static article tags
+
   return (
     <motion.div
       ref={ref}
       className="article"
       key={index}
       style={{
-        backgroundImage: `url(${article.attributes.cover.data.attributes.url})`,
+        backgroundImage: `url(${backgroundImage})`,
       }}
     >
       <span className="dark-gradient" />
       <div className="title__wrapper">
-        <Link to={`/media/${article.attributes.slug}`}>
+        <Link to={slug}>
           <motion.p
             className="article-title"
             style={{ y: isInView ? y : 0, opacity: isInView ? opacity : 0 }}
           >
-            {article.attributes.title}
+            {title}
           </motion.p>
           <motion.div
             className="article-summary"
             style={{ y: isInView ? y : 0, opacity: isInView ? opacity : 0 }}
           >
-            <p>{article.attributes.summary}</p>
+            <p>{summary}</p>
           </motion.div>
           <motion.span
             style={{ y: isInView ? y : 0, opacity: isInView ? opacity : 0 }}
@@ -54,13 +68,18 @@ const ArticleCover = ({ article, index }) => {
         className="tags"
         style={{ y: isInView ? y : 0, opacity: isInView ? opacity : 0 }}
       >
-        {article.attributes.tags.data.map((tag, i) => (
-          <Link to={`/media/categories/${tag.attributes.name}`} key={i}>
-            {tag.attributes.name}
-          </Link>
-        ))}
+        {tags &&
+          tags.map((tag, i) => (
+            <Link
+              to={isApiArticle ? `/media/categories/${tag}` : article.slug}
+              key={i}
+            >
+              {tag}
+            </Link>
+          ))}
       </motion.div>
     </motion.div>
   );
 };
+
 export default ArticleCover;

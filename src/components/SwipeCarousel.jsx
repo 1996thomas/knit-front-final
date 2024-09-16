@@ -1,10 +1,8 @@
 import React from "react";
 import "./swipe-carousel.scss";
 import { motion, useMotionValue } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import ArticleCover from "./ArticleCover";
-import { useRef } from "react";
-import { useEffect } from "react";
 
 const DRAG_BUFFER = 20;
 export const SwipeCarousel = ({ articles }) => {
@@ -14,18 +12,31 @@ export const SwipeCarousel = ({ articles }) => {
 
   const dragX = useMotionValue(0);
 
+  // Add the static article from the public folder
+  const staticArticle = {
+    title: "Le visage des oublié-e-s",
+    slug: "/media/special/monsieur-bonheur",
+    tags:["Interview", "Monsieur Bonheur"],
+    image: "/cover.JPG",
+    content:
+      "Dix ans de cheminement photographique plus tard, Monsieur Bonheur, artiste originaire d’Aulnay-Sous-Bois sort son premier livre : « La trilogie du Bonheur ». Un travail sur le 93, département de la Seine-Saint-Denis, dans lequel il a grandi. Avec son appareil compact argentique, clin d’œil au Kodak jetable jaune 27 poses de son enfance, il raconte ses souvenirs d’adolescence, relate du quotidien des jeunes de quartier et dépeint avec fierté la culture de la rue.",
+  };
+
+  const allArticles = [staticArticle, ...articles];
+
   const onDragStart = () => {
     setDragging(true);
     clearInterval(intervalRef.current);
   };
+
   const onDragEnd = () => {
     setDragging(false);
     const x = dragX.get();
-    if (articles) {
-      if (x <= -DRAG_BUFFER && imageIndex < articles.length - 1) {
-        setImageIndex((previousValue) => previousValue + 1);
+    if (allArticles) {
+      if (x <= -DRAG_BUFFER && imageIndex < allArticles.length - 1) {
+        setImageIndex((prevValue) => prevValue + 1);
       } else if (x >= DRAG_BUFFER && imageIndex > 0) {
-        setImageIndex((previousValue) => previousValue - 1);
+        setImageIndex((prevValue) => prevValue - 1);
       }
     }
     setTimeout(() => {
@@ -36,9 +47,8 @@ export const SwipeCarousel = ({ articles }) => {
   const startAutoScroll = () => {
     intervalRef.current = setInterval(() => {
       if (!dragging) {
-        // Only auto-scroll if not currently dragging
         setImageIndex((current) => {
-          if (current >= articles.length - 1) return 0;
+          if (current >= allArticles.length - 1) return 0;
           else return current + 1;
         });
       }
@@ -48,7 +58,7 @@ export const SwipeCarousel = ({ articles }) => {
   useEffect(() => {
     startAutoScroll();
     return () => clearInterval(intervalRef.current);
-  }, [articles.length]);
+  }, [allArticles.length]);
 
   return (
     <div className="carousel__wrapper">
@@ -63,18 +73,18 @@ export const SwipeCarousel = ({ articles }) => {
           translateX: `-${imageIndex * 100}%`,
         }}
         transition={{
-          ease: [0.01, 0.1, 0.75, 1], 
+          ease: [0.01, 0.1, 0.75, 1],
           duration: 0.2,
         }}
         onDragStart={onDragStart}
         onDragEnd={onDragEnd}
       >
-        <Images imageIndex={imageIndex} articles={articles} />
+        <Images imageIndex={imageIndex} articles={allArticles} />
       </motion.div>
       <Dots
         imageIndex={imageIndex}
         setImageIndex={setImageIndex}
-        articles={articles}
+        articles={allArticles}
       />
     </div>
   );

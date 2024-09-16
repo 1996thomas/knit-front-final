@@ -14,7 +14,7 @@ export const SwipeCarousel = ({ articles }) => {
 
   // Add the static article from the public folder
   const staticArticle = {
-    title: "Le visage des oublié-e-s",
+    title: "Le visage des oublié-e-s - Monsieur Bonheur",
     slug: "/media/special/monsieur-bonheur",
     tags:["Interview", "Monsieur Bonheur"],
     image: "/cover.JPG",

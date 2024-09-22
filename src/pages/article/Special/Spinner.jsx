@@ -23,7 +23,7 @@ const Spinner = () => {
 
   return (
     <a
-      href="https://www.revers-editions.com/marvin-bonheur"
+      href="https://ceeditions.com/fr/produit/la-trilogie-du-bonheur/"
       style={{
         display: "flex",
         justifyContent: "center",

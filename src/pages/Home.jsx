@@ -21,8 +21,8 @@ const Home = () => {
 
   useEffect(() => {
     getArticles().then((responseData) => {
-      const reverseArray = responseData.data.slice().reverse();
-      setArticles(reverseArray);
+      // const reverseArray = responseData.data.slice().reverse();
+      setArticles(responseData.data);
       setIsLoading(false);
     });
   }, []);
